@@ -15,9 +15,10 @@ interface Props {
     handlerCloseSearch: () => void;
     countryList: CountryFromList[];
     setCountry: Dispatch<SetStateAction<CountryFromList | undefined>>;
+    setPhone: Dispatch<SetStateAction<string>>;
 }
 
-const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryList }) => {
+const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryList, setPhone }) => {
     const [countryInputValue, setCountryValue] = useInput();
     const [isFocused, setIsFocused] = useState(false);
     const listWrapper = useRef<HTMLDivElement>(null);
@@ -45,7 +46,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
 
         setCountryValue(selectedCountry.country);
         setCountry(selectedCountry);
-
+        setPhone('')
         handlerCloseSearch();
     };
 
@@ -117,6 +118,8 @@ const Item: React.FC<ItemProps> = ({
 
 const Main = styled.div`
   height: 100vh;
+  max-width: 375px;
+  margin: 0 auto;
 `;
 
 const Container = styled.div`

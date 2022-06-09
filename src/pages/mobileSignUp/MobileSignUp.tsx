@@ -16,7 +16,6 @@ import {Link} from 'react-router-dom';
 import useToggle from "../../components/hooks/useToggle";
 import PhoneSearch from "../../components/PhoneSearch/PhoneSearch";
 import {CountryFromList, countryList} from "../../components/common/country-list";
-import Input from '../../components/Input';
 
 const MobileSignUp = () => {
     const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
@@ -38,6 +37,7 @@ const MobileSignUp = () => {
                 handlerCloseSearch={handlerCloseSearch}
                 countryList={countryList}
                 setCountry={setSelectedCountry}
+                setPhone={setPhone}
             />
         );
     }
