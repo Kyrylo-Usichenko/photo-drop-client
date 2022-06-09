@@ -107,6 +107,8 @@ export const Links = styled.span`
 `;
 export const Flag = styled.img`
     margin: 0 8px 0 0;
+  width: 24px;
+  height: 24px;
 `;
 
 
