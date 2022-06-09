@@ -63,7 +63,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
 
     return (
         <Main>
-            <div>
+            <Inner>
                 <Container>
                     {isFocused ? (
                         <IconBack onClick={handlerUnFocusInput}>
@@ -90,7 +90,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
                         <SearchIcon />
                     </IconSearch>
                 </Container>
-            </div>
+            </Inner>
             <ListWrapper ref={listWrapper}>
                 {filteredCountry.map((item: any, i: any) => (
                     <Item key={i} changeCountry={changeCountry} {...item} />
@@ -118,16 +118,20 @@ const Item: React.FC<ItemProps> = ({
 
 const Main = styled.div`
   height: 100vh;
-  max-width: 375px;
   margin: 0 auto;
+  //box-shadow:0 1px 4px 0 rgb(0 0 0 / 17%)
+`;
+const Inner = styled.div`
+  box-shadow:0 1px 4px 0 rgb(0 0 0 / 17%)
 `;
 
 const Container = styled.div`
   position: relative;
-  padding: 16px 24px 0;
+  padding: 16px 24px 16px;
   flex-grow: 3;
   display: flex;
   align-items: center;
+  margin: -10px 0 0;
 `;
 
 const TextCountry = styled.div`
