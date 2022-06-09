@@ -12,7 +12,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={
                         <>
-                            <Header/><MobileSignUp/>
+                            <MobileSignUp/>
                         </>
                     }/>
                     <Route path="/sms-verification" element={
