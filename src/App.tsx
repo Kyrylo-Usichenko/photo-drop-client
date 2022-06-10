@@ -17,7 +17,6 @@ function App() {
                     }/>
                     <Route path="/sms-verification" element={
                         <>
-                            {/* eslint-disable-next-line react/jsx-no-undef */}
                             <Header/><SmsVerification/>
                         </>
                     }/>

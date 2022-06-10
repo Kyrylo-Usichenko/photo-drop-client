@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 
 // import WarningIcon from '@/components/common/icons/auth/WarningIcon';
 import {OnChange} from "./hooks/useInput";
-import formatInput from "../utils/formatInput";
+import formatInput from "../../utils/formatInput";
 
 interface Props {
     label?: string;

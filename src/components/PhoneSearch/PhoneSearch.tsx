@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import useInput from "../hooks/useInput";
 import {CountryFromList} from "../common/country-list";
-import search from "../../utils/search";
+import search from "../../../utils/search";
 import SearchIcon from "../common/icons/SearchIcon";
 import BackIcon from "../common/icons/BackIcon";
 
