@@ -30,6 +30,7 @@ export const Wrapper = styled.button<ButtonProps>`
   outline: none;
   border: none;
   margin: ${ (props) => props.margin && `${props.margin}` };
+  cursor: pointer;
   &:disabled{
     opacity: 0.33;
   }
