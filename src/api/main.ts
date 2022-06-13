@@ -1,8 +1,13 @@
 import HttpClient from "./http-client";
 
-export interface LoginResponse {
+export interface phoneResponse {
     status: string,
     code: number
+}
+export interface otpResponse {
+    access_token: string;
+    "status": string,
+    "code": number,
 }
 
 class Main extends HttpClient {
@@ -20,9 +25,9 @@ class Main extends HttpClient {
         return Main.instanceCached;
     };
 
-    public sendPhone = (data: { "phone_number": string, }) => this.instance.post<LoginResponse>("/otp", data);
+    public sendPhone = (data: { "phone_number": string, }) => this.instance.post<phoneResponse>("/otp", data);
     public otpValidate = (data: { "phone_number": string, "otp": string }) =>
-        this.instance.post<LoginResponse>("/otp/validate", data);
+        this.instance.post<otpResponse>("/otp/validate", data);
 
     // public setPhoto = (fields: any, photo: any, url: string) => {
     //     const formData = new FormData();
