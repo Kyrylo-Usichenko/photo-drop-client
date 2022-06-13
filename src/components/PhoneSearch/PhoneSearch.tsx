@@ -2,14 +2,11 @@ import React, {
     useState, Dispatch, SetStateAction, useEffect, useRef,
 } from 'react';
 import styled from 'styled-components';
-
-
-
 import useInput from "../hooks/useInput";
 import {CountryFromList} from "../common/country-list";
-import search from "../../../utils/search";
 import SearchIcon from "../common/icons/SearchIcon";
 import BackIcon from "../common/icons/BackIcon";
+import search from "../../utils/search";
 
 interface Props {
     handlerCloseSearch: () => void;

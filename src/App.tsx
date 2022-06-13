@@ -1,13 +1,20 @@
 import React from 'react';
 import Header from './components/header/Header';
-import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./pages/mobileSignUp/MobileSignUp";
 import SmsVerification from "./pages/smsVerification/SmsVerification";
 import styled from "styled-components";
+import store from "./store";
+import {Provider} from 'react-redux';
+
+
+export type AppDispatch = typeof store.dispatch;
 
 function App() {
     return (
         <Wrapper>
+            <Provider store={store}>
+
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={
@@ -22,6 +29,7 @@ function App() {
                     }/>
                 </Routes>
             </BrowserRouter>
+            </Provider>
         </Wrapper>
     );
 }
