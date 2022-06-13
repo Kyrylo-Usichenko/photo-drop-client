@@ -53,5 +53,6 @@ export const Resend = styled.div`
   align-items: center;
   color: #3300CC;
   margin: 20px 0 0;
+  cursor: pointer;
 `;
 
