@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend } from './SmsVerificationStyles';
+import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend} from './SmsVerificationStyles';
 import {Container} from "../../components/container/Container";
 import Button from "../../components/button/Button";
 
@@ -33,13 +33,48 @@ const SmsVerification = () => {
     }
 
     useEffect(() => {
-        if (array.length === 6 && array[1] !== '' && array[2] !== '' && array[3] !== '' && array[4] !== '' && array[5] !== '' && array[6] !== '' ){
+        if (array.length === 6 && array[1] !== '' && array[2] !== '' && array[3] !== '' && array[4] !== '' && array[5] !== '' && array[6] !== '') {
             setDisabled(false)
-        }
-        else {
+        } else {
             setDisabled(true)
         }
     }, [array])
+
+    function jmp(e: any) {
+        if (e) {
+            let max = e.target.getAttribute('maxLength');
+            if (max && e.target.value.length >= max) {
+                do {
+                    e = e.target.nextSibling;
+                }
+                while (e && !(/text/.test(e.type)));
+                if (e && /text/.test(e.type)) {
+                    e.focus();
+                }
+            }
+            if (e?.key === 'Backspace' || e?.key === 'Delete') {
+                do {
+                    e = e.target.previousSibling;
+                }
+                while (e && !(/text/.test(e.type)));
+                if (e && /text/.test(e.type)) {
+                    e.focus();
+                }
+            }
+        }
+
+
+        // if(max && e.target.value.length >= max){
+        //     do{
+        //         e = e.target.previousSibling;
+        //     }
+        //     while(e && !(/text/.test(e.type)));
+        //     if(e && /text/.test(e.type)){
+        //         e.focus();
+        //     }
+        // }
+    }
+
     console.log(array)
     return (
         <Container>
@@ -48,12 +83,12 @@ const SmsVerification = () => {
                 <Number> +1 123-456-7890</Number>
             </NumberWrapper>
             <CodeWrapper>
-                <Field onChange={onInputChange} ref={input1} maxLength={1}/>
-                <Field onChange={onInputChange} ref={input2} maxLength={1}/>
-                <Field onChange={onInputChange} ref={input3} maxLength={1}/>
-                <Field onChange={onInputChange} ref={input4} maxLength={1}/>
-                <Field onChange={onInputChange} ref={input5} maxLength={1}/>
-                <Field onChange={onInputChange} ref={input6} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
+                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
 
             </CodeWrapper>
             <Resend onClick={resetInputs}>Resend code</Resend>

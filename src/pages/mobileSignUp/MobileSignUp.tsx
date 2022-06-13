@@ -12,20 +12,30 @@ import {
     Terms
 } from '../../components/header/HeaderStyles';
 import {Container} from "../../components/container/Container";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import useToggle from "../../components/hooks/useToggle";
 import PhoneSearch from "../../components/PhoneSearch/PhoneSearch";
 import {CountryFromList, countryList} from "../../components/common/country-list";
 import Header from "../../components/header/Header";
+import {AppDispatch} from "../../App";
+import {useDispatch, useSelector} from "react-redux";
+import {sendPhone} from "../../store/actions/user";
+import {history, State} from "../../store";
+
 
 const MobileSignUp = () => {
     const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
     const [phone, setPhone] = useState('');
-    console.log(phone)
     const handlerOpenSearch = () => setIsPhoneSearchOpen(true);
     const handlerCloseSearch = () => setIsPhoneSearchOpen(false);
-
-
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
+    const status = useSelector((state: State) => state.userReducer.phoneResponseStatus)
+    useEffect(() => {
+        if (status === 'OK'){
+            navigate('/sms-verification')
+        }
+    })
     const [selectedCountry, setSelectedCountry] = useState<CountryFromList | any>({
         country: 'United States',
         code: '1',
@@ -63,7 +73,7 @@ const MobileSignUp = () => {
                         type="tel"
                     />
                 </Filling>
-                <Button>
+                <Button onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}>
                     Create account
                 </Button>
                 <Agreement>
