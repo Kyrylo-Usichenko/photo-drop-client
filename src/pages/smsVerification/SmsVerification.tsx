@@ -2,19 +2,25 @@ import React, {useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend} from './SmsVerificationStyles';
 import {Container} from "../../components/container/Container";
 import Button from "../../components/button/Button";
+import {sendOtp} from "../../store/actions/user";
+import {State} from "../../store";
+import {useDispatch, useSelector } from 'react-redux';
+import {AppDispatch} from "../../App";
 
 const SmsVerification = () => {
+    const phone = useSelector((state: State) => state.userReducer.phone)
+    const dispatch = useDispatch<AppDispatch>();
     const input1 = useRef(null)
     const input2 = useRef(null)
     const input3 = useRef(null)
     const input4 = useRef(null)
     const input5 = useRef(null)
     const input6 = useRef(null)
-    const [array, setArray] = useState([])
+    const [otp, setOtp] = useState([])
     const [disabled, setDisabled] = useState(true)
     const onInputChange = () => {
         // @ts-ignore
-        setArray([input1.current.value, input2.current.value, input3.current.value, input4.current.value, input5.current.value, input6.current.value])
+        setOtp([input1.current.value, input2.current.value, input3.current.value, input4.current.value, input5.current.value, input6.current.value])
     }
     const resetInputs = () => {
         // @ts-ignore
@@ -29,17 +35,16 @@ const SmsVerification = () => {
         input5.current.value = null
         // @ts-ignore
         input6.current.value = null
-        setArray([])
+        setOtp([])
     }
 
     useEffect(() => {
-        if (array.length === 6 && array[1] !== '' && array[2] !== '' && array[3] !== '' && array[4] !== '' && array[5] !== '' && array[6] !== '') {
+        if (otp.length === 6 && otp[1] !== '' && otp[2] !== '' && otp[3] !== '' && otp[4] !== '' && otp[5] !== '' && otp[6] !== '') {
             setDisabled(false)
         } else {
             setDisabled(true)
         }
-    }, [array])
-
+    }, [otp])
     function jmp(e: any) {
         if (e) {
             let max = e.target.getAttribute('maxLength');
@@ -62,20 +67,9 @@ const SmsVerification = () => {
                 }
             }
         }
-
-
-        // if(max && e.target.value.length >= max){
-        //     do{
-        //         e = e.target.previousSibling;
-        //     }
-        //     while(e && !(/text/.test(e.type)));
-        //     if(e && /text/.test(e.type)){
-        //         e.focus();
-        //     }
-        // }
     }
 
-    console.log(array)
+    console.log(otp)
     return (
         <Container>
             <Heading>What’s the code?</Heading>
@@ -92,7 +86,7 @@ const SmsVerification = () => {
 
             </CodeWrapper>
             <Resend onClick={resetInputs}>Resend code</Resend>
-            <Button disabled={disabled} margin='19px 0 0'>Next</Button>
+            <Button disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
         </Container>
     );
 };
