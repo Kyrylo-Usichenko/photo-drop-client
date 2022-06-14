@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 const SmsVerification = () => {
     const phone = useSelector((state: State) => state.userReducer.phone)
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate()
     const input1 = useRef(null)
@@ -95,7 +97,7 @@ const SmsVerification = () => {
 
             </CodeWrapper>
             <Resend onClick={resetInputs}>Resend code</Resend>
-            <Button disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
+            <Button isLoading={isLoading} disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
         </Container>
     );
 };
