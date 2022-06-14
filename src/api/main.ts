@@ -26,6 +26,7 @@ class Main extends HttpClient {
     };
 
     public sendPhone = (data: { "phone_number": string, }) => this.instance.post<phoneResponse>("/otp", data);
+    public resendPhone = (data: { "phone_number": string, }) => this.instance.post<phoneResponse>("/otp/resend", data);
     public otpValidate = (data: { "phone_number": string, "otp": string }) =>
         this.instance.post<otpResponse>("/otp/validate", data);
 

@@ -2,14 +2,17 @@ import React, {useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend} from './SmsVerificationStyles';
 import {Container} from "../../components/container/Container";
 import Button from "../../components/button/Button";
-import {sendOtp} from "../../store/actions/user";
+import {resendPhone, sendOtp} from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector } from 'react-redux';
 import {AppDispatch} from "../../App";
+import { useNavigate } from 'react-router-dom';
 
 const SmsVerification = () => {
     const phone = useSelector((state: State) => state.userReducer.phone)
+    const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const dispatch = useDispatch<AppDispatch>();
+    const nav = useNavigate()
     const input1 = useRef(null)
     const input2 = useRef(null)
     const input3 = useRef(null)
@@ -35,6 +38,7 @@ const SmsVerification = () => {
         input5.current.value = null
         // @ts-ignore
         input6.current.value = null
+        dispatch(resendPhone(phone))
         setOtp([])
     }
 
@@ -45,6 +49,11 @@ const SmsVerification = () => {
             setDisabled(true)
         }
     }, [otp])
+    useEffect(() => {
+        if (isAuth){
+            nav('/123')
+        }
+    })
     function jmp(e: any) {
         if (e) {
             let max = e.target.getAttribute('maxLength');

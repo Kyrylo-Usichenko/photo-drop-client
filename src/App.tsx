@@ -24,7 +24,7 @@ function App() {
                     }/>
                     <Route path="/sms-verification" element={
                         <>
-                            <Header/><SmsVerification/>
+                            <Header backUrl='/'/><SmsVerification/>
                         </>
                     }/>
                 </Routes>

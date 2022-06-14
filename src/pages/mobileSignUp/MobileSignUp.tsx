@@ -19,7 +19,7 @@ import {CountryFromList, countryList} from "../../components/common/country-list
 import Header from "../../components/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from "react-redux";
-import {sendPhone} from "../../store/actions/user";
+import {sendPhone, setPhoneResponseCode} from "../../store/actions/user";
 import {history, State} from "../../store";
 
 
@@ -33,6 +33,7 @@ const MobileSignUp = () => {
     const status = useSelector((state: State) => state.userReducer.phoneResponseStatus)
     useEffect(() => {
         if (status === 'OK'){
+            dispatch(setPhoneResponseCode(null))
             navigate('/sms-verification')
         }
     })

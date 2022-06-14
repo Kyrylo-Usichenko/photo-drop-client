@@ -1,9 +1,20 @@
 import React from 'react';
-import { Wrapper } from './HeaderStyles';
+import {Link} from 'react-router-dom';
+import {ArrowLeft, Wrapper} from './HeaderStyles';
 
-const Header = () => {
+interface HeaderProps {
+    backUrl?: string
+}
+
+const Header = ({backUrl}: HeaderProps) => {
     return (
         <Wrapper>
+            {
+                backUrl && <Link to={backUrl}>
+                    <ArrowLeft/>
+                </Link>
+            }
+
             <img src="/images/logo.svg" height={'16px'} alt="logo"/>
         </Wrapper>
     );

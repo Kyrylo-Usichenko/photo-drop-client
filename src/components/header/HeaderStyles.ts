@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 export const GetStarted = styled.p`
   font-family: 'Termina';
@@ -43,6 +44,7 @@ export const FlagWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px 0 8px;
+  cursor: pointer;
 `;
 export const PhoneWrapper = styled.input`
   width: 265px;
@@ -80,6 +82,7 @@ export const Button = styled.button`
   line-height: 23px;
   text-align: center;
   color: #FFFFFF;
+  cursor: pointer;
 `;
 
 export const Agreement = styled.div`
@@ -109,6 +112,15 @@ export const Flag = styled.img`
     margin: 0 8px 0 0;
   width: 24px;
   height: 24px;
+`;
+export const ArrowLeft = styled.div`
+  background: url("/assets/icons/arrow-back.svg");
+  background-size: cover;
+  height: 16px;
+  width: 8px;
+  position: absolute;
+  left: 15px;
+  top: 19px;
 `;
 
 
