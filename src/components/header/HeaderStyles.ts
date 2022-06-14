@@ -67,24 +67,6 @@ export const PhoneWrapper = styled.input`
   }
 `;
 
-export const Button = styled.button`
-  width: 345px;
-  height: 50px;
-  background: #3300CC;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  margin: 20px 0 0;
-  font-family: 'Futura PT';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 23px;
-  text-align: center;
-  color: #FFFFFF;
-  cursor: pointer;
-`;
-
 export const Agreement = styled.div`
   font-family: 'Futura PT';
   font-style: normal;

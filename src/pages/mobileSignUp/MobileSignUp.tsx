@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
     Agreement,
-    Button,
     EnterPhone,
     Filling,
     Flag,
@@ -21,6 +20,10 @@ import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from "react-redux";
 import {sendPhone, setPhoneResponseCode} from "../../store/actions/user";
 import {history, State} from "../../store";
+import Loader from '../../components/loader/Loader';
+import Button from "../../components/button/Button";
+
+
 
 
 const MobileSignUp = () => {
@@ -31,6 +34,7 @@ const MobileSignUp = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const status = useSelector((state: State) => state.userReducer.phoneResponseStatus)
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     useEffect(() => {
         if (status === 'OK'){
             dispatch(setPhoneResponseCode(null))
@@ -74,7 +78,11 @@ const MobileSignUp = () => {
                         type="tel"
                     />
                 </Filling>
-                <Button onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}>
+                <Button
+                    isLoading={isLoading}
+                    margin='20px 0 0'
+                    onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}
+                >
                     Create account
                 </Button>
                 <Agreement>
