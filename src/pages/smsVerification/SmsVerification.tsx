@@ -53,7 +53,7 @@ const SmsVerification = () => {
     }, [otp])
     useEffect(() => {
         if (isAuth){
-            nav('/123')
+            nav('/selfie')
         }
     })
     function jmp(e: any) {
