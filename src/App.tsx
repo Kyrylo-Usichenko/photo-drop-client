@@ -6,6 +6,7 @@ import SmsVerification from "./pages/smsVerification/SmsVerification";
 import styled from "styled-components";
 import store from "./store";
 import {Provider} from 'react-redux';
+import AddSelfie from "./pages/addSelfie/AddSelfie";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -25,6 +26,11 @@ function App() {
                     <Route path="/sms-verification" element={
                         <>
                             <Header backUrl='/'/><SmsVerification/>
+                        </>
+                    }/>
+                    <Route path="/selfie" element={
+                        <>
+                            <Header backUrl='/'/><AddSelfie/>
                         </>
                     }/>
                 </Routes>
