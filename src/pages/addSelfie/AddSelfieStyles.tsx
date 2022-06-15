@@ -66,38 +66,6 @@ export const Description = styled.div`
   text-align: center;
 `;
 
-export const Menu = styled.ul<{ isOpen: boolean }>`
-  display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
-  width: 226px;
-  height: 119px;
-  background: #F5F4F2;
-  border-radius: 11px;
-  position: absolute;
-  bottom: -99px;
-  left: 50%;
-  transform: translateX(-50%);
-  flex-direction: column;
-  -webkit-animation: spin 0.3s linear 1;
-  animation: spin 0.3s linear 1;
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-opacity: 0;
-    }
-    100% {
-      -webkit-opacity: 1;
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
-
 export const Item = styled.li`
   display: flex;
   justify-content: space-between;
@@ -111,18 +79,5 @@ export const Item = styled.li`
     border-bottom: none;
   }
 `;
-export const Icon = styled.img`
-  background-size: contain;
-`;
 
-export const ItemText = styled.div`
-  font-family: 'Helvetica';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: 0.015em;
-  color: #000000;
-  
-`;
 
