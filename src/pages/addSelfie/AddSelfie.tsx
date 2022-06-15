@@ -1,57 +1,40 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     Add,
     Avatar,
     Circle,
     Description,
     HorizontalLine,
-    Icon,
-    Item, ItemText,
-    Menu,
     VerticalLine,
     Wrapper
 } from "./AddSelfieStyles";
 import {Container} from "../../components/container/Container";
-import useToggle from "../../components/hooks/useToggle";
-import useOnClickOutside from "../../components/hooks/useOnClickOutside";
 
 const AddSelfie = () => {
-    const [isOpen, setIsOpen] = useToggle();
-    const modalRef = useOnClickOutside(() => {
-        setIsOpen(false);
-    });
+    const hiddenFileInput = useRef(null);
+    const onUploadChange = (e: any) => {
+        const file = e.target.files[0];
+    }
+    const onAddClick = () => {
+        // @ts-ignore
+        hiddenFileInput.current.click();
+    }
     return (
         <Container>
             <Wrapper>
                 <Add>Add a selfie</Add>
                 <Description>A selfie allows your photos to be synced with your account.</Description>
                 <Avatar>
-                    <Circle ref={modalRef} onClick={setIsOpen}>
+                    <Circle onClick={onAddClick}>
                         <VerticalLine/>
                         <HorizontalLine/>
                     </Circle>
-                    <Menu  isOpen={isOpen}>
-                        <Item>
-                            <ItemText>
-                                Photo Library
-                            </ItemText>
-                            <Icon width={'33px'} height={'27px'} src="/assets/icons/photo-library.png" alt=""/>
-                        </Item>
-                        <Item>
-                            <ItemText>
-                                Take Photo
-                            </ItemText>
-                            <Icon width={'33px'} height={'25px'} src="/assets/icons/camera.png" alt=""/>
-                        </Item>
-                        <Item>
-                            <ItemText>
-                                Choose File
-                            </ItemText>
-                            <Icon width={'33px'} height={'20px'} src="/assets/icons/choose-file.png" alt=""/>
-                        </Item>
-                    </Menu>
                 </Avatar>
-            </Wrapper>
+                <input type="file"
+                       ref={hiddenFileInput}
+                       onChange={onUploadChange}
+                       style={{display: "none"}}
+                />            </Wrapper>
         </Container>
     );
 };
