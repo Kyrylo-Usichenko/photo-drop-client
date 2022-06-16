@@ -79,5 +79,95 @@ export const Item = styled.li`
     border-bottom: none;
   }
 `;
+export const CropWrapper = styled.div`
+  background: #262626;
+  width: 100%;
+  height: 100vh;
+  padding: 0 15px;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const CropInner = styled.div`
+  position: relative;
+  width: 100%;
+  height: 285px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const Buttons = styled.div`
+  bottom: 0;
+  margin: 95px 0 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 375px;
+`;
+export const Retake = styled.button`
+  border: 1px solid #FFFFFF;
+  border-radius: 50px;
+  width: 170px;
+  height: 50px;
+  background: #262626;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+  text-align: center;
+  outline: none;
+
+`;
+export const Save = styled.button`
+  background: #FFFFFF;
+  border-radius: 50px;
+  width: 170px;
+  height: 50px;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #262626;
+  text-align: center;
+  outline: none;
+  border: none;
+`;
+export const HeaderCrop = styled.div`
+  text-align: center;
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+  position: relative;
+  margin: 23px 0 94px;
+  width: 100%;
+`;
+export const Action = styled.div`
+  font-family: 'Futura PT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 42px;
+  color: #FFFFFF;
+`;
+
+export const Cross = styled.img`
+  position: absolute;
+  left: -8px;
+  top: -3px;
+`;
+
 
 
