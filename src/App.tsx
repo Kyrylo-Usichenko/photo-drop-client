@@ -30,7 +30,7 @@ function App() {
                     }/>
                     <Route path="/selfie" element={
                         <>
-                            <Header backUrl='/'/><AddSelfie/>
+                            <AddSelfie/>
                         </>
                     }/>
                 </Routes>
@@ -46,6 +46,6 @@ const Wrapper = styled.div`
   background-color: #fff;
   min-height: 100vh;
   height: 100%;
-  padding: 10px 0 10px;
+  //padding: 10px 0 10px;
 `
 export default App;
