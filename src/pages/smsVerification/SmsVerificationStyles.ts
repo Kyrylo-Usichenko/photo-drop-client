@@ -41,6 +41,20 @@ export const Field = styled.input`
   align-items: center;
   justify-content: center;
   text-align: center;
+  outline: none;
+  -webkit-appearance: none;
+  &::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type=number]{
+    -moz-appearance: textfield;
+
+  }
 `;
 
 export const Resend = styled.div`
