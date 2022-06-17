@@ -66,10 +66,18 @@ const AddSelfie = () => {
                                 borderRadius: '50%',
                                 width: 285,
                                 height: 285,
-                                border: 'none'
+                                border: 'none',
+                                borderCollapse: 'separate',
+                                WebkitBorderRadius: '50%',
+                                MozBorderRadius: '50%',
+                                transform: 'translateZ(0)'
                             },
-                            mediaStyle: {overflow: 'hidden'},
+                            mediaStyle: {
+                                overflow: 'hidden',
+                            },
                             cropAreaStyle: {
+                                borderRadius: '50%',
+
                                 border: '1px solid #CECCB5'
                             }
                         }}
