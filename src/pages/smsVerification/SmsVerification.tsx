@@ -61,10 +61,10 @@ const SmsVerification = () => {
             let max = e.target.getAttribute('maxLength');
             if (max && e.target.value.length >= max) {
                 do {
-                    e = e.target.nextSibling;
+                    e = e.target.nextElementSibling;
                 }
-                while (e && !(/text/.test(e.type)));
-                if (e && /text/.test(e.type)) {
+                while (e && !(/number/.test(e.type)));
+                if (e && /number/.test(e.type)) {
                     e.focus();
                 }
             }
@@ -72,8 +72,8 @@ const SmsVerification = () => {
                 do {
                     e = e.target.previousSibling;
                 }
-                while (e && !(/text/.test(e.type)));
-                if (e && /text/.test(e.type)) {
+                while (e && !(/number/.test(e.type)));
+                if (e && /number/.test(e.type)) {
                     e.focus();
                 }
             }
@@ -88,12 +88,12 @@ const SmsVerification = () => {
                 <Number> +1 123-456-7890</Number>
             </NumberWrapper>
             <CodeWrapper>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
-                <Field onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
+                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
 
             </CodeWrapper>
             <Resend onClick={resetInputs}>Resend code</Resend>
