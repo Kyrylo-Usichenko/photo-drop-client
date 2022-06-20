@@ -45,8 +45,7 @@ const Wrapper = styled.div`
   max-width: 552px;
   margin: 0 auto;
   background-color: #fff;
-  min-height: 100vh;
+  overflow: hidden; 
   height: 100%;
-  //padding: 10px 0 10px;
 `
 export default App;
