@@ -79,8 +79,6 @@ const SmsVerification = () => {
             }
         }
     }
-
-    console.log(otp)
     return (
         <Container>
             <Heading>What’s the code?</Heading>

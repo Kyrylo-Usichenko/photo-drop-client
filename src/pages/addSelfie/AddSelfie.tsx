@@ -15,15 +15,21 @@ import {Container} from "../../components/container/Container";
 import axios from 'axios';
 import Cropper from 'react-easy-crop';
 import Header from "../../components/header/Header";
+import {AppDispatch} from "../../App";
+import {useDispatch} from 'react-redux';
+import {sendPhoto} from "../../store/actions/user";
 
 const AddSelfie = () => {
     const hiddenFileInput = useRef(null);
-    const [file, setFile] = useState(null)
+    const [fileUrl, setFileURL] = useState(null)
+    const [file, setFile] = useState({type: null})
     const onUploadChange = (e: any) => {
         const file = e.target.files[0];
+        setFile(file)
         const fileUrl = URL.createObjectURL(file)
+        console.log(file)
         console.log(fileUrl)
-        setFile(fileUrl as any)
+        setFileURL(fileUrl as any)
     }
     const onAddClick = () => {
         // @ts-ignore
@@ -31,15 +37,17 @@ const AddSelfie = () => {
     }
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
+    const dispatch = useDispatch<AppDispatch>();
 
     const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
         console.log(croppedArea, croppedAreaPixels)
     }, [])
-    if (file) {
+    if (fileUrl) {
         return (
             <CropWrapper>
                 <HeaderCrop>
-                    <Cross onClick={() => setFile(null)} width={30} height={30} src="/assets/icons/cross.svg" alt=""/>
+                    <Cross onClick={() => setFileURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
+                           alt=""/>
                     <div>
                         Take selfie
                     </div>
@@ -49,7 +57,7 @@ const AddSelfie = () => {
                 </Action>
                 <CropInner>
                     <Cropper
-                        image={file as any}
+                        image={fileUrl as any}
                         crop={crop}
                         zoom={zoom}
                         aspect={1}
@@ -85,7 +93,7 @@ const AddSelfie = () => {
                 </CropInner>
                 <Buttons>
                     <Retake onClick={onAddClick}>Retake</Retake>
-                    <Save>Save</Save>
+                    <Save onClick={() => dispatch(sendPhoto(file.type))}>Save</Save>
                 </Buttons>
                 <input type="file"
                        ref={hiddenFileInput}

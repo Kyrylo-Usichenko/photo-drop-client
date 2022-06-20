@@ -81,6 +81,29 @@ export const sendOtp =
         };
 
 
+export const sendPhoto =
+    (fileType: null | string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                const response = await mainProtectedApi.getPostPhotoUrl(fileType);
+                dispatch(sendPhotoS3(response.data.url))
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+
+export const sendPhotoS3 =
+    (url: string): AsyncAction =>
+        async (dispatch, _, {mainApi}) => {
+            try {
+                const response = await mainApi.sendPhoto(url);
+                console.log(response)
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
 export const setAuth =
     (isAuth: boolean): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
