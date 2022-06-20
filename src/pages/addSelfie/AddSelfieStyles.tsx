@@ -102,7 +102,7 @@ export const CropInner = styled.div`
 `;
 export const Buttons = styled.div`
   bottom: 0;
-  margin: 95px 0 0;
+  margin: 0 0 40px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -168,6 +168,15 @@ export const Cross = styled.img`
   position: absolute;
   left: -8px;
   top: -3px;
+`;
+
+export const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 
 
