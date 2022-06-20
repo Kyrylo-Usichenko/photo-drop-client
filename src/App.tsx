@@ -7,6 +7,7 @@ import styled from "styled-components";
 import store from "./store";
 import {Provider} from 'react-redux';
 import AddSelfie from "./pages/addSelfie/AddSelfie";
+import ProtectedRouter from "./components/common/ProtectedRouter";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -29,9 +30,9 @@ function App() {
                         </>
                     }/>
                     <Route path="/selfie" element={
-                        <>
+                        <ProtectedRouter>
                             <AddSelfie/>
-                        </>
+                        </ProtectedRouter>
                     }/>
                 </Routes>
             </BrowserRouter>
