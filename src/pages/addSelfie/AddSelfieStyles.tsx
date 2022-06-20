@@ -82,7 +82,8 @@ export const Item = styled.li`
 export const CropWrapper = styled.div`
   background: #262626;
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
+  height: 100%;
   padding: 0 15px;
   top: 0;
   overflow: hidden;

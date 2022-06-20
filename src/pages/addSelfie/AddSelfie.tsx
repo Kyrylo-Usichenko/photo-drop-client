@@ -101,7 +101,6 @@ const AddSelfie = () => {
                        style={{display: "none"}}
                 />
             </CropWrapper>
-
         )
     }
     return (
