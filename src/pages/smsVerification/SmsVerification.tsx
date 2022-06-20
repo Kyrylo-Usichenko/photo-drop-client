@@ -83,7 +83,7 @@ const SmsVerification = () => {
         <Container>
             <Heading>What’s the code?</Heading>
             <NumberWrapper>Enter the code sent to
-                <Number> +1 123-456-7890</Number>
+                <Number> {phone}</Number>
             </NumberWrapper>
             <CodeWrapper>
                 <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>

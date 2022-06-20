@@ -114,7 +114,6 @@ const Item: React.FC<ItemProps> = ({
 );
 
 const Main = styled.div`
-  min-height: 100vh;
   height: 100%;
   margin: 0 auto;
   //box-shadow:0 1px 4px 0 rgb(0 0 0 / 17%)
