@@ -3,6 +3,7 @@ import {
     Action,
     Add,
     Avatar,
+    BottomWrapper,
     Buttons,
     Circle, CropInner, CropWrapper,
     Cross,
@@ -45,56 +46,58 @@ const AddSelfie = () => {
     if (fileUrl) {
         return (
             <CropWrapper>
-                <HeaderCrop>
-                    <Cross onClick={() => setFileURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
-                           alt=""/>
-                    <div>
-                        Take selfie
-                    </div>
-                </HeaderCrop>
-                <Action>
-                    Drag and zoom image to crop
-                </Action>
+                    <HeaderCrop>
+                        <Cross onClick={() => setFileURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
+                               alt=""/>
+                        <div>
+                            Take selfie
+                        </div>
+                    </HeaderCrop>
+                    <Action>
+                        Drag and zoom image to crop
+                    </Action>
+                <BottomWrapper>
                 <CropInner>
-                    <Cropper
-                        image={fileUrl as any}
-                        crop={crop}
-                        zoom={zoom}
-                        aspect={1}
-                        onCropChange={setCrop}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
-                        cropShape='round'
-                        showGrid={false}
-                        cropSize={{width: 285, height: 285}}
-                        objectFit='horizontal-cover'
-                        style={{
-                            containerStyle: {
-                                margin: '0 auto',
-                                borderRadius: '50%',
-                                width: 285,
-                                height: 285,
-                                border: 'none',
-                                borderCollapse: 'separate',
-                                WebkitBorderRadius: '50%',
-                                MozBorderRadius: '50%',
-                                transform: 'translateZ(0)'
-                            },
-                            mediaStyle: {
-                                overflow: 'hidden',
-                            },
-                            cropAreaStyle: {
-                                borderRadius: '50%',
+                        <Cropper
+                            image={fileUrl as any}
+                            crop={crop}
+                            zoom={zoom}
+                            aspect={1}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            cropShape='round'
+                            showGrid={false}
+                            cropSize={{width: 285, height: 285}}
+                            objectFit='horizontal-cover'
+                            style={{
+                                containerStyle: {
+                                    margin: '0 auto',
+                                    borderRadius: '50%',
+                                    width: 285,
+                                    height: 285,
+                                    border: 'none',
+                                    borderCollapse: 'separate',
+                                    WebkitBorderRadius: '50%',
+                                    MozBorderRadius: '50%',
+                                    transform: 'translateZ(0)'
+                                },
+                                mediaStyle: {
+                                    overflow: 'hidden',
+                                },
+                                cropAreaStyle: {
+                                    borderRadius: '50%',
 
-                                border: '1px solid #CECCB5'
-                            }
-                        }}
-                    />
-                </CropInner>
-                <Buttons>
-                    <Retake onClick={onAddClick}>Retake</Retake>
-                    <Save onClick={() => dispatch(sendPhoto(file.type))}>Save</Save>
-                </Buttons>
+                                    border: '1px solid #CECCB5'
+                                }
+                            }}
+                        />
+                    </CropInner>
+                    <Buttons>
+                        <Retake onClick={onAddClick}>Retake</Retake>
+                        <Save onClick={() => dispatch(sendPhoto(file.type))}>Save</Save>
+                    </Buttons>
+                </BottomWrapper>
                 <input type="file"
                        ref={hiddenFileInput}
                        onChange={onUploadChange}
