@@ -82,22 +82,31 @@ export const sendOtp =
 
 
 export const sendPhoto =
-    (fileType: null | string): AsyncAction =>
+    (photo: any): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
-                const response = await mainProtectedApi.getPostPhotoUrl(fileType);
-                dispatch(sendPhotoS3(response.data.url))
+                dispatch(userActions.setLoading(true))
+                const response = await mainProtectedApi.getPostPhotoUrl(photo.type.split('/').slice(1, 2).join('/'));
+                const fields = response.data.fields
+                const url = response.data.url
+                dispatch(sendPhotoS3(fields, photo, url))
+                console.log(response)
+                console.log(response)
+                dispatch(userActions.setLoading(false))
             } catch (e) {
                 console.log(e);
+                alert('saving failed')
+                dispatch(userActions.setLoading(false))
+
             }
         };
 
 
 export const sendPhotoS3 =
-    (url: string): AsyncAction =>
+    (fields: any, photo: any, url: string): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
             try {
-                const response = await mainApi.sendPhoto(url);
+                const response = await mainApi.setPhoto(fields, photo, url);
                 console.log(response)
             } catch (e) {
                 console.log(e);

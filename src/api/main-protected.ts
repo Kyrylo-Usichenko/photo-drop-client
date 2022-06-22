@@ -39,8 +39,5 @@ export default class MainProtected extends HttpClientProtected {
     //     this.instance.get<any>(`/presign-url?name=${data.name}&album_id=${data.albumId}&file_type=${data.fileType}`)
 
     public getPostPhotoUrl = (file_type: any) =>
-        this.instance.get<any>(`/selfies/presign-url?file_type={${file_type}} `)
-
-
-
+        this.instance.get<any>(`/selfies/presign-url?file_type=${file_type}`)
 }

@@ -138,6 +138,9 @@ export const Save = styled.button`
   text-align: center;
   outline: none;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const HeaderCrop = styled.div`
   text-align: center;

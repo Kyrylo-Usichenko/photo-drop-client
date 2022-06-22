@@ -13,41 +13,49 @@ import {
     Wrapper
 } from "./AddSelfieStyles";
 import {Container} from "../../components/container/Container";
-import axios from 'axios';
 import Cropper from 'react-easy-crop';
 import Header from "../../components/header/Header";
 import {AppDispatch} from "../../App";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {sendPhoto} from "../../store/actions/user";
+import {State} from "../../store";
+import Button from "../../components/button/Button";
+import Loader from '../../components/loader/Loader';
 
 const AddSelfie = () => {
+
+    const dispatch = useDispatch<AppDispatch>();
     const hiddenFileInput = useRef(null);
-    const [fileUrl, setFileURL] = useState(null)
-    const [file, setFile] = useState({type: null})
+    const [photoUrl, setPhotoURL] = useState(null)
+    const [photo, setPhoto] = useState({type: null})
+    const [crop, setCrop] = useState({x: 0, y: 0})
+    const [zoom, setZoom] = useState(1)
+
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+
     const onUploadChange = (e: any) => {
         const file = e.target.files[0];
-        setFile(file)
+        setPhoto(file)
         const fileUrl = URL.createObjectURL(file)
         console.log(file)
         console.log(fileUrl)
-        setFileURL(fileUrl as any)
+        setPhotoURL(fileUrl as any)
     }
     const onAddClick = () => {
         // @ts-ignore
         hiddenFileInput.current.click();
     }
-    const [crop, setCrop] = useState({x: 0, y: 0})
-    const [zoom, setZoom] = useState(1)
-    const dispatch = useDispatch<AppDispatch>();
-
     const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
         console.log(croppedArea, croppedAreaPixels)
     }, [])
-    if (fileUrl) {
+    const onSaveClick = () => {
+        dispatch(sendPhoto(photo))
+    }
+    if (photoUrl) {
         return (
             <CropWrapper>
                     <HeaderCrop>
-                        <Cross onClick={() => setFileURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
+                        <Cross onClick={() => setPhotoURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
                                alt=""/>
                         <div>
                             Take selfie
@@ -59,7 +67,7 @@ const AddSelfie = () => {
                 <BottomWrapper>
                 <CropInner>
                         <Cropper
-                            image={fileUrl as any}
+                            image={photoUrl as any}
                             crop={crop}
                             zoom={zoom}
                             aspect={1}
@@ -95,7 +103,7 @@ const AddSelfie = () => {
                     </CropInner>
                     <Buttons>
                         <Retake onClick={onAddClick}>Retake</Retake>
-                        <Save onClick={() => dispatch(sendPhoto(file.type))}>Save</Save>
+                        <Save onClick={onSaveClick}>{isLoading ? <Loader/> : 'Save'}</Save>
                     </Buttons>
                 </BottomWrapper>
                 <input type="file"
