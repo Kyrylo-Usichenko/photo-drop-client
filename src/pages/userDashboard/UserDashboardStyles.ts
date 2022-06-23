@@ -57,3 +57,6 @@ export const Browse = styled.div`
   margin: 41px 0 0;
   width: 100%;
 `;
+export const Slider = styled.div`
+  margin: 21px 0 0;
+`;

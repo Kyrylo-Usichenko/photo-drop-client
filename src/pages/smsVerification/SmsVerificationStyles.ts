@@ -11,6 +11,10 @@ export const Heading = styled.div`
   color: #262626;
 
 `;
+export const Wrapper = styled.div`
+  max-width: 375px;
+  margin: 0 auto;
+`;
 export const NumberWrapper = styled.div`
   font-family: 'Futura PT';
   font-style: normal;

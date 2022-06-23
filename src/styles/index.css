@@ -1,8 +1,12 @@
 @import "./normalize.css";
 @import "./reset.css";
 
+
 *,* {
   box-sizing: border-box;
+}
+.swiper-slide{
+  width: 100px !important;
 }
 body {
   margin: 0;

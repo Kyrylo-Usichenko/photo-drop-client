@@ -22,6 +22,7 @@ import {sendPhone, setPhoneResponseCode} from "../../store/actions/user";
 import {history, State} from "../../store";
 import Loader from '../../components/loader/Loader';
 import Button from "../../components/button/Button";
+import {Wrapper} from "./MobileSignUpStyles";
 
 
 
@@ -63,37 +64,40 @@ const MobileSignUp = () => {
             <Header/>
 
             <Container>
-                <GetStarted>Let’s get started</GetStarted>
-                <EnterPhone>Enter your phone number</EnterPhone>
-                <Filling>
-                    <FlagWrapper onClick={handlerOpenSearch}>
-                        <Flag src={selectedCountry.src} alt=""/>
-                        <img src="/images/arrow-down.svg" alt=""/>
-                    </FlagWrapper>
-                    <PhoneWrapper
-                        value={'+' + selectedCountry.code + phone}
-                        onChange={e => setPhone(e.target.value.substr(selectedCountry.code.length + 1))}
-                        placeholder='+1 (555) 555-5555'
-                        pattern="\+[0-9]{1,4}\s{1}[0-9]*"
-                        type="tel"
-                    />
-                </Filling>
-                <Button
-                    isLoading={isLoading}
-                    margin='20px 0 0'
-                    onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}
-                >
-                    Create account
-                </Button>
-                <Agreement>
-                    By proceeding, you consent to get WhatsApp or SMS messages, from PhotoDrop and its affiliates to the
-                    number provided. Text “STOP” to 89203 to opt out.
-                </Agreement>
-                <Terms>
-                    By continuing, you indicate that you have read and agree to our <Link to='/'><Links>Terms of
-                    Use</Links></Link> & <Link
-                    to='/'><Links>Privacy Policy</Links></Link>
-                </Terms>
+                <Wrapper>
+                    <GetStarted>Let’s get started</GetStarted>
+                    <EnterPhone>Enter your phone number</EnterPhone>
+                    <Filling>
+                        <FlagWrapper onClick={handlerOpenSearch}>
+                            <Flag src={selectedCountry.src} alt=""/>
+                            <img src="/images/arrow-down.svg" alt=""/>
+                        </FlagWrapper>
+                        <PhoneWrapper
+                            value={'+' + selectedCountry.code + phone}
+                            onChange={e => setPhone(e.target.value.substr(selectedCountry.code.length + 1))}
+                            placeholder='+1 (555) 555-5555'
+                            pattern="\+[0-9]{1,4}\s{1}[0-9]*"
+                            type="tel"
+                        />
+                    </Filling>
+                    <Button
+                        isLoading={isLoading}
+                        margin='20px 0 0'
+                        onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}
+                    >
+                        Create account
+                    </Button>
+                    <Agreement>
+                        By proceeding, you consent to get WhatsApp or SMS messages, from PhotoDrop and its affiliates to the
+                        number provided. Text “STOP” to 89203 to opt out.
+                    </Agreement>
+                    <Terms>
+                        By continuing, you indicate that you have read and agree to our <Link to='/'><Links>Terms of
+                        Use</Links></Link> & <Link
+                        to='/'><Links>Privacy Policy</Links></Link>
+                    </Terms>
+                </Wrapper>
+
             </Container>
         </div>
 

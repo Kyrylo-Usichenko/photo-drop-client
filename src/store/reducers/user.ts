@@ -6,7 +6,8 @@ interface UserState {
     isAuth: boolean,
     isLoading: boolean,
     selfie: string | null,
-    tempSelfie: string | null
+    tempSelfie: string | null,
+    user: any
 }
 
 const initialState: UserState = {
@@ -15,7 +16,8 @@ const initialState: UserState = {
     isAuth: false,
     isLoading: false,
     selfie: null,
-    tempSelfie: null
+    tempSelfie: null,
+    user: null
 };
 
 
@@ -37,6 +39,10 @@ export class User extends ImmerReducer<UserState> {
     }
     setTempSelfie(photo: string | null) {
         this.draftState.tempSelfie = photo;
+    }
+    setUser(user: any) {
+        this.draftState.user = user;
+
     }
 }
 

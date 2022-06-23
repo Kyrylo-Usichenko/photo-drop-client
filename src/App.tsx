@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import AddSelfie from "./pages/addSelfie/AddSelfie";
 import ProtectedRouter from "./components/common/ProtectedRouter";
 import UserDashboard from "./pages/userDashboard/UserDashboard";
+import UserAccount from "./pages/userAccount/UserAccount";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -40,6 +41,12 @@ function App() {
                             <ProtectedRouter>
                                 <UserDashboard/>
                             </ProtectedRouter>
+                        }/>
+                        <Route path="/my-profile" element={
+                            <div>
+                                <Header backUrl='/dashboard'/>
+                                <UserAccount/>
+                            </div>
                         }/>
                     </Routes>
                 </BrowserRouter>
