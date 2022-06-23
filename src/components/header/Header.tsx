@@ -11,15 +11,17 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
     return (
         <Wrapper>
             <Inner>
-            {
-                backUrl && <Link to={backUrl}>
-                    <ArrowLeft/>
-                </Link>
-            }
-            {
-                imageSrc && <Avatar src={imageSrc} alt=""/>
-            }
-            <img src="/images/logo.svg" width='125px' height='16px' alt="logo"/>
+                {
+                    backUrl && <Link to={backUrl}>
+                        <ArrowLeft/>
+                    </Link>
+                }
+                {
+                    imageSrc && (<Link to='/my-profile'>
+                        <Avatar src={imageSrc} alt=""/>
+                    </Link>)
+                }
+                <img src="/images/logo.svg" width='125px' height='16px' alt="logo"/>
             </Inner>
         </Wrapper>
     );

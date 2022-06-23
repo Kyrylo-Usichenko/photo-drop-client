@@ -42,4 +42,7 @@ export default class MainProtected extends HttpClientProtected {
         this.instance.get<any>(`/selfies/presign-url?file_type=${file_type}`)
     public getSelfie = () =>
         this.instance.get<any>(`/selfies`)
+    public getUser = () =>
+        this.instance.get<any>(`/clients`)
+
 }

@@ -10,6 +10,7 @@ export type UserActions = ReturnType<typeof userActions.setPhoneResponseCode
     | typeof userActions.setLoading
     | typeof userActions.setSelfie
     | typeof userActions.setTempSelfie
+    | typeof userActions.setUser
     | typeof userActions.setAuth>
 
 export const sendPhone =
@@ -128,6 +129,22 @@ export const getSelfie =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getSelfie();
                 dispatch(userActions.setSelfie(response.data.photo_url))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 500);
+
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+export const getUser =
+    (): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const response = await mainProtectedApi.getUser();
+                dispatch(userActions.setUser(response.data.client_data))
                 setTimeout(() => {
                     dispatch(setLoading(false))
                 }, 500);

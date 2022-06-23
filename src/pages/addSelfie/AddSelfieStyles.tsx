@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+export const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Avatar = styled.div`
   width: 181px;

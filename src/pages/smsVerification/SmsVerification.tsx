@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend} from './SmsVerificationStyles';
+import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './SmsVerificationStyles';
 import {Container} from "../../components/container/Container";
 import Button from "../../components/button/Button";
 import {resendPhone, sendOtp} from "../../store/actions/user";
@@ -81,21 +81,23 @@ const SmsVerification = () => {
     }
     return (
         <Container>
-            <Heading>What’s the code?</Heading>
-            <NumberWrapper>Enter the code sent to
-                <Number> {phone}</Number>
-            </NumberWrapper>
-            <CodeWrapper>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
-                <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
+            <Wrapper>
+                <Heading>What’s the code?</Heading>
+                <NumberWrapper>Enter the code sent to
+                    <Number> {phone}</Number>
+                </NumberWrapper>
+                <CodeWrapper>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
 
-            </CodeWrapper>
-            <Resend onClick={resetInputs}>Resend code</Resend>
-            <Button isLoading={isLoading} disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
+                </CodeWrapper>
+                <Resend onClick={resetInputs}>Resend code</Resend>
+                <Button isLoading={isLoading} disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
+            </Wrapper>
         </Container>
     );
 };

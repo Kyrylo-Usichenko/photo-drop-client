@@ -24,6 +24,7 @@ export const GetStarted = styled.p`
   line-height: 26px;
   color: #262626;
 `;
+
 export const EnterPhone = styled.p`
   font-family: 'Futura PT';
   font-style: normal;
@@ -117,7 +118,6 @@ export const Avatar = styled.img`
   right: 15px;
   top: 10px;
   cursor: pointer;
-  background: grey;
 `;
 
 
