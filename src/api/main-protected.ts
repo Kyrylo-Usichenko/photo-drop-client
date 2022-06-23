@@ -38,6 +38,6 @@ export default class MainProtected extends HttpClientProtected {
     // public getAddPhotoUrlS3 = (data: { name: string, ownerId: string, albumId: string, fileType: string }) =>
     //     this.instance.get<any>(`/presign-url?name=${data.name}&album_id=${data.albumId}&file_type=${data.fileType}`)
 
-    public getPostPhotoUrl = (file_type: any) =>
+    public getPostPhotoUrl = (file_type: string | null) =>
         this.instance.get<any>(`/selfies/presign-url?file_type=${file_type}`)
 }

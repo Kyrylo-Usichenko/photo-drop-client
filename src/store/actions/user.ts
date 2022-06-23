@@ -82,10 +82,11 @@ export const sendOtp =
 
 
 export const sendPhoto =
-    (photo: any): AsyncAction =>
+    (photo: Blob | null): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
                 dispatch(userActions.setLoading(true))
+                // @ts-ignore
                 const response = await mainProtectedApi.getPostPhotoUrl(photo.type.split('/').slice(1, 2).join('/'));
                 const fields = response.data.fields
                 const url = response.data.url
