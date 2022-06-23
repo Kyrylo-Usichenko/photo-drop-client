@@ -1,6 +1,9 @@
 import styled from "styled-components";
+
 export const Wrapper = styled.div`
-    padding: 10px 0 0;
+  padding: 10px 0 0;
+  width: 100%;
+
 `;
 export const Inner = styled.div`
   border-top: 1px solid #F1F0EC;
@@ -55,7 +58,8 @@ export const PhoneWrapper = styled.input`
   border-radius: 10px;
   padding: 15px 13px 14px;
   outline: none;
-  &::placeholder{
+
+  &::placeholder {
     font-family: 'Futura PT';
     font-style: normal;
     font-weight: 400;
@@ -83,7 +87,7 @@ export const Terms = styled(Agreement)`
   text-decoration: none;
 `;
 export const Links = styled.span`
-    display: inline;
+  display: inline;
   color: #6D6D6D;
   border-bottom: 0.75px solid #3300CC;
   text-decoration: none;
@@ -92,7 +96,7 @@ export const Links = styled.span`
 
 `;
 export const Flag = styled.img`
-    margin: 0 8px 0 0;
+  margin: 0 8px 0 0;
   width: 24px;
   height: 24px;
 `;
@@ -104,6 +108,16 @@ export const ArrowLeft = styled.div`
   position: absolute;
   left: 15px;
   top: 19px;
+`;
+export const Avatar = styled.img`
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  background: grey;
 `;
 
 

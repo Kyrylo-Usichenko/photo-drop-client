@@ -5,13 +5,17 @@ interface UserState {
     phone: string,
     isAuth: boolean,
     isLoading: boolean,
+    selfie: string | null,
+    tempSelfie: string | null
 }
 
 const initialState: UserState = {
     phoneResponseStatus: null,
     phone: '',
     isAuth: false,
-    isLoading: false
+    isLoading: false,
+    selfie: null,
+    tempSelfie: null
 };
 
 
@@ -27,6 +31,12 @@ export class User extends ImmerReducer<UserState> {
     }
     setLoading(isLoading: boolean) {
         this.draftState.isLoading = isLoading;
+    }
+    setSelfie(url: string) {
+        this.draftState.selfie = url;
+    }
+    setTempSelfie(photo: string | null) {
+        this.draftState.tempSelfie = photo;
     }
 }
 
