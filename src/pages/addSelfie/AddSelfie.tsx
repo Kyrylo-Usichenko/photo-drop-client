@@ -21,10 +21,11 @@ import {sendPhoto} from "../../store/actions/user";
 import {State} from "../../store";
 import Loader from '../../components/loader/Loader';
 import {getCroppedImage} from "./cropImage";
+import { useNavigate } from 'react-router-dom';
 
 const AddSelfie = () => {
-
     const dispatch = useDispatch<AppDispatch>();
+    const nav = useNavigate();
     const hiddenFileInput = useRef(null);
     const [photoUrl, setPhotoURL] = useState(null)
     const [photo, setPhoto] = useState<null | Blob>(null)
@@ -37,7 +38,6 @@ const AddSelfie = () => {
         const file = e.target.files[0];
         const fileUrl = URL.createObjectURL(file)
         setPhotoURL(fileUrl as any)
-        console.log(`url: ${fileUrl}`)
     }
     const onAddClick = () => {
         // @ts-ignore
@@ -55,9 +55,7 @@ const AddSelfie = () => {
 
     const onSaveClick = () => {
         dispatch(sendPhoto(photo))
-    }
-    const onGetImageClick = () => {
-
+        nav('/dashboard')
     }
     if (photoUrl) {
         return (

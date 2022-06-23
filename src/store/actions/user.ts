@@ -8,6 +8,8 @@ export const userActions = createActionCreators(User);
 export type UserActions = ReturnType<typeof userActions.setPhoneResponseCode
     | typeof userActions.setPhone
     | typeof userActions.setLoading
+    | typeof userActions.setSelfie
+    | typeof userActions.setTempSelfie
     | typeof userActions.setAuth>
 
 export const sendPhone =
@@ -67,12 +69,9 @@ export const sendOtp =
                 const response = await mainApi.otpValidate({"phone_number": phone, "otp": otp});
                 const accessToken: string = response.data.access_token;
                 const storage = TokensLocalStorage.getInstance();
-                console.log(response)
                 storage.setAccessToken(accessToken);
                 dispatch(userActions.setAuth(true))
                 dispatch(userActions.setLoading(false))
-
-                console.log(response)
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
@@ -91,8 +90,8 @@ export const sendPhoto =
                 const fields = response.data.fields
                 const url = response.data.url
                 dispatch(sendPhotoS3(fields, photo, url))
-                console.log(response)
-                console.log(response)
+                const blobUrl = URL.createObjectURL(photo as  any)
+                dispatch(userActions.setTempSelfie(blobUrl))
                 dispatch(userActions.setLoading(false))
             } catch (e) {
                 console.log(e);
@@ -108,7 +107,6 @@ export const sendPhotoS3 =
         async (dispatch, _, {mainApi}) => {
             try {
                 const response = await mainApi.setPhoto(fields, photo, url);
-                console.log(response)
             } catch (e) {
                 console.log(e);
             }
@@ -123,5 +121,19 @@ export const setAuth =
                 console.log(e);
             }
         };
+export const getSelfie =
+    (): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const response = await mainProtectedApi.getSelfie();
+                dispatch(userActions.setSelfie(response.data.photo_url))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 500);
 
+            } catch (e) {
+                console.log(e);
+            }
+        };
 

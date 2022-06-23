@@ -8,6 +8,7 @@ import store from "./store";
 import {Provider} from 'react-redux';
 import AddSelfie from "./pages/addSelfie/AddSelfie";
 import ProtectedRouter from "./components/common/ProtectedRouter";
+import UserDashboard from "./pages/userDashboard/UserDashboard";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -17,25 +18,31 @@ function App() {
         <Wrapper>
             <Provider store={store}>
 
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={
-                        <>
-                            <MobileSignUp/>
-                        </>
-                    }/>
-                    <Route path="/sms-verification" element={
-                        <>
-                            <Header backUrl='/'/><SmsVerification/>
-                        </>
-                    }/>
-                    <Route path="/selfie" element={
-                        <ProtectedRouter>
-                            <AddSelfie/>
-                        </ProtectedRouter>
-                    }/>
-                </Routes>
-            </BrowserRouter>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={
+                            <>
+                                <MobileSignUp/>
+                            </>
+                        }/>
+                        <Route path="/sms-verification" element={
+                            <>
+                                <Header backUrl='/'/>
+                                <SmsVerification/>
+                            </>
+                        }/>
+                        <Route path="/selfie" element={
+                            <ProtectedRouter>
+                                <AddSelfie/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/dashboard" element={
+                            <ProtectedRouter>
+                                <UserDashboard/>
+                            </ProtectedRouter>
+                        }/>
+                    </Routes>
+                </BrowserRouter>
             </Provider>
         </Wrapper>
     );
@@ -45,7 +52,8 @@ const Wrapper = styled.div`
   max-width: 552px;
   margin: 0 auto;
   background-color: #fff;
-  overflow: hidden; 
+  overflow: hidden;
   height: 100%;
+  position: relative;
 `
 export default App;
