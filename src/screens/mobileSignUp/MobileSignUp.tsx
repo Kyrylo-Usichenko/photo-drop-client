@@ -9,19 +9,18 @@ import {
     Links,
     PhoneWrapper,
     Terms
-} from '../../components/header/HeaderStyles';
-import {Container} from "../../components/container/Container";
+} from '../../components/shared/header/HeaderStyles';
+import {Container} from "../../components/shared/container/Container";
 import {Link, useNavigate} from 'react-router-dom';
 import useToggle from "../../components/hooks/useToggle";
-import PhoneSearch from "../../components/PhoneSearch/PhoneSearch";
-import {CountryFromList, countryList} from "../../components/common/country-list";
-import Header from "../../components/header/Header";
+import PhoneSearch from "../../components/common/phoneSearch/PhoneSearch";
+import {CountryFromList, countryList} from "../../utils/country-list";
+import Header from "../../components/shared/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from "react-redux";
 import {sendPhone, setPhoneResponseCode} from "../../store/actions/user";
-import {history, State} from "../../store";
-import Loader from '../../components/loader/Loader';
-import Button from "../../components/button/Button";
+import {State} from "../../store";
+import Button from "../../components/shared/button/Button";
 import {Wrapper} from "./MobileSignUpStyles";
 
 

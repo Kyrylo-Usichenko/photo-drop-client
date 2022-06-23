@@ -1,17 +1,14 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Header from "../../components/header/Header";
+import Header from "../../components/shared/header/Header";
 import {getSelfie} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import {State} from "../../store";
 import {BotText, Browse, Line, LoaderWrapper, MessageIcon, TopText} from './UserDashboardStyles';
 import {Inner, Wrapper} from '../addSelfie/AddSelfieStyles';
-import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
-import Carousel from 'nuka-carousel';
-import Slider from "./Slider";
-import { Container } from '../../components/container/Container';
+import {Container} from '../../components/shared/container/Container';
 
 const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -19,10 +16,10 @@ const UserDashboard = () => {
     const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     useEffect(() => {
-        if (!selfie){
+        if (!selfie && !tempSelfie) {
             dispatch(getSelfie())
         }
-    }, [selfie])
+    }, [selfie, tempSelfie])
     return (
         <Wrapper>
             <Header imageSrc={selfie ? selfie : tempSelfie}/>
@@ -35,7 +32,6 @@ const UserDashboard = () => {
             </Container>
             <Line/>
             <Browse>Browse Art Prints </Browse>
-            {/*<Slider/>*/}
             {
                 isLoading ? <LoaderWrapper>
                     <img src='/assets/icons/gif-loader.gif'/>
@@ -43,7 +39,7 @@ const UserDashboard = () => {
             }
         </Wrapper>
 
-);
+    );
 };
 
 export default UserDashboard;
