@@ -19,53 +19,61 @@ import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from 'react-redux';
 import {sendPhoto} from "../../store/actions/user";
 import {State} from "../../store";
-import Button from "../../components/button/Button";
 import Loader from '../../components/loader/Loader';
+import {getCroppedImage} from "./cropImage";
 
 const AddSelfie = () => {
 
     const dispatch = useDispatch<AppDispatch>();
     const hiddenFileInput = useRef(null);
     const [photoUrl, setPhotoURL] = useState(null)
-    const [photo, setPhoto] = useState({type: null})
+    const [photo, setPhoto] = useState<null | Blob>(null)
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
 
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
 
-    const onUploadChange = (e: any) => {
+    const onUploadChange = async (e: any) => {
         const file = e.target.files[0];
-        setPhoto(file)
         const fileUrl = URL.createObjectURL(file)
-        console.log(file)
-        console.log(fileUrl)
         setPhotoURL(fileUrl as any)
+        console.log(`url: ${fileUrl}`)
     }
     const onAddClick = () => {
         // @ts-ignore
         hiddenFileInput.current.click();
     }
-    const onCropComplete = useCallback((croppedArea: any, croppedAreaPixels: any) => {
-        console.log(croppedArea, croppedAreaPixels)
-    }, [])
+    const onCropComplete = useCallback(async (croppedArea: any, croppedAreaPixels: any) => {
+        if (photoUrl) {
+            const croppedImage = await getCroppedImage(
+                photoUrl,
+                croppedAreaPixels
+            )
+            setPhoto(croppedImage)
+        }
+    }, [crop, zoom])
+
     const onSaveClick = () => {
         dispatch(sendPhoto(photo))
+    }
+    const onGetImageClick = () => {
+
     }
     if (photoUrl) {
         return (
             <CropWrapper>
-                    <HeaderCrop>
-                        <Cross onClick={() => setPhotoURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
-                               alt=""/>
-                        <div>
-                            Take selfie
-                        </div>
-                    </HeaderCrop>
-                    <Action>
-                        Drag and zoom image to crop
-                    </Action>
+                <HeaderCrop>
+                    <Cross onClick={() => setPhotoURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
+                           alt=""/>
+                    <div>
+                        Take selfie
+                    </div>
+                </HeaderCrop>
+                <Action>
+                    Drag and zoom image to crop
+                </Action>
                 <BottomWrapper>
-                <CropInner>
+                    <CropInner>
                         <Cropper
                             image={photoUrl as any}
                             crop={crop}
