@@ -1,14 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './SmsVerificationStyles';
-import {Container} from "../../components/container/Container";
-import Button from "../../components/button/Button";
+import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
+import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
+import {Container} from "../../components/shared/container/Container";
+import Button from "../../components/shared/button/Button";
 import {resendPhone, sendOtp} from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector } from 'react-redux';
 import {AppDispatch} from "../../App";
 import { useNavigate } from 'react-router-dom';
+import {ChangeEvent} from "../../components/hooks/useInput";
 
-const SmsVerification = () => {
+const MobileSignUpVerification = () => {
     const phone = useSelector((state: State) => state.userReducer.phone)
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
@@ -56,7 +57,7 @@ const SmsVerification = () => {
             nav('/selfie')
         }
     })
-    function jmp(e: any) {
+    const jumpToNext = (e: any) =>  {
         if (e) {
             let max = e.target.getAttribute('maxLength');
             if (max && e.target.value.length >= max) {
@@ -87,12 +88,12 @@ const SmsVerification = () => {
                     <Number> {phone}</Number>
                 </NumberWrapper>
                 <CodeWrapper>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input1} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input2} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input3} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input4} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input5} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jmp} size={1} ref={input6} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input4} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input5} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6} maxLength={1}/>
 
                 </CodeWrapper>
                 <Resend onClick={resetInputs}>Resend code</Resend>
@@ -102,4 +103,4 @@ const SmsVerification = () => {
     );
 };
 
-export default SmsVerification;
+export default MobileSignUpVerification;

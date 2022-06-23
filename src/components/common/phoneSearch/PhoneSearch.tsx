@@ -2,11 +2,11 @@ import React, {
     useState, Dispatch, SetStateAction, useEffect, useRef,
 } from 'react';
 import styled from 'styled-components';
-import useInput from "../hooks/useInput";
-import {CountryFromList} from "../common/country-list";
-import SearchIcon from "../common/icons/SearchIcon";
-import BackIcon from "../common/icons/BackIcon";
-import search from "../../utils/search";
+import useInput from "../../hooks/useInput";
+import {CountryFromList} from "../../../utils/country-list";
+import SearchIcon from "../../shared/icons/SearchIcon";
+import BackIcon from "../../shared/icons/BackIcon";
+import search from "../../../utils/search";
 
 interface Props {
     handlerCloseSearch: () => void;
@@ -56,7 +56,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
         setIsFocused(false);
     };
 
-    const filteredCountry = search(countryList, countryInputValue, ({ country }: any) => country);
+    const filteredCountry = search(countryList, countryInputValue, ({ country }) => country);
 
     return (
         <Main>
@@ -89,7 +89,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
                 </Container>
             </Inner>
             <ListWrapper ref={listWrapper}>
-                {filteredCountry.map((item: any, i: any) => (
+                {filteredCountry.map((item: any, i) => (
                     <Item key={i} changeCountry={changeCountry} {...item} />
                 ))}
             </ListWrapper>

@@ -40,6 +40,7 @@ export const Edit = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
+  cursor: pointer;
   //border: 1px solid #fff;
   background-size: contain;
   //border-radius: 50%;
@@ -55,6 +56,7 @@ export const Tab = styled.div`
   align-items: center;
   margin: 5px 0 0;
   padding: 10px 15px;
+  cursor: pointer;
   &:first-child{
     margin: 0;
   }

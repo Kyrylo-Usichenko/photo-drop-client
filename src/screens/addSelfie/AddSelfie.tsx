@@ -12,21 +12,22 @@ import {
     VerticalLine,
     Wrapper
 } from "./AddSelfieStyles";
-import {Container} from "../../components/container/Container";
+import {Container} from "../../components/shared/container/Container";
 import Cropper from 'react-easy-crop';
-import Header from "../../components/header/Header";
+import Header from "../../components/shared/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from 'react-redux';
 import {sendPhoto} from "../../store/actions/user";
 import {State} from "../../store";
-import Loader from '../../components/loader/Loader';
-import {getCroppedImage} from "./cropImage";
-import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/shared/loader/Loader';
+import {getCroppedImage} from "../../components/common/cropImage/CropImage";
+import {useNavigate} from 'react-router-dom';
 
 const AddSelfie = () => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate();
     const hiddenFileInput = useRef(null);
+
     const [photoUrl, setPhotoURL] = useState(null)
     const [photo, setPhoto] = useState<null | Blob>(null)
     const [crop, setCrop] = useState({x: 0, y: 0})
@@ -43,6 +44,10 @@ const AddSelfie = () => {
         // @ts-ignore
         hiddenFileInput.current.click();
     }
+    const onSaveClick = () => {
+        dispatch(sendPhoto(photo))
+        nav('/dashboard')
+    }
     const onCropComplete = useCallback(async (croppedArea: any, croppedAreaPixels: any) => {
         if (photoUrl) {
             const croppedImage = await getCroppedImage(
@@ -53,10 +58,7 @@ const AddSelfie = () => {
         }
     }, [crop, zoom])
 
-    const onSaveClick = () => {
-        dispatch(sendPhoto(photo))
-        nav('/dashboard')
-    }
+
     if (photoUrl) {
         return (
             <CropWrapper>
