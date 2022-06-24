@@ -5,13 +5,14 @@ import TokensLocalStorage from "../../utils/local-storage/TokensLocalStorage";
 
 export const userActions = createActionCreators(User);
 
-export type UserActions = ReturnType<typeof userActions.setPhoneResponseCode
-    | typeof userActions.setPhone
-    | typeof userActions.setLoading
-    | typeof userActions.setSelfie
-    | typeof userActions.setTempSelfie
-    | typeof userActions.setUser
-    | typeof userActions.setAuth>
+export type UserActions =
+    | ReturnType<typeof userActions.setPhone>
+    | ReturnType<typeof userActions.setLoading>
+    | ReturnType<typeof userActions.setSelfie>
+    | ReturnType<typeof userActions.setTempSelfie>
+    | ReturnType<typeof userActions.setUser>
+    | ReturnType<typeof userActions.setAuth>
+    | ReturnType<typeof userActions.setPhoneResponseCode>
 
 export const sendPhone =
     (phone: string): AsyncAction =>
@@ -82,11 +83,10 @@ export const sendOtp =
 
 
 export const sendPhoto =
-    (photo: Blob | null): AsyncAction =>
+    (photo: Blob): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
                 dispatch(userActions.setLoading(true))
-                // @ts-ignore
                 const response = await mainProtectedApi.getPostPhotoUrl(photo.type.split('/').slice(1, 2).join('/'));
                 const fields = response.data.fields
                 const url = response.data.url

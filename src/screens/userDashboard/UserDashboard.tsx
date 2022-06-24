@@ -12,14 +12,17 @@ import {Container} from '../../components/shared/container/Container';
 
 const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
+
     const selfie = useSelector((state: State) => state.userReducer.selfie)
     const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+
     useEffect(() => {
         if (!selfie && !tempSelfie) {
             dispatch(getSelfie())
         }
     }, [selfie, tempSelfie])
+
     return (
         <Wrapper>
             <Header imageSrc={selfie ? selfie : tempSelfie}/>

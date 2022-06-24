@@ -37,19 +37,23 @@ import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import Header from "../../components/shared/header/Header";
 
 const MyProfile = () => {
-    const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
+    const dispatch = useDispatch<AppDispatch>()
+
     const selfie = useSelector((state: State) => state.userReducer.selfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
-    const [selfieUrl, setSelfieURL] = useState(null)
+
+    const [selfieUrl, setSelfieURL] = useState<string | null>(null)
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
     const [photo, setPhoto] = useState<null | Blob>(null)
-    const selfieInput = useRef(null);
+    const selfieInput = useRef<HTMLInputElement>(null);
 
     const onSaveClick = () => {
-        dispatch(sendPhoto(photo))
+        if(photo){
+            dispatch(sendPhoto(photo))
+        }
         setSelfieURL(null)
     }
 
@@ -61,14 +65,13 @@ const MyProfile = () => {
     }, [selfie, tempSelfie])
 
     const onEditClick = () => {
-        // @ts-ignore
-        selfieInput.current.click();
+        selfieInput.current!.click();
     }
 
     const onSelfieSelect = async (e: any) => {
         const file = e.target.files[0];
         const fileUrl = URL.createObjectURL(file)
-        setSelfieURL(fileUrl as any)
+        setSelfieURL(fileUrl)
     }
 
     const onCropComplete = useCallback(async (croppedArea: any, croppedAreaPixels: any) => {
@@ -80,6 +83,7 @@ const MyProfile = () => {
             setPhoto(croppedImage)
         }
     }, [crop, zoom])
+
     if (selfieUrl) {
         return (
             <CropWrapper>

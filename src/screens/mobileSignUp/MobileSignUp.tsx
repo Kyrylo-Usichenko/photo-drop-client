@@ -27,26 +27,32 @@ import {Wrapper} from "./MobileSignUpStyles";
 
 
 const MobileSignUp = () => {
-    const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
-    const [phone, setPhone] = useState('');
-    const handlerOpenSearch = () => setIsPhoneSearchOpen(true);
-    const handlerCloseSearch = () => setIsPhoneSearchOpen(false);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const status = useSelector((state: State) => state.userReducer.phoneResponseStatus)
-    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-    useEffect(() => {
-        if (status === 'OK'){
-            dispatch(setPhoneResponseCode(null))
-            navigate('/sms-verification')
-        }
-    })
+
+    const [phone, setPhone] = useState('');
     const [selectedCountry, setSelectedCountry] = useState<CountryFromList | any>({
         country: 'United States',
         code: '1',
         iso: 'US',
         src: '/assets/flags/flag-for-united-states_1f1fa-1f1f8.png'
     });
+
+    const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
+    const handlerOpenSearch = () => setIsPhoneSearchOpen(true);
+    const handlerCloseSearch = () => setIsPhoneSearchOpen(false);
+
+
+    const status = useSelector((state: State) => state.userReducer.phoneResponseStatus)
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+
+    useEffect(() => {
+        if (status === 'OK'){
+            dispatch(setPhoneResponseCode(null))
+            navigate('/sms-verification')
+        }
+    })
+
     if (isPhoneSearchOpen) {
         return (
             <PhoneSearch

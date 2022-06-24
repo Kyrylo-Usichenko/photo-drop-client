@@ -26,7 +26,7 @@ import {useNavigate} from 'react-router-dom';
 const AddSelfie = () => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate();
-    const hiddenFileInput = useRef(null);
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
 
     const [photoUrl, setPhotoURL] = useState(null)
     const [photo, setPhoto] = useState<null | Blob>(null)
@@ -35,20 +35,21 @@ const AddSelfie = () => {
 
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
 
-    const onUploadChange = async (e: any) => {
+    const onUploadChange = async (e:any) => {
         const file = e.target.files[0];
         const fileUrl = URL.createObjectURL(file)
         setPhotoURL(fileUrl as any)
     }
     const onAddClick = () => {
-        // @ts-ignore
-        hiddenFileInput.current.click();
+        hiddenFileInput.current!.click();
     }
     const onSaveClick = () => {
-        dispatch(sendPhoto(photo))
+        if(photo){
+            dispatch(sendPhoto(photo))
+        }
         nav('/dashboard')
     }
-    const onCropComplete = useCallback(async (croppedArea: any, croppedAreaPixels: any) => {
+    const onCropComplete = useCallback(async (_croppedArea: any, croppedAreaPixels: any) => {
         if (photoUrl) {
             const croppedImage = await getCroppedImage(
                 photoUrl,
@@ -75,7 +76,7 @@ const AddSelfie = () => {
                 <BottomWrapper>
                     <CropInner>
                         <Cropper
-                            image={photoUrl as any}
+                            image={photoUrl}
                             crop={crop}
                             zoom={zoom}
                             aspect={1}
