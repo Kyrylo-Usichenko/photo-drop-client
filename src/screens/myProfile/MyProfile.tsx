@@ -155,12 +155,12 @@ const MyProfile = () => {
                 <Wrapper>
                     <Heading>Welcome</Heading>
                     <YourSelfie>Your selfie</YourSelfie>
-                    <AvatarWrapper>
-                        <Avatar
+                    <AvatarWrapper >
+                        <Avatar onClick={() => setSelfieURL(tempSelfie)}
                             // @ts-ignore
                             src={tempSelfie}
                             alt=""/>
-                        <Edit onClick={onEditClick}/>
+                        <Edit onClick={() => setSelfieURL(tempSelfie)}/>
                         <input type="file"
                                ref={selfieInput}
                                onChange={onSelfieSelect}

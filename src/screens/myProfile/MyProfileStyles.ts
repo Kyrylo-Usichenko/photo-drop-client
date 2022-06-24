@@ -31,6 +31,7 @@ export const Avatar = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 export const Edit = styled.div`
   background: url("/assets/icons/edit.svg");
@@ -42,6 +43,7 @@ export const Edit = styled.div`
   bottom: 0;
   cursor: pointer;
   background-size: contain;
+
 `;
 export const TabTopText = styled.div`
   font-family: 'Futura PT';
