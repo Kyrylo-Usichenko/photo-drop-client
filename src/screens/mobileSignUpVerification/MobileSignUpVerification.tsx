@@ -10,37 +10,33 @@ import { useNavigate } from 'react-router-dom';
 import {ChangeEvent} from "../../components/hooks/useInput";
 
 const MobileSignUpVerification = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const nav = useNavigate()
+
     const phone = useSelector((state: State) => state.userReducer.phone)
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
 
-    const dispatch = useDispatch<AppDispatch>();
-    const nav = useNavigate()
-    const input1 = useRef(null)
-    const input2 = useRef(null)
-    const input3 = useRef(null)
-    const input4 = useRef(null)
-    const input5 = useRef(null)
-    const input6 = useRef(null)
-    const [otp, setOtp] = useState([])
+    const input1 = useRef<HTMLInputElement>(null)
+    const input2 = useRef<HTMLInputElement>(null)
+    const input3 = useRef<HTMLInputElement>(null)
+    const input4 = useRef<HTMLInputElement>(null)
+    const input5 = useRef<HTMLInputElement>(null)
+    const input6 = useRef<HTMLInputElement>(null)
+
+    const [otp, setOtp] = useState<string[]>([])
     const [disabled, setDisabled] = useState(true)
+
     const onInputChange = () => {
-        // @ts-ignore
-        setOtp([input1.current.value, input2.current.value, input3.current.value, input4.current.value, input5.current.value, input6.current.value])
+        setOtp([input1.current!.value, input2.current!.value, input3.current!.value, input4.current!.value, input5.current!.value, input6.current!.value])
     }
     const resetInputs = () => {
-        // @ts-ignore
-        input1.current.value = null
-        // @ts-ignore
-        input2.current.value = null
-        // @ts-ignore
-        input3.current.value = null
-        // @ts-ignore
-        input4.current.value = null
-        // @ts-ignore
-        input5.current.value = null
-        // @ts-ignore
-        input6.current.value = null
+        input1.current!.value = ''
+        input2.current!.value = ''
+        input3.current!.value = ''
+        input4.current!.value = ''
+        input5.current!.value = ''
+        input6.current!.value = ''
         dispatch(resendPhone(phone))
         setOtp([])
     }

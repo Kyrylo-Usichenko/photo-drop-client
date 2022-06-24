@@ -1,4 +1,4 @@
-import { createReducerFunction, ImmerReducer } from "immer-reducer";
+import {createReducerFunction, ImmerReducer } from "immer-reducer";
 
 interface UserState {
     phoneResponseStatus: string | null,
