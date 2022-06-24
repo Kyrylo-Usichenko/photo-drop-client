@@ -12,6 +12,7 @@ export type UserActions =
     | ReturnType<typeof userActions.setTempSelfie>
     | ReturnType<typeof userActions.setUser>
     | ReturnType<typeof userActions.setAuth>
+    | ReturnType<typeof userActions.setUserName>
     | ReturnType<typeof userActions.setPhoneResponseCode>
 
 export const sendPhone =
@@ -91,7 +92,7 @@ export const sendPhoto =
                 const fields = response.data.fields
                 const url = response.data.url
                 dispatch(sendPhotoS3(fields, photo, url))
-                const blobUrl = URL.createObjectURL(photo as  any)
+                const blobUrl = URL.createObjectURL(photo as any)
                 dispatch(userActions.setTempSelfie(blobUrl))
                 dispatch(userActions.setLoading(false))
             } catch (e) {
@@ -146,10 +147,23 @@ export const getUser =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
                 dispatch(userActions.setUser(response.data.client_data))
-                setTimeout(() => {
-                    dispatch(setLoading(false))
-                }, 500);
+                // setTimeout(() => {
+                //     dispatch(setLoading(false))
+                // }, 500);
+                dispatch(setLoading(false))
 
+
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+export const setUserName =
+    (name: string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                await mainProtectedApi.updateUserName(name);
+                dispatch(userActions.setUserName(name))
             } catch (e) {
                 console.log(e);
             }
