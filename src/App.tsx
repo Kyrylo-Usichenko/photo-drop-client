@@ -12,6 +12,7 @@ import UserDashboard from "./screens/userDashboard/UserDashboard";
 import MyProfile from "./screens/myProfile/MyProfile";
 import NotificationSettings from "./screens/myProfile/settings/notificationSettings/NotificationSettings";
 import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings";
+import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -59,6 +60,12 @@ function App() {
                             <ProtectedRouter>
                                 <Header backUrl='/my-profile'/>
                                 <NameSettings/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/account-settings" element={
+                            <ProtectedRouter>
+                                <Header backUrl='/my-profile'/>
+                                <AccountSetting/>
                             </ProtectedRouter>
                         }/>
                     </Routes>

@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "carousel-react-rcdev": "^0.0.4",
     "connected-react-router": "^6.9.2",
+    "history": "^4.10.1",
     "immer-reducer": "^0.7.13",
     "ngrok": "^4.3.1",
     "nuka-carousel": "^5.1.2",
