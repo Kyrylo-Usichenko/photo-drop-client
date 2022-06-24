@@ -155,3 +155,25 @@ export const getUser =
             }
         };
 
+export const updateNotifications =
+    (text_message:boolean, email:boolean, unsubscribe:boolean): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const body = {
+                    text_message,
+                    email,
+                    unsubscribe,
+                }
+                await mainProtectedApi.updateNotifications(body);
+                dispatch(getUser())
+                // dispatch(userActions.setUser(response.data.client_data))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 500);
+
+            } catch (e) {
+                console.log(e);
+            }
+        };
+

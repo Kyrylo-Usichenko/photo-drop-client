@@ -1,7 +1,10 @@
 import HttpClientProtected from './http-client-protected';
-import TokensLocalStorage from "../utils/local-storage/TokensLocalStorage";
 
-
+export type UpdateNotification = {
+    text_message: boolean,
+    email: boolean,
+    unsubscribe: boolean
+}
 export default class MainProtected extends HttpClientProtected {
     private static instanceCached: MainProtected;
 
@@ -40,9 +43,14 @@ export default class MainProtected extends HttpClientProtected {
 
     public getPostPhotoUrl = (file_type: string | null) =>
         this.instance.get<any>(`/selfies/presign-url?file_type=${file_type}`)
+
     public getSelfie = () =>
         this.instance.get<any>(`/selfies`)
+
     public getUser = () =>
         this.instance.get<any>(`/clients`)
+
+    public updateNotifications = (body:UpdateNotification) =>
+        this.instance.patch(`/clients/notification-settings`, body)
 
 }
