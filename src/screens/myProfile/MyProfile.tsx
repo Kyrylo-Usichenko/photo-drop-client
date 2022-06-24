@@ -6,7 +6,6 @@ import {
     Edit,
     Heading,
     TabTopText,
-    Tab,
     YourSelfie,
     TabBotText,
     LeftWrapper,
@@ -35,6 +34,7 @@ import Loader from "../../components/shared/loader/Loader";
 import Cropper from 'react-easy-crop';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import Header from "../../components/shared/header/Header";
+import { Tab } from '../../components/shared/tab/Tab';
 
 const MyProfile = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -152,12 +152,10 @@ const MyProfile = () => {
                     <Heading>Welcome</Heading>
                     <YourSelfie>Your selfie</YourSelfie>
                     <AvatarWrapper>
-
                         <Avatar
                             // @ts-ignore
-                            src={selfie ? selfie : tempSelfie}
+                            src={tempSelfie}
                             alt=""/>
-
                         <Edit onClick={onEditClick}/>
                         <input type="file"
                                ref={selfieInput}
@@ -175,7 +173,7 @@ const MyProfile = () => {
                     </LeftWrapper>
                         <ArrowRight/>
                     </Tab>
-                    <Tab>
+                    <Tab onClick={() => nav('/account-settings')}>
                         <LeftWrapper>
                             <TabTopText>
                                 Account settings
@@ -185,7 +183,6 @@ const MyProfile = () => {
                             </TabBotText>
                         </LeftWrapper>
                         <ArrowRight/>
-
                     </Tab>
                     <Tab onClick={() => nav('/notification-settings')}>
                         <LeftWrapper>

@@ -22,7 +22,7 @@ const UserDashboard = () => {
     }, [selfie, tempSelfie])
     return (
         <Wrapper>
-            <Header imageSrc={selfie ? selfie : tempSelfie}/>
+            <Header imageSrc={tempSelfie}/>
             <Container>
                 <Inner>
                     <MessageIcon src="/assets/icons/message.svg" width='82px' height='75px' alt=""/>

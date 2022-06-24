@@ -129,6 +129,7 @@ export const getSelfie =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getSelfie();
                 dispatch(userActions.setSelfie(response.data.photo_url))
+                dispatch(userActions.setTempSelfie(response.data.photo_url))
                 setTimeout(() => {
                     dispatch(setLoading(false))
                 }, 500);
