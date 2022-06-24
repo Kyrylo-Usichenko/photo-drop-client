@@ -1,15 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components';
 import Button from '../../../../components/shared/button/Button';
 import {Container} from '../../../../components/shared/container/Container';
+import {AppDispatch} from "../../../../App";
+import {getUser, setUserName} from "../../../../store/actions/user";
+import {State} from "../../../../store";
+import {useNavigate} from 'react-router-dom';
 
 const NameSettings = () => {
+    const dispatch = useDispatch<AppDispatch>()
+    const user = useSelector((state: State) => state.userReducer.user)
+    console.log(user)
+    // @ts-ignore
+    const [name, setName] = useState(user ? user.full_name : '');
+    const nav = useNavigate();
+    console.log(name)
+    useEffect(() => {
+        if(!user) dispatch(getUser())
+    })
+    useEffect(() => {
+        user && setName(user.full_name)
+    }, [user])
     return (
         <Container>
             <Inner>
                 <Heading>Your name</Heading>
-                <Input type="text" placeholder='Your Name'/>
-                <Button margin='21px 0 0'>Save</Button>
+                <Input value={name} onChange={e => setName(e.target.value)} type="text" placeholder='Your Name'/>
+                <Button onClick={() => {
+                    dispatch(setUserName(name))
+                    nav('/my-profile')
+                }} margin='21px 0 0'>Save</Button>
             </Inner>
         </Container>
     );

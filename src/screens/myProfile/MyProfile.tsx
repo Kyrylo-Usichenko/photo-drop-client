@@ -13,7 +13,7 @@ import {
     ArrowRight
 } from './MyProfileStyles';
 import {State} from "../../store";
-import {getSelfie, sendPhoto} from "../../store/actions/user";
+import {getSelfie, getUser, sendPhoto} from "../../store/actions/user";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
 import BackIcon from "../../components/shared/icons/BackIcon";
@@ -34,16 +34,15 @@ import Loader from "../../components/shared/loader/Loader";
 import Cropper from 'react-easy-crop';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import Header from "../../components/shared/header/Header";
-import { Tab } from '../../components/shared/tab/Tab';
+import {Tab} from '../../components/shared/tab/Tab';
 
 const MyProfile = () => {
     const nav = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
-
     const selfie = useSelector((state: State) => state.userReducer.selfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
-
+    const user = useSelector((state: State) => state.userReducer.user)
     const [selfieUrl, setSelfieURL] = useState<string | null>(null)
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
@@ -51,7 +50,7 @@ const MyProfile = () => {
     const selfieInput = useRef<HTMLInputElement>(null);
 
     const onSaveClick = () => {
-        if(photo){
+        if (photo) {
             dispatch(sendPhoto(photo))
         }
         setSelfieURL(null)
@@ -63,6 +62,14 @@ const MyProfile = () => {
             dispatch(getSelfie())
         }
     }, [selfie, tempSelfie])
+    console.log(user)
+
+    useEffect(() => {
+
+        if (!user) {
+            dispatch(getUser())
+        }
+    })
 
     const onEditClick = () => {
         selfieInput.current!.click();
@@ -153,13 +160,13 @@ const MyProfile = () => {
 
             <Container>
                 <Wrapper>
-                    <Heading>Welcome</Heading>
+                    <Heading>Welcome{user && (user.full_name ? `, ${user.full_name}` : null)}</Heading>
                     <YourSelfie>Your selfie</YourSelfie>
-                    <AvatarWrapper >
+                    <AvatarWrapper>
                         <Avatar onClick={() => setSelfieURL(tempSelfie)}
                             // @ts-ignore
-                            src={tempSelfie}
-                            alt=""/>
+                                src={tempSelfie}
+                                alt=""/>
                         <Edit onClick={() => setSelfieURL(tempSelfie)}/>
                         <input type="file"
                                ref={selfieInput}
