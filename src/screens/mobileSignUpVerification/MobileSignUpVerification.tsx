@@ -2,12 +2,11 @@ import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
 import {Container} from "../../components/shared/container/Container";
 import Button from "../../components/shared/button/Button";
-import {resendPhone, sendOtp, sendUpdateOtp} from "../../store/actions/user";
+import {resendPhone, resendUpdatePhone, sendOtp, sendUpdateOtp} from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
 import {useNavigate} from 'react-router-dom';
-import {ChangeEvent} from "../../components/hooks/useInput";
 
 interface Props {
     update?: boolean
@@ -41,7 +40,7 @@ const MobileSignUpVerification = ({update}: Props) => {
         input4.current!.value = ''
         input5.current!.value = ''
         input6.current!.value = ''
-        dispatch(resendPhone(phone))
+        update ? dispatch(resendUpdatePhone(phone)) : dispatch(resendPhone(phone))
         setOtp([])
     }
 
@@ -52,11 +51,11 @@ const MobileSignUpVerification = ({update}: Props) => {
             setDisabled(true)
         }
     }, [otp])
-        useEffect(() => {
-            if (isAuth && !update) {
-                nav('/selfie')
-            }
-        })
+    useEffect(() => {
+        if (isAuth && !update) {
+            nav('/selfie')
+        }
+    })
 
 
     const jumpToNext = (e: any) => {
