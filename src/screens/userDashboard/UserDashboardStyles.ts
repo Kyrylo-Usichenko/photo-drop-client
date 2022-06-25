@@ -58,5 +58,24 @@ export const Browse = styled.div`
   width: 100%;
 `;
 export const Slider = styled.div`
+  height: 216px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   margin: 21px 0 0;
+  position: relative;
 `;
+export const SliderInner = styled.div`
+  width: 1065px;
+  text-align: left;
+  padding: 0 0 0 15px;
+ 
+`;
+export const SliderItem = styled.img`
+    margin: 0 5px 0 0;
+`;
+
+
