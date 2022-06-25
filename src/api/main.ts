@@ -64,9 +64,7 @@ class Main extends HttpClient {
 
         return this.instance.post<any>(`${url}`,
             formData)
-
     }
-
 }
 
 export default Main;

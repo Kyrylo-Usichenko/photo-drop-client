@@ -4,7 +4,7 @@ import Header from "../../components/shared/header/Header";
 import {getSelfie} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import {State} from "../../store";
-import {BotText, Browse, Line, LoaderWrapper, MessageIcon, TopText} from './UserDashboardStyles';
+import {BotText, Browse, Line, LoaderWrapper, MessageIcon, Slider, SliderInner, SliderItem, TopText} from './UserDashboardStyles';
 import {Inner, Wrapper} from '../addSelfie/AddSelfieStyles';
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
@@ -33,6 +33,28 @@ const UserDashboard = () => {
             </Container>
             <Line/>
             <Browse>Browse Art Prints </Browse>
+            {/*    <div style={{display: 'flex',   overflowX: 'scroll'}}>*/}
+            {/*    <span>*/}
+            {/*        <img width={"1400px"} src="/assets/images/slide1.png" alt=""/>*/}
+            {/*    </span>*/}
+            {/*    <span>*/}
+            {/*        <img src="/assets/images/slide2.png" alt=""/>*/}
+            {/*    </span>*/}
+            {/*    <span>*/}
+            {/*        <img src="/assets/images/slide1.png" alt=""/>*/}
+            {/*    </span>*/}
+            {/*</div>*/}
+            <Slider>
+                <SliderInner>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
+                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
+                </SliderInner>
+
+            </Slider>
             {
                 isLoading ? <LoaderWrapper>
                     <img src='/assets/icons/gif-loader.gif'/>
