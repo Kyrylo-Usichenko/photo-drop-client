@@ -13,6 +13,7 @@ import MyProfile from "./screens/myProfile/MyProfile";
 import NotificationSettings from "./screens/myProfile/settings/notificationSettings/NotificationSettings";
 import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings";
 import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
+import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -67,6 +68,18 @@ function App() {
                                 <Header backUrl='/my-profile'/>
                                 <AccountSetting/>
                             </ProtectedRouter>
+                        }/>
+                        <Route path="/change-number" element={
+                            <ProtectedRouter>
+                                <Header backUrl='/account-settings'/>
+                                <ChangeNumber/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/sms-verification-update" element={
+                            <>
+                                <Header backUrl='/change-number'/>
+                                <MobileSignUpVerification update/>
+                            </>
                         }/>
                     </Routes>
                 </BrowserRouter>

@@ -14,18 +14,16 @@ const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
 
     const selfie = useSelector((state: State) => state.userReducer.selfie)
-    const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-
     useEffect(() => {
-        if (!selfie && !tempSelfie) {
+        if (!selfie) {
             dispatch(getSelfie())
         }
-    }, [selfie, tempSelfie])
+    })
 
     return (
         <Wrapper>
-            <Header imageSrc={tempSelfie}/>
+            <Header imageSrc={selfie ? selfie : '/assets/images/avatar-icon.png'}/>
             <Container>
                 <Inner>
                     <MessageIcon src="/assets/icons/message.svg" width='82px' height='75px' alt=""/>

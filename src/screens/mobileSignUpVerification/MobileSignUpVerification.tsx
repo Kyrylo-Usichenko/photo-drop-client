@@ -2,14 +2,18 @@ import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
 import {Container} from "../../components/shared/container/Container";
 import Button from "../../components/shared/button/Button";
-import {resendPhone, sendOtp} from "../../store/actions/user";
+import {resendPhone, sendOtp, sendUpdateOtp} from "../../store/actions/user";
 import {State} from "../../store";
-import {useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {ChangeEvent} from "../../components/hooks/useInput";
 
-const MobileSignUpVerification = () => {
+interface Props {
+    update?: boolean
+}
+
+const MobileSignUpVerification = ({update}: Props) => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate()
 
@@ -48,12 +52,14 @@ const MobileSignUpVerification = () => {
             setDisabled(true)
         }
     }, [otp])
-    useEffect(() => {
-        if (isAuth){
-            nav('/selfie')
-        }
-    })
-    const jumpToNext = (e: any) =>  {
+        useEffect(() => {
+            if (isAuth && !update) {
+                nav('/selfie')
+            }
+        })
+
+
+    const jumpToNext = (e: any) => {
         if (e) {
             let max = e.target.getAttribute('maxLength');
             if (max && e.target.value.length >= max) {
@@ -84,16 +90,28 @@ const MobileSignUpVerification = () => {
                     <Number> {phone}</Number>
                 </NumberWrapper>
                 <CodeWrapper>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input4} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input5} maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6} maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1}
+                           maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2}
+                           maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3}
+                           maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input4}
+                           maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input5}
+                           maxLength={1}/>
+                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6}
+                           maxLength={1}/>
 
                 </CodeWrapper>
                 <Resend onClick={resetInputs}>Resend code</Resend>
-                <Button isLoading={isLoading} disabled={disabled} margin='19px 0 0' onClick={() => dispatch(sendOtp(phone, otp.join('')))}>Next</Button>
+                <Button
+                    isLoading={isLoading}
+                    disabled={disabled}
+                    margin='19px 0 0'
+                    onClick={() => dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))}>
+                    Next
+                </Button>
             </Wrapper>
         </Container>
     );

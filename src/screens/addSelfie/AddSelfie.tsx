@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     Action,
     Add,
@@ -17,7 +17,7 @@ import Cropper from 'react-easy-crop';
 import Header from "../../components/shared/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from 'react-redux';
-import {sendPhoto} from "../../store/actions/user";
+import {redirectUser, setUserSelfie} from "../../store/actions/user";
 import {State} from "../../store";
 import Loader from '../../components/shared/loader/Loader';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
@@ -27,6 +27,8 @@ const AddSelfie = () => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
+    const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
+    const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
 
     const [photoUrl, setPhotoURL] = useState(null)
     const [photo, setPhoto] = useState<null | Blob>(null)
@@ -35,7 +37,7 @@ const AddSelfie = () => {
 
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
 
-    const onUploadChange = async (e:any) => {
+    const onUploadChange = async (e: any) => {
         const file = e.target.files[0];
         const fileUrl = URL.createObjectURL(file)
         setPhotoURL(fileUrl as any)
@@ -44,11 +46,15 @@ const AddSelfie = () => {
         hiddenFileInput.current!.click();
     }
     const onSaveClick = () => {
-        if(photo){
-            dispatch(sendPhoto(photo))
+        if (photo) {
+            dispatch(setUserSelfie(photo))
         }
-        nav('/dashboard')
     }
+    useEffect(() => {
+        dispatch(redirectUser(null))
+
+        if (redirectToUrl) nav(redirectToUrl)
+    }, [redirectToUrl])
     const onCropComplete = useCallback(async (_croppedArea: any, croppedAreaPixels: any) => {
         if (photoUrl) {
             const croppedImage = await getCroppedImage(

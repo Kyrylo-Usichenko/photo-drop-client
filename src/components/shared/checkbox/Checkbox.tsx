@@ -6,7 +6,6 @@ interface Props {
 }
 
 const Checkbox = ({isActive = false, setActive }: Props)=> {
-    console.log(isActive)
     return (
         <Input isActive={isActive} onClick={() => setActive(!isActive)}>
             {isActive ? <Tick/> : null}
