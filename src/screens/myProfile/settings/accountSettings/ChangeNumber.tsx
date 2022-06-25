@@ -38,7 +38,6 @@ const ChangeNumber = () => {
 
 
     const status = useSelector((state: State) => state.userReducer.responseCode)
-    console.log(status)
     useEffect(() => {
         if (status === 'OK'){
             dispatch(setResponseCode(null))

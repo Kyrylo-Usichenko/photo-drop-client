@@ -57,7 +57,20 @@ export const resendPhone =
     (phone: string): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
             try {
-                const response = await mainApi.sendPhone({
+                const response = await mainApi.resendPhone({
+                    "phone_number": phone,
+                });
+                dispatch(userActions.setPhone(phone));
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+export const resendUpdatePhone =
+    (phone: string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                const response = await mainProtectedApi.resendUpdatePhone({
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
