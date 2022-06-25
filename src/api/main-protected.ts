@@ -1,4 +1,5 @@
 import HttpClientProtected from './http-client-protected';
+import {otpResponse} from "./main";
 
 export type UpdateNotification = {
     text_message: boolean,
@@ -28,10 +29,16 @@ export default class MainProtected extends HttpClientProtected {
 
     public getUser = () =>
         this.instance.get<any>(`/clients`)
+
     public updateUserName = (name: string) =>
         this.instance.patch<any>(`/clients/full-name`, {full_name: name})
 
-    public updateNotifications = (body:UpdateNotification) =>
+    public updateNotifications = (body: UpdateNotification) =>
         this.instance.patch(`/clients/notification-settings`, body)
 
+   public updatePhone = (body: {phone_number: string}) =>
+        this.instance.post(`/clients/phone-number`, body )
+
+    public otpUpdateValidate = (data: { "phone_number": string, "otp": string }) =>
+        this.instance.post<otpResponse>("/clients/update/phone-number/validate", data);
 }

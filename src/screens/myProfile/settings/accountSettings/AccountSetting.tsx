@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {Container} from '../../../../components/shared/container/Container';
 import {Tab} from '../../../../components/shared/tab/Tab';
+import {State} from "../../../../store";
+import {AppDispatch} from "../../../../App";
+import {getUser} from "../../../../store/actions/user";
+import {LoaderWrapper} from "../../../userDashboard/UserDashboardStyles";
+import { useNavigate } from 'react-router-dom';
 
 const AccountSetting = () => {
+    const user = useSelector((state: State) => state.userReducer.user)
+    const dispatch = useDispatch<AppDispatch>()
+    const nav = useNavigate();
+
+    useEffect(()=>{
+        if (!user){
+            dispatch(getUser())
+        }
+    })
     return (
         <Container>
             <Wrapper>
                 <Heading>
                     Account settings
                 </Heading>
-                <Tab>
+                <Tab onClick={() => nav('/change-number')}>
                     <TabLeft>
                         <div>
                             <img width='25px' height='30px' src="/assets/icons/phone.svg" alt=""/>
@@ -20,7 +35,7 @@ const AccountSetting = () => {
                                 <Text>Phone •</Text><Verified> Verified</Verified>
                             </DataTop>
                             <Value>
-                                +1 123-456-7890
+                                {user ? user.phone_number : 'no phone number in use'}
                             </Value>
                         </Data>
                     </TabLeft>
@@ -36,13 +51,18 @@ const AccountSetting = () => {
                                 <Text>Email</Text>
                             </DataTop>
                             <Value>
-                                the.real.jane.smith@gmail.com
+                                no phone email use
                             </Value>
                         </Data>
                     </TabLeft>
                     <img width='8px' height='16px' src="/assets/icons/arrow-right.svg" alt=""/>
                 </Tab>
             </Wrapper>
+            {
+                !user ? <LoaderWrapper>
+                    <img src='/assets/icons/gif-loader.gif'/>
+                </LoaderWrapper> : null
+            }
         </Container>
     );
 };

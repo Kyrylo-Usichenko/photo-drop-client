@@ -1,35 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {Container} from "../../components/shared/container/Container";
-import {Link, useNavigate} from 'react-router-dom';
-import useToggle from "../../components/hooks/useToggle";
-import PhoneSearch from "../../components/common/phoneSearch/PhoneSearch";
-import {CountryFromList, countryList} from "../../utils/country-list";
-import Header from "../../components/shared/header/Header";
-import {AppDispatch} from "../../App";
-import {useDispatch, useSelector} from "react-redux";
-import {sendPhone, setResponseCode} from "../../store/actions/user";
-import {State} from "../../store";
-import Button from "../../components/shared/button/Button";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {AppDispatch} from "../../../../App";
+import {CountryFromList, countryList} from "../../../../utils/country-list";
+import useToggle from "../../../../components/hooks/useToggle";
+import {State} from "../../../../store";
+import {changePhone, setResponseCode} from "../../../../store/actions/user";
+import PhoneSearch from "../../../../components/common/phoneSearch/PhoneSearch";
+import { Container } from '../../../../components/shared/container/Container';
+import Button from '../../../../components/shared/button/Button';
 import {
-    Agreement,
     EnterPhone,
     Filling,
     Flag,
     FlagWrapper,
     GetStarted,
-    Links,
     PhoneWrapper,
-    Terms,
     Wrapper
-} from "./MobileSignUpStyles";
+} from "../../../mobileSignUp/MobileSignUpStyles";
 
-
-
-
-const MobileSignUp = () => {
+const ChangeNumber = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+    const nav = useNavigate();
     const [phone, setPhone] = useState('');
     const [selectedCountry, setSelectedCountry] = useState<CountryFromList | any>({
         country: 'United States',
@@ -44,12 +38,11 @@ const MobileSignUp = () => {
 
 
     const status = useSelector((state: State) => state.userReducer.responseCode)
-    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-
+    console.log(status)
     useEffect(() => {
         if (status === 'OK'){
             dispatch(setResponseCode(null))
-            navigate('/sms-verification')
+            navigate('/sms-verification-update')
         }
     })
 
@@ -66,12 +59,10 @@ const MobileSignUp = () => {
 
     return (
         <div>
-            <Header/>
-
             <Container>
                 <Wrapper>
-                    <GetStarted>Let’s get started</GetStarted>
-                    <EnterPhone>Enter your phone number</EnterPhone>
+                    <GetStarted>Mobile number</GetStarted>
+                    <EnterPhone>Update your number and we’ll send a verification code to this number.</EnterPhone>
                     <Filling>
                         <FlagWrapper onClick={handlerOpenSearch}>
                             <Flag src={selectedCountry.src} alt=""/>
@@ -88,25 +79,18 @@ const MobileSignUp = () => {
                     <Button
                         isLoading={isLoading}
                         margin='20px 0 0'
-                        onClick={() => dispatch(sendPhone(`+${selectedCountry.code+phone}`))}
+                        onClick={() =>
+                        {
+                            dispatch(changePhone(`+${selectedCountry.code+phone}`))
+                        }}
                     >
-                        Create account
+                        Next
                     </Button>
-                    <Agreement>
-                        By proceeding, you consent to get WhatsApp or SMS messages, from PhotoDrop and its affiliates to the
-                        number provided. Text “STOP” to 89203 to opt out.
-                    </Agreement>
-                    <Terms>
-                        By continuing, you indicate that you have read and agree to our <Link to='/'><Links>Terms of
-                        Use</Links></Link> & <Link
-                        to='/'><Links>Privacy Policy</Links></Link>
-                    </Terms>
                 </Wrapper>
-
             </Container>
         </div>
 
     );
 };
 
-export default MobileSignUp;
+export default ChangeNumber;

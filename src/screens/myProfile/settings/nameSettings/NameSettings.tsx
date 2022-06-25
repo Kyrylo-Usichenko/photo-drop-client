@@ -4,33 +4,43 @@ import styled from 'styled-components';
 import Button from '../../../../components/shared/button/Button';
 import {Container} from '../../../../components/shared/container/Container';
 import {AppDispatch} from "../../../../App";
-import {getUser, setUserName} from "../../../../store/actions/user";
+import {getUser, redirectUser, setLoading, setUserName} from "../../../../store/actions/user";
 import {State} from "../../../../store";
 import {useNavigate} from 'react-router-dom';
+import {LoaderWrapper} from "../../../userDashboard/UserDashboardStyles";
+import Loader from "../../../../components/shared/loader/Loader";
 
 const NameSettings = () => {
     const dispatch = useDispatch<AppDispatch>()
     const user = useSelector((state: State) => state.userReducer.user)
-    console.log(user)
-    // @ts-ignore
-    const [name, setName] = useState(user ? user.full_name : '');
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+    const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
+    const [name, setName] = useState(user && user.full_name ? user.full_name : '');
     const nav = useNavigate();
-    console.log(name)
     useEffect(() => {
         if(!user) dispatch(getUser())
     })
     useEffect(() => {
-        user && setName(user.full_name)
+        dispatch(redirectUser(null))
+
+        if(redirectToUrl) nav(redirectToUrl)
+    }, [redirectToUrl])
+
+    useEffect(() => {
+        if(user){
+            if(user.full_name){
+                setName(user.full_name)
+            }
+        }
     }, [user])
     return (
         <Container>
             <Inner>
                 <Heading>Your name</Heading>
                 <Input value={name} onChange={e => setName(e.target.value)} type="text" placeholder='Your Name'/>
-                <Button onClick={() => {
-                    dispatch(setUserName(name))
-                    nav('/my-profile')
-                }} margin='21px 0 0'>Save</Button>
+                <Button isLoading={isLoading} onClick={() => {
+                    dispatch(setUserName(name as string))
+                }} margin='21px 0 0'>{isLoading ? <Loader/> : "Save"}</Button>
             </Inner>
         </Container>
     );

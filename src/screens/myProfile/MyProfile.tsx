@@ -16,8 +16,6 @@ import {State} from "../../store";
 import {getSelfie, getUser, sendPhoto} from "../../store/actions/user";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
-import BackIcon from "../../components/shared/icons/BackIcon";
-import {ArrowLeft} from '../../components/shared/header/HeaderStyles';
 import {LoaderWrapper} from "../userDashboard/UserDashboardStyles";
 import {Link, useNavigate} from 'react-router-dom';
 import {
@@ -51,19 +49,17 @@ const MyProfile = () => {
 
     const onSaveClick = () => {
         if (photo) {
-            dispatch(sendPhoto(photo))
+            dispatch(sendPhoto(photo, setSelfieURL, setCrop, setZoom ))
         }
-        setSelfieURL(null)
+        // setSelfieURL(null)
+        // setCrop({x: 0, y: 0})
+        // setZoom(1)
     }
-
     useEffect(() => {
-        console.log(selfie)
         if (!selfie && !tempSelfie) {
             dispatch(getSelfie())
         }
     }, [selfie, tempSelfie])
-    console.log(user)
-
     useEffect(() => {
 
         if (!user) {
