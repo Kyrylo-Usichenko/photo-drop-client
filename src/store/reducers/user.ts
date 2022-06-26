@@ -41,10 +41,10 @@ export class User extends ImmerReducer<UserState> {
     setPhone(phone: string) {
         this.draftState.phone = phone;
     }
+
     redirectUser(url: string | null) {
         this.draftState.redirectToUrl = url;
     }
-
 
     setAuth(isAuth: boolean) {
         this.draftState.isAuth = isAuth;
@@ -81,6 +81,12 @@ export class User extends ImmerReducer<UserState> {
                 email: body.email,
                 unsubscribe: body.unsubscribe
             }
+        };
+    }
+    setEmail(email: string) {
+        this.draftState.user = {
+            ...this.draftState.user,
+            email: email
         };
     }
 }

@@ -15,6 +15,7 @@ export type UserActions =
     | ReturnType<typeof userActions.setUserName>
     | ReturnType<typeof userActions.setUserNotification>
     | ReturnType<typeof userActions.redirectUser>
+    | ReturnType<typeof userActions.setEmail>
     | ReturnType<typeof userActions.setResponseCode>
 
 export const sendPhone =
@@ -28,7 +29,6 @@ export const sendPhone =
                 dispatch(userActions.setPhone(phone));
                 dispatch(userActions.setResponseCode(response.status.toString()));
                 dispatch(userActions.setLoading(false))
-
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
@@ -171,21 +171,16 @@ export const sendPhotoS3 =
     (fields: any, photo: any, url: string): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
             try {
-                const response = await mainApi.setPhoto(fields, photo, url);
+                await mainApi.setPhoto(fields, photo, url);
             } catch (e) {
                 console.log(e);
             }
         };
 
-export const setAuth =
-    (isAuth: boolean): AsyncAction =>
-        async (dispatch, _, {mainApi}) => {
-            try {
-                dispatch(userActions.setAuth(isAuth))
-            } catch (e) {
-                console.log(e);
-            }
-        };
+export const setAuth = (isAuth: boolean): AsyncAction =>
+    async (dispatch, _) => {
+        dispatch(userActions.setAuth(isAuth))
+    };
 export const getSelfie =
     (): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
@@ -271,4 +266,20 @@ export const changePhone =
                 dispatch(userActions.setLoading(false))
             }
         };
+
+export const updateEmail =
+    (email: string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(userActions.setLoading(true))
+                await mainProtectedApi.updateEmail({email: email});
+                dispatch(userActions.setEmail(email))
+                dispatch(redirectUser('/account-settings'))
+                dispatch(userActions.setLoading(false))
+            } catch (e) {
+                console.log(e);
+                dispatch(userActions.setLoading(false))
+            }
+        };
+
 

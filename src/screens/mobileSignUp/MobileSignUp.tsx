@@ -75,7 +75,7 @@ const MobileSignUp = () => {
                     <Filling>
                         <FlagWrapper onClick={handlerOpenSearch}>
                             <Flag src={selectedCountry.src} alt=""/>
-                            <img src="/images/arrow-down.svg" alt=""/>
+                            <img src="/assets/icons/arrow-down.svg" alt=""/>
                         </FlagWrapper>
                         <PhoneWrapper
                             value={'+' + selectedCountry.code + phone}

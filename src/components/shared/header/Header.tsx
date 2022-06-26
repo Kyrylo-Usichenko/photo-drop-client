@@ -21,7 +21,7 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
                         <Avatar src={imageSrc} alt=""/>
                     </Link>)
                 }
-                <img src="/images/logo.svg" width='125px' height='16px' alt="logo"/>
+                <img src="/assets/icons/logo.svg" width='125px' height='16px' alt="logo"/>
             </Inner>
         </Wrapper>
     );

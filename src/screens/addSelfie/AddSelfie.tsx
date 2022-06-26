@@ -92,7 +92,7 @@ const AddSelfie = () => {
                             cropShape='round'
                             showGrid={false}
                             cropSize={{width: 285, height: 285}}
-                            objectFit='horizontal-cover'
+                            objectFit='auto-cover'
                             style={{
                                 containerStyle: {
                                     margin: '0 auto',

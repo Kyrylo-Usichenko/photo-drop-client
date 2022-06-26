@@ -69,7 +69,7 @@ export const Slider = styled.div`
   position: relative;
 `;
 export const SliderInner = styled.div`
-  width: 1065px;
+  width: 1063px;
   text-align: left;
   padding: 0 0 0 15px;
  
