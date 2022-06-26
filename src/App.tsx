@@ -14,6 +14,7 @@ import NotificationSettings from "./screens/myProfile/settings/notificationSetti
 import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings";
 import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
+import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
 
 
 export type AppDispatch = typeof store.dispatch;
@@ -73,6 +74,12 @@ function App() {
                             <ProtectedRouter>
                                 <Header backUrl='/account-settings'/>
                                 <ChangeNumber/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/change-email" element={
+                            <ProtectedRouter>
+                                <Header backUrl='/account-settings'/>
+                                <ChangeEmail/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/sms-verification-update" element={

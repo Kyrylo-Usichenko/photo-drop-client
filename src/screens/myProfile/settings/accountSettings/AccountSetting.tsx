@@ -40,8 +40,8 @@ const AccountSetting = () => {
                         </Data>
                     </TabLeft>
                     <img width='8px' height='16px' src="/assets/icons/arrow-right.svg" alt=""/>
-                </Tab>
-                <Tab>
+                </Tab >
+                <Tab onClick={() => nav('/change-email')}>
                     <TabLeft>
                         <div>
                             <img width='25px' height='30px' src="/assets/icons/letter.svg" alt=""/>

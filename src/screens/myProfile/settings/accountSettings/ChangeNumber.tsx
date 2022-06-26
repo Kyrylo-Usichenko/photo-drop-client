@@ -35,8 +35,6 @@ const ChangeNumber = () => {
     const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
     const handlerOpenSearch = () => setIsPhoneSearchOpen(true);
     const handlerCloseSearch = () => setIsPhoneSearchOpen(false);
-
-
     const status = useSelector((state: State) => state.userReducer.responseCode)
     useEffect(() => {
         if (status === 'OK'){
@@ -65,7 +63,7 @@ const ChangeNumber = () => {
                     <Filling>
                         <FlagWrapper onClick={handlerOpenSearch}>
                             <Flag src={selectedCountry.src} alt=""/>
-                            <img src="/images/arrow-down.svg" alt=""/>
+                            <img src="/assets/icons/arrow-down.svg" alt=""/>
                         </FlagWrapper>
                         <PhoneWrapper
                             value={'+' + selectedCountry.code + phone}
