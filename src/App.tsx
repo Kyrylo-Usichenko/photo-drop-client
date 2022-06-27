@@ -16,27 +16,17 @@ import AccountSetting from "./screens/myProfile/settings/accountSettings/Account
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
 
-
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
     return (
         <Wrapper>
             <Provider store={store}>
-
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={
-                            <>
-                                <MobileSignUp/>
-                            </>
-                        }/>
-                        <Route path="/sms-verification" element={
-                            <>
-                                <Header backUrl='/'/>
-                                <MobileSignUpVerification/>
-                            </>
-                        }/>
+                        <Route path="/" element={<MobileSignUp/>}/>
+                        <Route path="/sms-verification"
+                               element={<MobileSignUpVerification/>}/>
                         <Route path="/selfie" element={
                             <ProtectedRouter>
                                 <AddSelfie/>
