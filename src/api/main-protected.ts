@@ -4,7 +4,7 @@ import {phoneResponse} from "./main";
 export type UpdateNotification = {
     text_message: boolean,
     email: boolean,
-    unsubscribe: boolean
+    unsubscribe: boolean,
 }
 export default class MainProtected extends HttpClientProtected {
     private static instanceCached: MainProtected;

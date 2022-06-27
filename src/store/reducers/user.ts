@@ -18,6 +18,7 @@ interface UserState {
             "email": boolean,
             "unsubscribe": boolean
         }
+        has_selfie_photo?: boolean
     } | null
 }
 
@@ -62,8 +63,8 @@ export class User extends ImmerReducer<UserState> {
         this.draftState.tempSelfie = photo;
     }
 
-    setUser(user: any) {
-        this.draftState.user = user;
+    setUser(user: any, has_selfie_photo: boolean) {
+        this.draftState.user = {...user, has_selfie_photo: has_selfie_photo};
     }
 
     setUserName(name: string) {
