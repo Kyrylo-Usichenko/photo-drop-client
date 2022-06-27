@@ -1,5 +1,5 @@
 import HttpClientProtected from './http-client-protected';
-import {otpResponse, phoneResponse} from "./main";
+import {phoneResponse} from "./main";
 
 export type UpdateNotification = {
     text_message: boolean,

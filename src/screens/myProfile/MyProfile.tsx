@@ -51,9 +51,6 @@ const MyProfile = () => {
         if (photo) {
             dispatch(sendPhoto(photo, setSelfieURL, setCrop, setZoom ))
         }
-        // setSelfieURL(null)
-        // setCrop({x: 0, y: 0})
-        // setZoom(1)
     }
     useEffect(() => {
         if (!selfie && !tempSelfie) {
@@ -61,8 +58,8 @@ const MyProfile = () => {
         }
     }, [selfie, tempSelfie])
     useEffect(() => {
-
-        if (!user) {
+        // @ts-ignore
+        if (!user || !user.phone_number) {
             dispatch(getUser())
         }
     })

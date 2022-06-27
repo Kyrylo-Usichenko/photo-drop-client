@@ -9,10 +9,10 @@ interface UserState {
     selfie: string | null,
     tempSelfie: string | null,
     user: {
-        full_name?: string;
-        id?: string,
-        phone_number?: string,
-        email?: string,
+        full_name?: string | null;
+        id?: string | null,
+        phone_number?: string | null,
+        email?: string | null,
         notification_settings?: {
             "text_message": boolean,
             "email": boolean,

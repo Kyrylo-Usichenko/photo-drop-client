@@ -23,7 +23,6 @@ const ChangeNumber = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-    const nav = useNavigate();
     const [phone, setPhone] = useState('');
     const [selectedCountry, setSelectedCountry] = useState<CountryFromList | any>({
         country: 'United States',

@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, {AxiosInstance, AxiosResponse} from "axios";
 import Main from "./main";
 import TokensLocalStorage from "../utils/local-storage/TokensLocalStorage";
 
@@ -20,27 +20,20 @@ abstract class HttpClient {
     }
 
     private initializeResponseInterceptor = () => {
-        this.instance.interceptors.response.use(
-            this.handleSuccessResponse,
-        );
+        this.instance.interceptors.response.use(this.handleSuccessResponse, this.handleResponseError);
     };
 
-    private handleSuccessResponse = ({ data }: AxiosResponse) => data;
+    private handleSuccessResponse = ({data}: AxiosResponse) => data;
 
     private handleResponseError = async (e: any): Promise<any> => {
         const status = e.response ? e.response.status : null;
         const tokens = TokensLocalStorage.getInstance();
         const main = Main.getInstance();
-        const currentRefreshToken = tokens.getRefreshToken();
+        const currentAccessToken = tokens.getAccessToken();
+        if (status === 403 && currentAccessToken) {
+            tokens.clear()
+            window.location.replace('/')
 
-        if (status === 401 && currentRefreshToken) {
-            try {
-                const { data } = await axios.request(e.config);
-                return data;
-            } catch (_) {
-                tokens.clear();
-                return Promise.reject(e);
-            }
         }
         return Promise.reject(e);
     };
