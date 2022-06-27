@@ -26,7 +26,11 @@ function App() {
                     <Routes>
                         <Route path="/" element={<MobileSignUp/>}/>
                         <Route path="/sms-verification"
-                               element={<MobileSignUpVerification/>}/>
+                               element={
+                                   <div>
+                                       <Header backUrl='/'/>
+                                       <MobileSignUpVerification/>
+                                   </div>}/>
                         <Route path="/selfie" element={
                             <ProtectedRouter>
                                 <AddSelfie/>

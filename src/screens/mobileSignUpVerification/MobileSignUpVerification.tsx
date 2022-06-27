@@ -2,7 +2,14 @@ import React, {useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
 import {Container} from "../../components/shared/container/Container";
 import Button from "../../components/shared/button/Button";
-import {resendPhone, resendUpdatePhone, sendOtp, sendUpdateOtp, setResponseCode} from "../../store/actions/user";
+import {
+    redirectUser,
+    resendPhone,
+    resendUpdatePhone,
+    sendOtp,
+    sendUpdateOtp,
+    setResponseCode
+} from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
@@ -59,11 +66,15 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     })
     useEffect(()=>{
+        dispatch(redirectUser(null))
         if(redirectToUrl) nav(redirectToUrl)
     }, [redirectToUrl])
     useEffect(() => {
         if (phone === '' && update){
             nav('/account-settings')
+        }
+        if (phone === '' && !update){
+            nav('/')
         }
     })
 

@@ -59,7 +59,7 @@ export const resendPhone =
     (phone: string): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
             try {
-                const response = await mainApi.resendPhone({
+                await mainApi.resendPhone({
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
@@ -72,7 +72,7 @@ export const resendUpdatePhone =
     (phone: string): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
-                const response = await mainProtectedApi.resendUpdatePhone({
+                await mainProtectedApi.resendUpdatePhone({
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
@@ -191,19 +191,13 @@ export const getSelfie =
         async (dispatch, _, {mainProtectedApi}) => {
             try {
                 dispatch(setLoading(true))
-                const func = async () => {
-                    const response = await mainProtectedApi.getSelfie();
-                    if (!response.data.photo_url) {
-                        await func()
-                    } else {
-                        dispatch(userActions.setSelfie(response.data.photo_url))
-                        dispatch(userActions.setTempSelfie(response.data.photo_url))
-                        dispatch(setLoading(false))
-                    }
-                }
-                await func();
+                const response = await mainProtectedApi.getSelfie();
+                dispatch(userActions.setSelfie(response.data.photo_url))
+                dispatch(userActions.setTempSelfie(response.data.photo_url))
+                dispatch(setLoading(false))
             } catch (e) {
                 console.log(e);
+                dispatch(setLoading(false))
             }
         };
 
@@ -214,14 +208,13 @@ export const getUser =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
                 dispatch(userActions.setUser(response.data.client_data))
-                // setTimeout(() => {
-                //     dispatch(setLoading(false))
-                // }, 500);
                 dispatch(setLoading(false))
-
-
+                dispatch(userActions.setAuth(true))
             } catch (e) {
                 console.log(e);
+                dispatch(setLoading(false))
+                dispatch(userActions.setAuth(false))
+                localStorage.clear()
             }
         };
 

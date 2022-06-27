@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {AppDispatch} from "../../../../App";
 import {State} from "../../../../store";
-import {getUser, setResponseCode, updateEmail} from "../../../../store/actions/user";
+import {getUser, redirectUser, setResponseCode, updateEmail} from "../../../../store/actions/user";
 import {Container} from '../../../../components/shared/container/Container';
 import Button from '../../../../components/shared/button/Button';
 import styled from 'styled-components';
@@ -34,8 +34,9 @@ const ChangeEmail = () => {
         if(user && user.email){
             setEmail(user.email)
         }
-    })
+    }, [user])
     useEffect(()=>{
+        dispatch(redirectUser(null))
         if(redirectToUrl) nav(redirectToUrl)
     }, [redirectToUrl])
 
