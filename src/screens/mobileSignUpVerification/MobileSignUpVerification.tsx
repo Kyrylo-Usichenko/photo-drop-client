@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
 import {Container} from "../../components/shared/container/Container";
 import Button from "../../components/shared/button/Button";
@@ -7,6 +7,7 @@ import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
 import {useNavigate} from 'react-router-dom';
+import Header from "../../components/shared/header/Header";
 
 interface Props {
     update?: boolean
@@ -82,37 +83,41 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     }
     return (
-        <Container>
-            <Wrapper>
-                <Heading>What’s the code?</Heading>
-                <NumberWrapper>Enter the code sent to
-                    <Number> {phone}</Number>
-                </NumberWrapper>
-                <CodeWrapper>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1}
-                           maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2}
-                           maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3}
-                           maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input4}
-                           maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input5}
-                           maxLength={1}/>
-                    <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6}
-                           maxLength={1}/>
+        <div>
+            <Header backUrl='/'/>
+            <Container>
+                <Wrapper>
+                    <Heading>What’s the code?</Heading>
+                    <NumberWrapper>Enter the code sent to
+                        <Number> {phone}</Number>
+                    </NumberWrapper>
+                    <CodeWrapper>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1}
+                               maxLength={1}/>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2}
+                               maxLength={1}/>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3}
+                               maxLength={1}/>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input4}
+                               maxLength={1}/>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input5}
+                               maxLength={1}/>
+                        <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6}
+                               maxLength={1}/>
 
-                </CodeWrapper>
-                <Resend onClick={resetInputs}>Resend code</Resend>
-                <Button
-                    isLoading={isLoading}
-                    disabled={disabled}
-                    margin='19px 0 0'
-                    onClick={() => dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))}>
-                    Next
-                </Button>
-            </Wrapper>
-        </Container>
+                    </CodeWrapper>
+                    <Resend onClick={resetInputs}>Resend code</Resend>
+                    <Button
+                        isLoading={isLoading}
+                        disabled={disabled}
+                        margin='19px 0 0'
+                        onClick={() => dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))}>
+                        Next
+                    </Button>
+                </Wrapper>
+            </Container>
+        </div>
+
     );
 };
 

@@ -11,7 +11,7 @@ import search from "../../../utils/search";
 interface Props {
     handlerCloseSearch: () => void;
     countryList: CountryFromList[];
-    setCountry: Dispatch<SetStateAction<CountryFromList | undefined>>;
+    setCountry: Dispatch<SetStateAction<CountryFromList>>;
     setPhone: Dispatch<SetStateAction<string>>;
 }
 

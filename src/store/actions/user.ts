@@ -23,15 +23,16 @@ export const sendPhone =
         async (dispatch, _, {mainApi}) => {
             try {
                 dispatch(userActions.setLoading(true))
-                const response = await mainApi.sendPhone({
+                await mainApi.sendPhone({
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
-                dispatch(userActions.setResponseCode(response.status.toString()));
                 dispatch(userActions.setLoading(false))
+                dispatch(userActions.redirectUser('/sms-verification'))
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
+                alert('Send error')
             }
         };
 export const setResponseCode =
