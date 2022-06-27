@@ -51,7 +51,7 @@ const AccountSetting = () => {
                                 <Text>Email</Text>
                             </DataTop>
                             <Value>
-                                no phone email use
+                                {user && user.email ? user.email : 'no email in use'}
                             </Value>
                         </Data>
                     </TabLeft>

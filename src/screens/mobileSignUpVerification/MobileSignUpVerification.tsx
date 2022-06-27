@@ -84,7 +84,6 @@ const MobileSignUpVerification = ({update}: Props) => {
     }
     return (
         <div>
-            <Header backUrl='/'/>
             <Container>
                 <Wrapper>
                     <Heading>What’s the code?</Heading>
