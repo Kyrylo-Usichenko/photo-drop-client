@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {CodeWrapper, Heading, NumberWrapper, Number, Field, Resend, Wrapper} from './MobileSignUpVerificationStyles';
 import {Container} from "../../components/shared/container/Container";
 import Button from "../../components/shared/button/Button";
-import {resendPhone, resendUpdatePhone, sendOtp, sendUpdateOtp} from "../../store/actions/user";
+import {resendPhone, resendUpdatePhone, sendOtp, sendUpdateOtp, setResponseCode} from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
@@ -20,6 +20,7 @@ const MobileSignUpVerification = ({update}: Props) => {
     const phone = useSelector((state: State) => state.userReducer.phone)
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+    const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
 
     const input1 = useRef<HTMLInputElement>(null)
     const input2 = useRef<HTMLInputElement>(null)
@@ -57,7 +58,14 @@ const MobileSignUpVerification = ({update}: Props) => {
             nav('/selfie')
         }
     })
-
+    useEffect(()=>{
+        if(redirectToUrl) nav(redirectToUrl)
+    }, [redirectToUrl])
+    useEffect(() => {
+        if (phone === '' && update){
+            nav('/account-settings')
+        }
+    })
 
     const jumpToNext = (e: any) => {
         if (e) {
