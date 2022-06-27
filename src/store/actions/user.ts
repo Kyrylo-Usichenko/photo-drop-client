@@ -275,8 +275,8 @@ export const updateEmail =
                 dispatch(userActions.setLoading(true))
                 await mainProtectedApi.updateEmail({email: email});
                 dispatch(userActions.setEmail(email))
-                dispatch(redirectUser('/account-settings'))
                 dispatch(userActions.setLoading(false))
+                dispatch(redirectUser('/account-settings'))
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
