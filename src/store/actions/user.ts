@@ -91,6 +91,7 @@ export const sendOtp =
                 const accessToken: string = response.data.access_token;
                 const storage = TokensLocalStorage.getInstance();
                 storage.setAccessToken(accessToken);
+                dispatch(getUser())
                 dispatch(userActions.setAuth(true))
                 dispatch(userActions.setLoading(false))
             } catch (e) {
@@ -207,7 +208,7 @@ export const getUser =
             try {
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
-                dispatch(userActions.setUser(response.data.client_data))
+                dispatch(userActions.setUser(response.data.client_data, response.data.has_selfie_photo))
                 dispatch(setLoading(false))
                 dispatch(userActions.setAuth(true))
             } catch (e) {

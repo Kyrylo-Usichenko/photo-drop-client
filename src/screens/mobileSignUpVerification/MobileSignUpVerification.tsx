@@ -28,6 +28,7 @@ const MobileSignUpVerification = ({update}: Props) => {
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
+    const user = useSelector((state: State) => state.userReducer.user)
 
     const input1 = useRef<HTMLInputElement>(null)
     const input2 = useRef<HTMLInputElement>(null)
@@ -52,6 +53,9 @@ const MobileSignUpVerification = ({update}: Props) => {
         update ? dispatch(resendUpdatePhone(phone)) : dispatch(resendPhone(phone))
         setOtp([])
     }
+    const onNextClick = () => {
+        dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))
+    }
 
     useEffect(() => {
         if (otp.length === 6 && otp[1] !== '' && otp[2] !== '' && otp[3] !== '' && otp[4] !== '' && otp[5] !== '' && otp[6] !== '') {
@@ -61,19 +65,24 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     }, [otp])
     useEffect(() => {
-        if (isAuth && !update) {
+        // if (isAuth && !update) {
+        //     nav('/selfie')
+        // }
+        if(user && user.has_selfie_photo) {
+            nav('/dashboard')
+        } else {
             nav('/selfie')
         }
-    })
-    useEffect(()=>{
+    }, [user])
+    useEffect(() => {
         dispatch(redirectUser(null))
-        if(redirectToUrl) nav(redirectToUrl)
+        if (redirectToUrl) nav(redirectToUrl)
     }, [redirectToUrl])
     useEffect(() => {
-        if (phone === '' && update){
+        if (phone === '' && update) {
             nav('/account-settings')
         }
-        if (phone === '' && !update){
+        if (phone === '' && !update) {
             nav('/')
         }
     })
@@ -129,7 +138,7 @@ const MobileSignUpVerification = ({update}: Props) => {
                         isLoading={isLoading}
                         disabled={disabled}
                         margin='19px 0 0'
-                        onClick={() => dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))}>
+                        onClick={onNextClick}>
                         Next
                     </Button>
                 </Wrapper>

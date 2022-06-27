@@ -22,6 +22,7 @@ import {State} from "../../store";
 import Loader from '../../components/shared/loader/Loader';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import {useNavigate} from 'react-router-dom';
+import user from "../../store/reducers/user";
 
 const AddSelfie = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -36,6 +37,7 @@ const AddSelfie = () => {
     const [zoom, setZoom] = useState(1)
 
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+    const user = useSelector((state: State) => state.userReducer.user)
 
     const onUploadChange = async (e: any) => {
         const file = e.target.files[0];
