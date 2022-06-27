@@ -40,7 +40,7 @@ export default class MainProtected extends HttpClientProtected {
         this.instance.post(`/clients/phone-number`, body )
 
     public otpUpdateValidate = (data: { "phone_number": string, "otp": string }) =>
-        this.instance.post("/clients/update/phone-number/validate", data);
+        this.instance.post("/clients/phone-number/validate", data);
 
     public updateEmail = (body: {email: string}) =>
         this.instance.patch(`/clients/email`, body )

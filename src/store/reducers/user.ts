@@ -73,6 +73,13 @@ export class User extends ImmerReducer<UserState> {
         };
     }
 
+    setUserPhone(phone: string) {
+        this.draftState.user = {
+            ...this.draftState.user,
+            phone_number: phone
+        };
+    }
+
     setUserNotification(body: { text_message: boolean, email: boolean, unsubscribe: boolean }) {
         this.draftState.user = {
             ...this.draftState.user,

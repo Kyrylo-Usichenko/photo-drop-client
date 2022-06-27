@@ -14,6 +14,7 @@ export type UserActions =
     | ReturnType<typeof userActions.setAuth>
     | ReturnType<typeof userActions.setUserName>
     | ReturnType<typeof userActions.setUserNotification>
+    | ReturnType<typeof userActions.setUserPhone>
     | ReturnType<typeof userActions.redirectUser>
     | ReturnType<typeof userActions.setEmail>
     | ReturnType<typeof userActions.setResponseCode>
@@ -103,8 +104,11 @@ export const sendUpdateOtp =
         async (dispatch, _, {mainProtectedApi}) => {
             try {
                 dispatch(userActions.setLoading(true))
-                const response = await mainProtectedApi.otpUpdateValidate({"phone_number": phone, "otp": otp});
+                await mainProtectedApi.otpUpdateValidate({"phone_number": phone, "otp": otp});
+                dispatch(userActions.setUserPhone(phone))
                 dispatch(userActions.setLoading(false))
+                dispatch(userActions.redirectUser('/account-settings'))
+
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
