@@ -7,7 +7,7 @@ import {CountryFromList, countryList} from "../../utils/country-list";
 import Header from "../../components/shared/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from "react-redux";
-import {sendPhone} from "../../store/actions/user";
+import {getUser, sendPhone} from "../../store/actions/user";
 import {State} from "../../store";
 import Button from "../../components/shared/button/Button";
 import {
@@ -31,6 +31,7 @@ const MobileSignUp = () => {
     const handlerCloseSearch = () => setIsPhoneSearchOpen(false);
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
+    const auth = useSelector((state: State) => state.userReducer.isAuth)
     const [phone, setPhone] = useState('');
     const [selectedCountry, setSelectedCountry] = useState<CountryFromList>({
         country: 'United States',
@@ -38,6 +39,13 @@ const MobileSignUp = () => {
         iso: 'US',
         src: '/assets/flags/flag-for-united-states_1f1fa-1f1f8.png'
     });
+
+    // useEffect(() => {
+    //     dispatch(getUser())
+    // })
+    useEffect(() => {
+        if(auth) nav('/dashboard')
+    }, [auth])
 
     useEffect(() => {
         redirectToUrl && nav(redirectToUrl)
@@ -57,7 +65,6 @@ const MobileSignUp = () => {
     return (
         <div>
             <Header/>
-
             <Container>
                 <Wrapper>
                     <GetStarted>Let’s get started</GetStarted>

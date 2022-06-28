@@ -23,7 +23,6 @@ interface Props {
 const MobileSignUpVerification = ({update}: Props) => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate()
-
     const phone = useSelector((state: State) => state.userReducer.phone)
     const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
@@ -83,7 +82,7 @@ const MobileSignUpVerification = ({update}: Props) => {
             nav('/account-settings')
         }
         if (phone === '' && !update) {
-            nav('/')
+            nav('/login')
         }
     })
 

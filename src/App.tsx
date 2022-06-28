@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from './components/shared/header/Header';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./screens/mobileSignUp/MobileSignUp";
 import MobileSignUpVerification from "./screens/mobileSignUpVerification/MobileSignUpVerification";
 import styled from "styled-components";
-import store from "./store";
-import {Provider} from 'react-redux';
+import store, {State} from "./store";
+import {Provider, useDispatch, useSelector} from 'react-redux';
 import AddSelfie from "./screens/addSelfie/AddSelfie";
 import ProtectedRouter from "./components/shared/protectedRouter/ProtectedRouter";
 import UserDashboard from "./screens/userDashboard/UserDashboard";
@@ -15,16 +15,18 @@ import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings
 import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
-
+import Redirect from "./components/shared/redirect/Redirect";
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
+
     return (
         <Wrapper>
             <Provider store={store}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<MobileSignUp/>}/>
+                        <Route path="/" element={<Redirect/>}/>
+                        <Route path="/login" element={<MobileSignUp/>}/>
                         <Route path="/sms-verification"
                                element={
                                    <div>
