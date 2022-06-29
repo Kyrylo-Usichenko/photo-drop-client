@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Loader from "../loader/Loader";
+
 type ButtonProps = {
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
     children?: React.ReactNode; // make the component able to receive children elements
@@ -10,7 +11,7 @@ type ButtonProps = {
     isLoading?: boolean,
 };
 
-const Button = ({ onClick, children, disabled, margin, isLoading = false}: ButtonProps) => {
+const Button = ({onClick, children, disabled, margin, isLoading = false}: ButtonProps) => {
     return (
         <Wrapper margin={margin} onClick={onClick} disabled={disabled}>
             {
@@ -20,7 +21,8 @@ const Button = ({ onClick, children, disabled, margin, isLoading = false}: Butto
     );
 };
 export const Wrapper = styled.button<ButtonProps>`
-  width: 345px;
+  width: 100%;
+  max-width: 420px;
   height: 50px;
   font-family: 'Futura PT';
   font-style: normal;
@@ -33,13 +35,18 @@ export const Wrapper = styled.button<ButtonProps>`
   border-radius: 50px;
   outline: none;
   border: none;
-  margin: ${ (props) => props.margin && `${props.margin}` };
+  margin: ${(props) => props.margin && `${props.margin}`};
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  &:disabled{
+
+  &:disabled {
     opacity: 0.33;
+  }
+  @media (min-width: 1440px) {
+    font-size: 22px;
+    line-height: 28px;
   }
 `;
 export default Button;

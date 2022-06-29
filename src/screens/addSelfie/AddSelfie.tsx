@@ -5,7 +5,7 @@ import {
     Avatar,
     BottomWrapper,
     Buttons,
-    Circle, CropInner, CropWrapper,
+    Circle, CropInner, DarkWindow, CropWrapper,
     Cross,
     Description, HeaderCrop,
     HorizontalLine, Retake, Save,
@@ -22,13 +22,12 @@ import {State} from "../../store";
 import Loader from '../../components/shared/loader/Loader';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import {useNavigate} from 'react-router-dom';
-import user from "../../store/reducers/user";
+import useOnClickOutside from "../../components/hooks/useOnClickOutside";
 
 const AddSelfie = () => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
-    const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
     const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
 
     const [photoUrl, setPhotoURL] = useState(null)
@@ -37,7 +36,12 @@ const AddSelfie = () => {
     const [zoom, setZoom] = useState(1)
 
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-    const user = useSelector((state: State) => state.userReducer.user)
+
+    const onCloseModalClick = () => {
+        setPhotoURL(null)
+        setCrop({x: 0, y: 0})
+        setZoom(1)
+    }
 
     const onUploadChange = async (e: any) => {
         const file = e.target.files[0];
@@ -67,12 +71,34 @@ const AddSelfie = () => {
         }
     }, [crop, zoom])
 
+    const modalRef = useOnClickOutside(() => {
+        onCloseModalClick()
+    });
 
-    if (photoUrl) {
-        return (
-            <CropWrapper>
+    return (
+        <div>
+            <Header backUrl/>
+            <Container>
+                <Wrapper>
+                    <Add>Add a selfie</Add>
+                    <Description>A selfie allows your photos to be synced with your account.</Description>
+                    <Avatar>
+                        <Circle onClick={onAddClick}>
+                            <VerticalLine/>
+                            <HorizontalLine/>
+                        </Circle>
+                    </Avatar>
+                    <input type="file"
+                           ref={hiddenFileInput}
+                           onChange={onUploadChange}
+                           style={{display: "none"}}
+                    />
+                </Wrapper>
+            </Container>
+            <DarkWindow isOpen={!!photoUrl}/>
+            <CropWrapper ref={modalRef} isOpen={!!photoUrl}>
                 <HeaderCrop>
-                    <Cross onClick={() => setPhotoURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
+                    <Cross onClick={onCloseModalClick} width={30} height={30} src="/assets/icons/cross.svg"
                            alt=""/>
                     <div>
                         Take selfie
@@ -84,7 +110,7 @@ const AddSelfie = () => {
                 <BottomWrapper>
                     <CropInner>
                         <Cropper
-                            image={photoUrl}
+                            image={photoUrl ? photoUrl : undefined}
                             crop={crop}
                             zoom={zoom}
                             aspect={1}
@@ -129,28 +155,7 @@ const AddSelfie = () => {
                        style={{display: "none"}}
                 />
             </CropWrapper>
-        )
-    }
-    return (
-        <div>
-            <Header backUrl/>
-            <Container>
-                <Wrapper>
-                    <Add>Add a selfie</Add>
-                    <Description>A selfie allows your photos to be synced with your account.</Description>
-                    <Avatar>
-                        <Circle onClick={onAddClick}>
-                            <VerticalLine/>
-                            <HorizontalLine/>
-                        </Circle>
-                    </Avatar>
-                    <input type="file"
-                           ref={hiddenFileInput}
-                           onChange={onUploadChange}
-                           style={{display: "none"}}
-                    />
-                </Wrapper>
-            </Container>
+
         </div>
     );
 

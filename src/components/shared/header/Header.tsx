@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {ArrowLeft, Avatar, Inner, Wrapper} from './HeaderStyles';
+import {ArrowLeft, ArrowWrapper, Avatar, Inner, Logo, Wrapper} from './HeaderStyles';
 
 interface HeaderProps {
     backUrl?: boolean
@@ -14,15 +14,18 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
         <Wrapper>
             <Inner>
                 {
-                    backUrl &&
-                        <ArrowLeft onClick={() => nav(-1)}/>
+                    backUrl && (
+                        <ArrowWrapper onClick={() => nav(-1)}>
+                            <ArrowLeft />
+                        </ArrowWrapper>
+                    )
                 }
                 {
                     imageSrc && (<Link to='/my-profile'>
                         <Avatar src={imageSrc} alt=""/>
                     </Link>)
                 }
-                <img src="/assets/icons/logo.svg" width='125px' height='16px' alt="logo"/>
+                <Logo src="/assets/icons/logo.svg"/>
             </Inner>
         </Wrapper>
     );

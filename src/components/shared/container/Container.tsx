@@ -4,6 +4,6 @@ export  const Container = styled.div<{maxWidth?: string}>`
   padding: 0 15px;
   width: 100%;
   margin: 0 auto;
-  max-width: 552px;
+  max-width: 450px;
   ${({maxWidth}) => maxWidth ? `max-width: ${maxWidth}` : null}
 `;
