@@ -133,7 +133,7 @@ const AddSelfie = () => {
     }
     return (
         <div>
-            <Header backUrl='/'/>
+            <Header backUrl/>
             <Container>
                 <Wrapper>
                     <Add>Add a selfie</Add>
