@@ -39,12 +39,12 @@ const AccountSetting = () => {
                             </Value>
                         </Data>
                     </TabLeft>
-                    <img width='8px' height='16px' src="/assets/icons/arrow-right.svg" alt=""/>
+                    <Arrow src="/assets/icons/arrow-right.svg" alt=""/>
                 </Tab >
                 <Tab onClick={() => nav('/change-email')}>
                     <TabLeft>
                         <div>
-                            <img width='25px' height='30px' src="/assets/icons/letter.svg" alt=""/>
+                            <img width='25px' height='20px' src="/assets/icons/letter.svg" alt=""/>
                         </div>
                         <Data>
                             <DataTop>
@@ -55,7 +55,7 @@ const AccountSetting = () => {
                             </Value>
                         </Data>
                     </TabLeft>
-                    <img width='8px' height='16px' src="/assets/icons/arrow-right.svg" alt=""/>
+                    <Arrow src="/assets/icons/arrow-right.svg" alt=""/>
                 </Tab>
             </Wrapper>
             {
@@ -79,6 +79,11 @@ const Heading = styled.div`
   line-height: 22px;
   color: #262626;
   margin: 20px 0 20px;
+  @media (min-width: 1440px) {
+    margin: 41px 0 32px;
+    font-size: 22px;
+    line-height: 26px;
+  }
 `;
 const TabLeft = styled.div`
   display: flex;
@@ -92,7 +97,12 @@ const DataTop = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 18px;`;
+  line-height: 18px;
+  @media (min-width: 1440px) {
+    font-size: 16px;
+    line-height: 21px;
+  }
+`;
 const Text = styled.span`
   color: #262626;
 `;
@@ -107,6 +117,19 @@ const Value = styled.div`
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  @media (min-width: 1440px) {
+    font-size: 16px;
+    line-height: 21px;
+  }
+`;
+const Arrow = styled.img`
+  width: 8px;
+  height: 16px;
+  background-size: cover;
+  @media (min-width: 1440px) {
+    width: 10px;
+    height: 20px;
+  }
 `;
 
 export default AccountSetting;

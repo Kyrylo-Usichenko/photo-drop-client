@@ -65,13 +65,18 @@ const Heading = styled.div`
   text-align: center;
   color: #262626;
   margin: 166px 0 0;
+  @media (min-width: 1440px) {
+    margin: 255px 0 0;
+    font-size: 22px;
+    line-height: 26px;
+  }
 `
 const Input = styled.input`
   background: #F4F4F4;
   border: 1px solid #EEEEEE;
   border-radius: 10px;
   height: 40px;
-  width: 345px;
+  width: 100%;
   margin: 19px 0 0;
   outline: none;
   padding: 15px 13px 14px;
@@ -81,11 +86,17 @@ const Input = styled.input`
   font-size: 16px;
   line-height: 21px;
   color: #262626;
+  @media (min-width: 1440px) {
+    margin: 30px 0 0;
+    font-size: 18px;
+    line-height: 23px;
+  }
+  
+  
 
 `
 
 export const Wrapper = styled.div`
-  max-width: 375px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

@@ -24,7 +24,7 @@ import {
     Buttons,
     CropInner,
     CropWrapper,
-    Cross,
+    Cross, DarkWindow,
     HeaderCrop,
     Retake, Save
 } from "../addSelfie/AddSelfieStyles";
@@ -33,6 +33,7 @@ import Cropper from 'react-easy-crop';
 import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import Header from "../../components/shared/header/Header";
 import {Tab} from '../../components/shared/tab/Tab';
+import useOnClickOutside from "../../components/hooks/useOnClickOutside";
 
 const MyProfile = () => {
     const nav = useNavigate()
@@ -63,7 +64,11 @@ const MyProfile = () => {
             dispatch(getUser())
         }
     })
-
+    const onCloseModalClick = () => {
+        setSelfieURL(null)
+        setCrop({x: 0, y: 0})
+        setZoom(1)
+    }
     const onEditClick = () => {
         selfieInput.current!.click();
     }
@@ -73,6 +78,10 @@ const MyProfile = () => {
         const fileUrl = URL.createObjectURL(file)
         setSelfieURL(fileUrl)
     }
+
+    const modalRef = useOnClickOutside(() => {
+        onCloseModalClick()
+    });
 
     const onCropComplete = useCallback(async (croppedArea: any, croppedAreaPixels: any) => {
         if (selfieUrl) {
@@ -84,73 +93,9 @@ const MyProfile = () => {
         }
     }, [crop, zoom])
 
-    if (selfieUrl) {
-        return (
-            <CropWrapper>
-                <HeaderCrop>
-                    <Cross onClick={() => setSelfieURL(null)} width={30} height={30} src="/assets/icons/cross.svg"
-                           alt=""/>
-                    <div>
-                        Take selfie
-                    </div>
-                </HeaderCrop>
-                <Action>
-                    Drag and zoom image to crop
-                </Action>
-                <BottomWrapper>
-                    <CropInner>
-                        <Cropper
-                            image={selfieUrl as any}
-                            crop={crop}
-                            zoom={zoom}
-                            aspect={1}
-                            onCropChange={setCrop}
-                            onCropComplete={onCropComplete}
-                            onZoomChange={setZoom}
-                            cropShape='round'
-                            showGrid={false}
-                            cropSize={{width: 285, height: 285}}
-                            objectFit='horizontal-cover'
-                            style={{
-                                containerStyle: {
-                                    margin: '0 auto',
-                                    borderRadius: '50%',
-                                    width: 285,
-                                    height: 285,
-                                    border: 'none',
-                                    borderCollapse: 'separate',
-                                    WebkitBorderRadius: '50%',
-                                    MozBorderRadius: '50%',
-                                    transform: 'translateZ(0)'
-                                },
-                                mediaStyle: {
-                                    overflow: 'hidden',
-                                },
-                                cropAreaStyle: {
-                                    borderRadius: '50%',
-
-                                    border: '1px solid #CECCB5'
-                                }
-                            }}
-                        />
-                    </CropInner>
-                    <Buttons>
-                        <Retake onClick={onEditClick}>Retake</Retake>
-                        <Save onClick={onSaveClick}>{isLoading ? <Loader/> : 'Save'}</Save>
-                    </Buttons>
-                </BottomWrapper>
-                <input type="file"
-                       ref={selfieInput}
-                       onChange={onSelfieSelect}
-                       style={{display: "none"}}
-                />
-            </CropWrapper>
-        )
-    }
     return (
         <div>
             <Header backUrl/>
-
             <Container>
                 <Wrapper>
                     <Heading>Welcome{user && (user.full_name ? `, ${user.full_name}` : null)}</Heading>
@@ -160,7 +105,7 @@ const MyProfile = () => {
                             // @ts-ignore
                                 src={tempSelfie}
                                 alt=""/>
-                        <Edit onClick={() => setSelfieURL(tempSelfie)}/>
+                        <Edit onClick={onEditClick}/>
                         <input type="file"
                                ref={selfieInput}
                                onChange={onSelfieSelect}
@@ -205,8 +150,67 @@ const MyProfile = () => {
                         </LoaderWrapper> : null
                     }
                 </Wrapper>
-
             </Container>
+            <DarkWindow isOpen={!!selfieUrl}/>
+            <CropWrapper ref={modalRef} isOpen={!!selfieUrl}>
+                <HeaderCrop>
+                    <Cross onClick={onCloseModalClick} width={30} height={30} src="/assets/icons/cross.svg"
+                           alt=""/>
+                    <div>
+                        Take selfie
+                    </div>
+                </HeaderCrop>
+                <Action>
+                    Drag and zoom image to crop
+                </Action>
+                <BottomWrapper>
+                    <CropInner>
+                        <Cropper
+                            image={selfieUrl ? selfieUrl : undefined}
+                            crop={crop}
+                            zoom={zoom}
+                            aspect={1}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            cropShape='round'
+                            showGrid={false}
+                            cropSize={{width: 285, height: 285}}
+                            objectFit='auto-cover'
+                            style={{
+                                containerStyle: {
+                                    margin: '0 auto',
+                                    borderRadius: '50%',
+                                    width: 285,
+                                    height: 285,
+                                    border: 'none',
+                                    borderCollapse: 'separate',
+                                    WebkitBorderRadius: '50%',
+                                    MozBorderRadius: '50%',
+                                    transform: 'translateZ(0)'
+                                },
+                                mediaStyle: {
+                                    overflow: 'hidden',
+                                },
+                                cropAreaStyle: {
+                                    borderRadius: '50%',
+
+                                    border: '1px solid #CECCB5'
+                                }
+                            }}
+                        />
+                    </CropInner>
+                    <Buttons>
+                        <Retake onClick={onEditClick}>Retake</Retake>
+                        <Save onClick={onSaveClick}>{isLoading ? <Loader/> : 'Save'}</Save>
+                    </Buttons>
+                </BottomWrapper>
+                <input type="file"
+                       ref={selfieInput}
+                       onChange={onSelfieSelect}
+                       style={{display: "none"}}
+                />
+            </CropWrapper>
         </div>
     );
 };

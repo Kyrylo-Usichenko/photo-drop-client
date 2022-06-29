@@ -17,6 +17,11 @@ export const Avatar = styled.div`
   background: url("/assets/images/avatar-icon.png");
   background-size: contain;
   position: relative;
+  margin: 30px 0 0;
+  @media (min-width: 1440px) {
+    margin: 28px 0 0;
+
+  }
 `;
 export const Circle = styled.div`
   width: 42px;
@@ -58,7 +63,12 @@ export const Add = styled.div`
   font-size: 22px;
   line-height: 26px;
   color: #262626;
-  margin: 72px 0 14px;
+  margin: 72px 0 0;
+  @media (min-width: 1440px) {
+    margin: 178px 0 0;
+    font-size: 30px;
+    line-height: 36px;
+  }
 `;
 export const Description = styled.div`
   font-family: 'Futura PT';
@@ -67,8 +77,15 @@ export const Description = styled.div`
   font-size: 18px;
   line-height: 23px;
   color: #262626;
-  margin: 0 0 30px;
+  margin: 14px 0 0;
   text-align: center;
+  @media (min-width: 768px) {
+    white-space: nowrap;
+  }
+  @media (min-width: 1440px) {
+    margin: 29px 0 0;
+    white-space: nowrap;
+  }
 `;
 
 export const Item = styled.li`
@@ -84,17 +101,43 @@ export const Item = styled.li`
     border-bottom: none;
   }
 `;
-export const CropWrapper = styled.div`
+
+export const DarkWindow = styled.div<{isOpen: boolean}>`
+  display: none;
+  @media (min-width: 1440px) {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
+    z-index: 998;
+    background: #000000;
+    opacity: 0.5;
+  }
+`;
+export const CropWrapper = styled.div<{isOpen: boolean}>`
   background: #262626;
   width: 100%;
-  min-height: 100%;
   height: 100%;
   padding: 0 15px;
   top: 0;
+  left: 0;
+  position: fixed;
   overflow: hidden;
-  display: flex;
+  display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
   flex-direction: column;
   align-items: center;
+  z-index: 999;
+  @media (min-width: 1440px) {
+    width: 379px;
+    height: 653px;
+    top: 97px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 20px;
+
+  }
 `;
 export const CropInner = styled.div`
   position: relative;

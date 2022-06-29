@@ -98,11 +98,10 @@ function App() {
 }
 
 const Wrapper = styled.div`
-  max-width: 552px;
   margin: 0 auto;
   background-color: #fff;
-  //overflow: hidden;
   height: 100%;
   position: relative;
+  
 `
 export default App;

@@ -4,11 +4,22 @@ import Header from "../../components/shared/header/Header";
 import {getSelfie} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import {State} from "../../store";
-import {BotText, Browse, Line, LoaderWrapper, MessageIcon, Slider, SliderInner, SliderItem, TopText} from './UserDashboardStyles';
-import {Inner, Wrapper} from '../addSelfie/AddSelfieStyles';
+import {
+    BotText,
+    Browse,
+    Line,
+    MessageIcon,
+    Slider,
+    SliderInner,
+    SliderItem,
+    TopText
+} from './UserDashboardStyles';
+import {Inner} from '../addSelfie/AddSelfieStyles';
 import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css'
 import {Container} from '../../components/shared/container/Container';
+import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
+import Footer from '../../components/shared/footer/Footer';
 
 const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -23,7 +34,7 @@ const UserDashboard = () => {
     })
 
     return (
-        <Wrapper>
+        <div>
             <Header imageSrc={selfie ? selfie : tempSelfie ? tempSelfie : '/assets/images/avatar-icon.png'}/>
             <Container>
                 <Inner>
@@ -33,24 +44,20 @@ const UserDashboard = () => {
                 </Inner>
             </Container>
             <Line/>
-            <Browse>Browse Art Prints </Browse>
-            <Slider>
-                <SliderInner>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
-                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
-                </SliderInner>
+            <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+                <Browse>Browse Art Prints </Browse>
+                <Slider>
+                    <SliderInner>
+                        <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>
+                        <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png" alt=""/>
+                        <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide3.png" alt=""/>
+                    </SliderInner>
 
-            </Slider>
-            {
-                isLoading ? <LoaderWrapper>
-                    <img src='/assets/icons/gif-loader.gif'/>
-                </LoaderWrapper> : null
-            }
-        </Wrapper>
+                </Slider>
+            </div>
+            <Footer/>
+            <LoaderGif isLoading={isLoading}/>
+        </div>
 
     );
 };

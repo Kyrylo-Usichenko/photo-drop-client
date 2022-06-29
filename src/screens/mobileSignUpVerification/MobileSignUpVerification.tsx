@@ -136,7 +136,7 @@ const MobileSignUpVerification = ({update}: Props) => {
                     <Button
                         isLoading={isLoading}
                         disabled={disabled}
-                        margin='19px 0 0'
+                        margin='20px 0 0'
                         onClick={onNextClick}>
                         Next
                     </Button>

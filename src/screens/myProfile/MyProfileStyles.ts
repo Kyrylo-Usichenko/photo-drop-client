@@ -9,6 +9,12 @@ export const Heading = styled.div`
   color: #262626;
   margin: 22px 0 0;
   text-align: center;
+  @media (min-width: 1440px) {
+    margin: 41px 0 0;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+  }
 `;
 export const YourSelfie = styled.div`
   font-family: 'Futura PT';
@@ -18,12 +24,22 @@ export const YourSelfie = styled.div`
   line-height: 21px;
   color: #262626;
   margin: 20px 0 0;
+  @media (min-width: 1440px) {
+    margin: 33px 0 0;
+    font-size: 18px;
+    line-height: 23px;
+  }
 `;
 export const AvatarWrapper = styled.div`
   position: relative;
   margin: 13px 0 20px;
   width: 118px;
   height: 101px;
+  @media (min-width: 1440px) {
+    margin: 15px 0 20px;
+    width: 172px;
+    height: 150px;
+  }
 `;
 export const Avatar = styled.img`
   outline: none;
@@ -32,6 +48,10 @@ export const Avatar = styled.img`
   height: 100px;
   border-radius: 50%;
   cursor: pointer;
+  @media (min-width: 1440px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const Edit = styled.div`
   background: url("/assets/icons/edit.svg");
@@ -43,7 +63,10 @@ export const Edit = styled.div`
   bottom: 0;
   cursor: pointer;
   background-size: contain;
-
+  @media (min-width: 1440px) {
+    width: 45px;
+    height: 45px;
+  }
 `;
 export const TabTopText = styled.div`
   font-family: 'Futura PT';
@@ -65,7 +88,7 @@ export const LeftWrapper = styled.div`
   justify-content: space-between;
 `;
 export const Wrapper = styled.div`
-  max-width: 375px;
+  width: 100%;
   margin: 0 auto;
 `;
 export const ArrowRight = styled.div`

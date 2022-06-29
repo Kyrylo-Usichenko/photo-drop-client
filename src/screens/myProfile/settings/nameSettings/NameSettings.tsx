@@ -59,13 +59,18 @@ const Heading = styled.div`
   text-align: center;
   color: #262626;
   margin: 167px 0 0;
+  @media (min-width: 1440px) {
+    margin: 255px 0 0;
+    font-size: 22px;
+    line-height: 26px;
+  }
 `;
 const Input = styled.input`
   outline: none;
   background: #F4F4F4;
   border: 1px solid #EEEEEE;
   border-radius: 10px;
-  width: 345px;
+  width: 100%;
   height: 40px;
   margin: 20px 0 0;
   padding: 15px 13px 14px;
@@ -75,5 +80,9 @@ const Input = styled.input`
   font-size: 16px;
   line-height: 21px;
   color: #262626;
+  @media (min-width: 1440px) {
+    margin: 30px 0 0;
+  }
+  
 `;
 export default NameSettings;
