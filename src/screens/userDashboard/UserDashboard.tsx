@@ -34,17 +34,6 @@ const UserDashboard = () => {
             </Container>
             <Line/>
             <Browse>Browse Art Prints </Browse>
-            {/*    <div style={{display: 'flex',   overflowX: 'scroll'}}>*/}
-            {/*    <span>*/}
-            {/*        <img width={"1400px"} src="/assets/images/slide1.png" alt=""/>*/}
-            {/*    </span>*/}
-            {/*    <span>*/}
-            {/*        <img src="/assets/images/slide2.png" alt=""/>*/}
-            {/*    </span>*/}
-            {/*    <span>*/}
-            {/*        <img src="/assets/images/slide1.png" alt=""/>*/}
-            {/*    </span>*/}
-            {/*</div>*/}
             <Slider>
                 <SliderInner>
                     <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png" alt=""/>

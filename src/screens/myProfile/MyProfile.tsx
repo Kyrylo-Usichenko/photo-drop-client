@@ -149,7 +149,7 @@ const MyProfile = () => {
     }
     return (
         <div>
-            <Header backUrl='/dashboard'/>
+            <Header backUrl/>
 
             <Container>
                 <Wrapper>

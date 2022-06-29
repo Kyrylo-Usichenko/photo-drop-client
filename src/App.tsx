@@ -16,6 +16,7 @@ import AccountSetting from "./screens/myProfile/settings/accountSettings/Account
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
 import Redirect from "./components/shared/redirect/Redirect";
+import Albums from "./screens/albums/Albums";
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
                         <Route path="/sms-verification"
                                element={
                                    <div>
-                                       <Header backUrl='/'/>
+                                       <Header backUrl/>
                                        <MobileSignUpVerification/>
                                    </div>}/>
                         <Route path="/selfie" element={
@@ -50,39 +51,44 @@ function App() {
                         }/>
                         <Route path="/notification-settings" element={
                             <ProtectedRouter>
-                                <Header backUrl='/my-profile'/>
+                                <Header backUrl/>
                                 <NotificationSettings/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/name-settings" element={
                             <ProtectedRouter>
-                                <Header backUrl='/my-profile'/>
+                                <Header backUrl/>
                                 <NameSettings/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/account-settings" element={
                             <ProtectedRouter>
-                                <Header backUrl='/my-profile'/>
+                                <Header backUrl/>
                                 <AccountSetting/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/change-number" element={
                             <ProtectedRouter>
-                                <Header backUrl='/account-settings'/>
+                                <Header backUrl/>
                                 <ChangeNumber/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/change-email" element={
                             <ProtectedRouter>
-                                <Header backUrl='/account-settings'/>
+                                <Header backUrl/>
                                 <ChangeEmail/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/sms-verification-update" element={
                             <>
-                                <Header backUrl='/change-number'/>
+                                <Header backUrl/>
                                 <MobileSignUpVerification update/>
                             </>
+                        }/>
+                        <Route path="/albums" element={
+                            <ProtectedRouter>
+                                <Albums/>
+                            </ProtectedRouter>
                         }/>
                     </Routes>
                 </BrowserRouter>
@@ -95,7 +101,7 @@ const Wrapper = styled.div`
   max-width: 552px;
   margin: 0 auto;
   background-color: #fff;
-  overflow: hidden;
+  //overflow: hidden;
   height: 100%;
   position: relative;
 `
