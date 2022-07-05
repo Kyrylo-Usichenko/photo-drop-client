@@ -17,6 +17,7 @@ import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNum
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
 import Redirect from "./components/shared/redirect/Redirect";
 import Albums from "./screens/albums/Albums";
+import Album from './screens/album/Album';
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
@@ -88,6 +89,11 @@ function App() {
                         <Route path="/albums" element={
                             <ProtectedRouter>
                                 <Albums/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/album/:id" element={
+                            <ProtectedRouter>
+                                <Album/>
                             </ProtectedRouter>
                         }/>
                     </Routes>

@@ -2,16 +2,32 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Header from "../../components/shared/header/Header";
 import {State} from "../../store";
-import {getSelfie} from "../../store/actions/user";
+import {getAlbums, getPhotos, getSelfie} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import LoaderGif from '../../components/shared/loaderGif/LoaderGif';
-import {AlbumPhoto, AlbumsList, AlbumsHeading, AlbumName, AlbumWrapper, AlbumNameWrapper, PhotosHeading, Photos, Photo, ButtonBot} from "./AlbumsStyles";
+import {
+    AlbumPhoto,
+    AlbumsList,
+    AlbumsHeading,
+    AlbumName,
+    AlbumWrapper,
+    AlbumNameWrapper,
+    PhotosHeading,
+    Photos,
+    Photo,
+    AlbumsWrapper,
+    ButtonWrapper
+} from "./AlbumsStyles";
 import {Container} from "../../components/shared/container/Container";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import Footer from "../../components/shared/footer/Footer";
+import Button from "../../components/shared/button/Button";
 
 const Albums = () => {
     const selfie = useSelector((state: State) => state.userReducer.selfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
+    const albums = useSelector((state: State) => state.userReducer.albums)
+    const albumsPhotos = useSelector((state: State) => state.userReducer.albumsPhotos)
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
 
@@ -20,71 +36,49 @@ const Albums = () => {
             dispatch(getSelfie())
         }
     })
+    useEffect(() => {
+        dispatch(getAlbums())
+    }, [dispatch])
+    useEffect(() => {
+        albums && albums.forEach((album) => dispatch(getPhotos(album.id)))
+        // albums && dispatch(getPhotos(albums[0].id))
+    }, [dispatch, albums])
+    useEffect(() => {
+    }, [albumsPhotos])
+    console.log('af')
+    console.log(albumsPhotos)
+
     return (
-        <div style={{  overflowX: 'scroll'}}>
+        <div style={{overflowX: 'scroll'}}>
             <Header imageSrc={selfie}/>
             <LoaderGif isLoading={isLoading}/>
-            <Container>
+            <AlbumsWrapper>
                 <AlbumsHeading>Albums</AlbumsHeading>
                 <AlbumsList>
-                    <AlbumWrapper>
-                        <AlbumPhoto src="/assets/images/album-photo.png" alt=""/>
-                        <AlbumNameWrapper>
-                            <AlbumName>Brooklyn Bridge</AlbumName>
-                        </AlbumNameWrapper>
-                    </AlbumWrapper>
-                    <AlbumWrapper>
-                        <AlbumPhoto src="/assets/images/album-photo.png" alt=""/>
-                        <AlbumNameWrapper>
-                            <AlbumName>Brooklyn Bridge</AlbumName>
-                        </AlbumNameWrapper>
-                    </AlbumWrapper>
-                    <AlbumWrapper>
-                        <AlbumPhoto src="/assets/images/album-photo.png" alt=""/>
-                        <AlbumNameWrapper>
-                            <AlbumName>Brooklyn Bridge</AlbumName>
-                        </AlbumNameWrapper>
-                    </AlbumWrapper>
-                    <AlbumWrapper>
-                        <AlbumPhoto src="/assets/images/album-photo.png" alt=""/>
-                        <AlbumNameWrapper>
-                            <AlbumName>Brooklyn Bridge</AlbumName>
-                        </AlbumNameWrapper>
-                    </AlbumWrapper>
-                    <AlbumWrapper>
-                        <AlbumPhoto src="/assets/images/album-photo.png" alt=""/>
-                        <AlbumNameWrapper>
-                            <AlbumName>Brooklyn Bridge</AlbumName>
-                        </AlbumNameWrapper>
-                    </AlbumWrapper>
+                    {
+                        albums && albums.map((album) =>
+                            <AlbumWrapper onClick={() => nav(`/album/${album.id}`)} key={album.id}>
+                                <AlbumPhoto src={album.cover_photo.image.sign_url} alt=""/>
+                                <AlbumNameWrapper>
+                                    <AlbumName>Brooklyn Bridge</AlbumName>
+                                </AlbumNameWrapper>
+                            </AlbumWrapper>)
+                    }
                 </AlbumsList>
                 <PhotosHeading>All photos</PhotosHeading>
-            </Container>
+            </AlbumsWrapper>
             <Photos>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
-                <Photo src="/assets/images/photo-example.png"/>
+                {albumsPhotos && albumsPhotos.map((photo) => <Photo loading='lazy'
+                                                                    src={photo.image.image_with_watermark}/>
+                )}
+                {/*<Photo src="/assets/images/photo-example.png"/>*/}
             </Photos>
-            <ButtonBot >Unlock your photos</ButtonBot>
+            <Container>
+                <ButtonWrapper>
+                    <Button>Unlock your photos</Button>
+                </ButtonWrapper>
+            </Container>
+            <Footer/>
         </div>
     );
 };

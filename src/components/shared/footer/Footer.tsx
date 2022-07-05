@@ -32,10 +32,10 @@ export const FooterWrapper = styled.div`
   background: #262626;
   width: 100%;
   color: #FFFFFF;
-  margin: 60px 0 0;
+  //margin: 60px 0 0;
   padding: 60px 15px 134px;
   @media (min-width: 1440px) {
-    margin: 101px 0 0;
+    //margin: 101px 0 0;
     padding: 60px 0 40px;
   }
 `;

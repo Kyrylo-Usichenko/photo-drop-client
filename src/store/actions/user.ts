@@ -17,6 +17,9 @@ export type UserActions =
     | ReturnType<typeof userActions.setUserPhone>
     | ReturnType<typeof userActions.redirectUser>
     | ReturnType<typeof userActions.setEmail>
+    | ReturnType<typeof userActions.setAlbums>
+    | ReturnType<typeof userActions.setAlbumsPhotos>
+    | ReturnType<typeof userActions.setAlbumPhotos>
     | ReturnType<typeof userActions.setResponseCode>
 
 export const sendPhone =
@@ -195,6 +198,51 @@ export const getSelfie =
                 const response = await mainProtectedApi.getSelfie();
                 dispatch(userActions.setSelfie(response.data.photo_url))
                 dispatch(userActions.setTempSelfie(response.data.photo_url))
+                dispatch(setLoading(false))
+            } catch (e) {
+                console.log(e);
+                dispatch(setLoading(false))
+            }
+        };
+
+export const getAlbums =
+    (): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const response = await mainProtectedApi.getAlbums();
+                dispatch(userActions.setAlbums(response.data))
+                console.log(response)
+                dispatch(setLoading(false))
+            } catch (e) {
+                console.log(e);
+                dispatch(setLoading(false))
+            }
+        };
+
+export const getPhotos =
+    (id: string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const response = await mainProtectedApi.getPhotos(id);
+                dispatch(userActions.setAlbumsPhotos(response.data))
+                console.log(response)
+                dispatch(setLoading(false))
+            } catch (e) {
+                console.log(e);
+                dispatch(setLoading(false))
+            }
+        };
+
+export const getAlbumPhotos =
+    (id: string): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(setLoading(true))
+                const response = await mainProtectedApi.getPhotos(id);
+                console.log(response)
+                dispatch(userActions.setAlbumPhotos(response.data))
                 dispatch(setLoading(false))
             } catch (e) {
                 console.log(e);

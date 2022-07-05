@@ -46,4 +46,7 @@ export default class MainProtected extends HttpClientProtected {
         this.instance.patch(`/clients/email`, body )
     public resendUpdatePhone = (data: { "phone_number": string, }) => this.instance.post<phoneResponse>("/clients/phone-number/resend", data);
 
+    public getAlbums = () => this.instance.get<any>("/albums");
+    public getPhotos = (id: string) => this.instance.get<any>(`/photos/${id}`);
+
 }
