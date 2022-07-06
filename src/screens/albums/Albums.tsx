@@ -37,16 +37,13 @@ const Albums = () => {
         }
     })
     useEffect(() => {
-        dispatch(getAlbums())
-    }, [dispatch])
+        if(!albums) dispatch(getAlbums())
+    }, [])
     useEffect(() => {
-        albums && albums.forEach((album) => dispatch(getPhotos(album.id)))
-        // albums && dispatch(getPhotos(albums[0].id))
+        // albums && albums.forEach((album) => dispatch(getPhotos(album.id)))
+        albums && dispatch(getPhotos(albums[0].id))
     }, [dispatch, albums])
-    useEffect(() => {
-    }, [albumsPhotos])
-    console.log('af')
-    console.log(albumsPhotos)
+
 
     return (
         <div style={{overflowX: 'scroll'}}>

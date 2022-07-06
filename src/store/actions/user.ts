@@ -198,7 +198,9 @@ export const getSelfie =
                 const response = await mainProtectedApi.getSelfie();
                 dispatch(userActions.setSelfie(response.data.photo_url))
                 dispatch(userActions.setTempSelfie(response.data.photo_url))
-                dispatch(setLoading(false))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 1500)
             } catch (e) {
                 console.log(e);
                 dispatch(setLoading(false))
@@ -212,8 +214,9 @@ export const getAlbums =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getAlbums();
                 dispatch(userActions.setAlbums(response.data))
-                console.log(response)
-                dispatch(setLoading(false))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 1500)
             } catch (e) {
                 console.log(e);
                 dispatch(setLoading(false))
@@ -227,7 +230,6 @@ export const getPhotos =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getPhotos(id);
                 dispatch(userActions.setAlbumsPhotos(response.data))
-                console.log(response)
                 dispatch(setLoading(false))
             } catch (e) {
                 console.log(e);
@@ -241,12 +243,22 @@ export const getAlbumPhotos =
             try {
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getPhotos(id);
-                console.log(response)
                 dispatch(userActions.setAlbumPhotos(response.data))
+                setTimeout(() => {
                 dispatch(setLoading(false))
+                }, 1500)
             } catch (e) {
                 console.log(e);
                 dispatch(setLoading(false))
+            }
+        };
+export const setAlbumPhotos =
+    (array: any): AsyncAction =>
+        (dispatch) => {
+            try {
+                dispatch(userActions.setAlbumPhotos(array))
+            } catch (e) {
+                console.log(e);
             }
         };
 
@@ -257,7 +269,9 @@ export const getUser =
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
                 dispatch(userActions.setUser(response.data.client_data, response.data.has_selfie_photo))
-                dispatch(setLoading(false))
+                setTimeout(() => {
+                    dispatch(setLoading(false))
+                }, 1500)
                 dispatch(userActions.setAuth(true))
             } catch (e) {
                 console.log(e);

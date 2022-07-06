@@ -11,6 +11,13 @@ export const Header = styled.div`
     height: 61px;
   }
 `;
+export const Wrapper = styled.div`
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: space-between;
+  height: 100%;
+`;
+
 export const Data = styled.div`
   margin: 0 0 0 15px;
   height: 100%;
@@ -79,12 +86,16 @@ export const Inner = styled.div`
 `;
 
 export const Unlock = styled.div`
-  font-family: 'Futura PT';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 28px;
-  color: #3300CC;
+  display: none;
+  @media (min-width: 1440px) {
+    font-family: 'Futura PT';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    color: #3300CC;
+    display: block;
+  }
 `;
 
 export const Count = styled.span`
@@ -107,13 +118,11 @@ export const Photos = styled.div`
   }
 `;
 export const Photo = styled.img`
-  height: 125px;
+  height: 33.33vw;
   object-fit: cover;
   max-width: 33.33%;
   flex: 0 1 33.33333%; /*grow | shrink | basis */
-  @media (min-width: 1440px) {
-    height: 400px;
-  }
+  
 `;
 export const ButtonWrapper = styled.div`
   margin: 40px auto 40px;

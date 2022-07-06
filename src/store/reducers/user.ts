@@ -1,4 +1,5 @@
 import {createReducerFunction, ImmerReducer} from "immer-reducer";
+import album from "../../screens/album/Album";
 
 interface UserState {
     responseCode: string | null,
@@ -114,7 +115,7 @@ export class User extends ImmerReducer<UserState> {
             ...this.draftState.albumsPhotos, ...photos
         ]
     }
-    setAlbumPhotos(photos: Array<any>) {
+    setAlbumPhotos(photos: Array<any> | null) {
         this.draftState.albumPhotos = photos
     }
 
