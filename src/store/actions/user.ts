@@ -18,6 +18,7 @@ export type UserActions =
     | ReturnType<typeof userActions.redirectUser>
     | ReturnType<typeof userActions.setEmail>
     | ReturnType<typeof userActions.setAlbums>
+    | ReturnType<typeof userActions.setAllPhotos>
     | ReturnType<typeof userActions.setAlbumsPhotos>
     | ReturnType<typeof userActions.setAlbumPhotos>
     | ReturnType<typeof userActions.setResponseCode>
@@ -245,7 +246,7 @@ export const getAlbumPhotos =
                 const response = await mainProtectedApi.getPhotos(id);
                 dispatch(userActions.setAlbumPhotos(response.data))
                 setTimeout(() => {
-                dispatch(setLoading(false))
+                    dispatch(setLoading(false))
                 }, 1500)
             } catch (e) {
                 console.log(e);
@@ -342,5 +343,18 @@ export const updateEmail =
                 dispatch(userActions.setLoading(false))
             }
         };
-
-
+export const getAllPhotos =
+    (): AsyncAction =>
+        async (dispatch, _, {mainProtectedApi}) => {
+            try {
+                dispatch(userActions.setLoading(true))
+                const response = await mainProtectedApi.getAllPhotos();
+                dispatch(userActions.setAllPhotos(response.data))
+                setTimeout(() => {
+                    dispatch(userActions.setLoading(false))
+                }, 1500)
+            } catch (e) {
+                console.log(e);
+                dispatch(userActions.setLoading(false))
+            }
+        };

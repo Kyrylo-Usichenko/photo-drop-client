@@ -115,13 +115,13 @@ export const Photo = styled.img`
   height: 33.33vw;
   object-fit: cover;
   max-width: 33.33%;
-  flex: 0 1 33.33333%; /*grow | shrink | basis */
+  flex: 0 1 33.33333%;
 `;
 export const AlbumsWrapper = styled.div`
   padding: 0 15px;
   width: 100%;
   margin: 0 auto;
-  max-width: 450px;
+  //max-width: 450px;
   @media (min-width: 1440px) {
     padding: 0;
     max-width: 1200px;

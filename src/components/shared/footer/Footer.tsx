@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 
 const Footer = () => {
+    const nav = useNavigate()
+
     return (
         <div>
             <FooterWrapper>
@@ -20,8 +23,8 @@ const Footer = () => {
                         <GetTouch>Questions? Get in touch - hello@photodrop.me</GetTouch>
                         <ClimateLogo src="/assets/icons/climate-neutral-logo.svg" alt=""/>
                         <Inc375>© 2022 FOM Online Inc</Inc375>
-                        <Terms>Terms of services</Terms>
-                        <Privacy>Privacy Party</Privacy>
+                        <Terms onClick={() => nav('/terms-of-services')}>Terms of services</Terms>
+                        <Privacy onClick={() => nav('/privacy-policy')}>Privacy Party</Privacy>
                     </div>
                 </FooterInner>
             </FooterWrapper>

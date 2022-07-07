@@ -23,7 +23,8 @@ interface UserState {
     } | null,
     albums: Array<any> | null,
     albumsPhotos: Array<any>,
-    albumPhotos: Array<any> | null
+    albumPhotos: Array<any> | null,
+    allPhotos: Array<any> | null,
 }
 
 const initialState: UserState = {
@@ -37,7 +38,8 @@ const initialState: UserState = {
     user: null,
     albums: null,
     albumsPhotos: [],
-    albumPhotos: null
+    albumPhotos: null,
+    allPhotos: null
 };
 
 
@@ -117,6 +119,9 @@ export class User extends ImmerReducer<UserState> {
     }
     setAlbumPhotos(photos: Array<any> | null) {
         this.draftState.albumPhotos = photos
+    }
+    setAllPhotos(photos: Array<any> | null) {
+        this.draftState.allPhotos = photos
     }
 
 

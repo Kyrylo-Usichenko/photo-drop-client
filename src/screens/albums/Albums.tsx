@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Header from "../../components/shared/header/Header";
 import {State} from "../../store";
-import {getAlbums, getPhotos, getSelfie} from "../../store/actions/user";
+import {getAlbums, getAllPhotos, getPhotos, getSelfie} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import LoaderGif from '../../components/shared/loaderGif/LoaderGif';
 import {
@@ -28,6 +28,7 @@ const Albums = () => {
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const albums = useSelector((state: State) => state.userReducer.albums)
     const albumsPhotos = useSelector((state: State) => state.userReducer.albumsPhotos)
+    const allPhotos = useSelector((state: State) => state.userReducer.allPhotos)
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
 
@@ -37,12 +38,11 @@ const Albums = () => {
         }
     })
     useEffect(() => {
-        if(!albums) dispatch(getAlbums())
+        if (!albums) dispatch(getAlbums())
     }, [])
     useEffect(() => {
-        // albums && albums.forEach((album) => dispatch(getPhotos(album.id)))
-        albums && dispatch(getPhotos(albums[0].id))
-    }, [dispatch, albums])
+        if(!allPhotos) dispatch(getAllPhotos())
+    }, [])
 
 
     return (
@@ -65,10 +65,9 @@ const Albums = () => {
                 <PhotosHeading>All photos</PhotosHeading>
             </AlbumsWrapper>
             <Photos>
-                {albumsPhotos && albumsPhotos.map((photo) => <Photo loading='lazy'
+                {allPhotos && allPhotos.map((photo) => <Photo loading='lazy'
                                                                     src={photo.image.image_with_watermark}/>
                 )}
-                {/*<Photo src="/assets/images/photo-example.png"/>*/}
             </Photos>
             <Container>
                 <ButtonWrapper>

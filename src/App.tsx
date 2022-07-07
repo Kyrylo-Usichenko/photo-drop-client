@@ -18,6 +18,9 @@ import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmai
 import Redirect from "./components/shared/redirect/Redirect";
 import Albums from "./screens/albums/Albums";
 import Album from './screens/album/Album';
+import TermsOfService from "./screens/termsOfService/TermsOfService";
+import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
+
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
@@ -96,6 +99,16 @@ function App() {
                                 <Album/>
                             </ProtectedRouter>
                         }/>
+                        <Route path="/terms-of-services" element={
+                            <ProtectedRouter>
+                                <TermsOfService/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/privacy-policy" element={
+                            <ProtectedRouter>
+                                <PrivacyPolicy/>
+                            </ProtectedRouter>
+                        }/>
                     </Routes>
                 </BrowserRouter>
             </Provider>
@@ -108,6 +121,6 @@ const Wrapper = styled.div`
   background-color: #fff;
   height: 100%;
   position: relative;
-  
+
 `
 export default App;
