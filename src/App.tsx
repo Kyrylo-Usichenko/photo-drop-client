@@ -89,11 +89,6 @@ function App() {
                                 <MobileSignUpVerification update/>
                             </>
                         }/>
-                        <Route path="/albums" element={
-                            <ProtectedRouter>
-                                <Albums/>
-                            </ProtectedRouter>
-                        }/>
                         <Route path="/album/:id" element={
                             <ProtectedRouter>
                                 <Album/>

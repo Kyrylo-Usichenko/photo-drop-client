@@ -47,7 +47,6 @@ const Albums = () => {
 
     return (
         <div style={{overflowX: 'scroll'}}>
-            <Header imageSrc={selfie}/>
             <LoaderGif isLoading={isLoading}/>
             <AlbumsWrapper>
                 <AlbumsHeading>Albums</AlbumsHeading>
