@@ -1,4 +1,5 @@
 import {createReducerFunction, ImmerReducer} from "immer-reducer";
+import album from "../../screens/album/Album";
 
 interface UserState {
     responseCode: string | null,
@@ -19,7 +20,11 @@ interface UserState {
             "unsubscribe": boolean
         }
         has_selfie_photo?: boolean
-    } | null
+    } | null,
+    albums: Array<any> | null,
+    albumsPhotos: Array<any>,
+    albumPhotos: Array<any> | null,
+    allPhotos: Array<any> | null,
 }
 
 const initialState: UserState = {
@@ -30,7 +35,11 @@ const initialState: UserState = {
     isLoading: false,
     selfie: null,
     tempSelfie: null,
-    user: null
+    user: null,
+    albums: null,
+    albumsPhotos: [],
+    albumPhotos: null,
+    allPhotos: null
 };
 
 
@@ -91,12 +100,31 @@ export class User extends ImmerReducer<UserState> {
             }
         };
     }
+
     setEmail(email: string) {
         this.draftState.user = {
             ...this.draftState.user,
             email: email
         };
     }
+
+    setAlbums(albums: Array<any>) {
+        this.draftState.albums = albums
+    }
+
+    setAlbumsPhotos(photos: Array<any>) {
+        this.draftState.albumsPhotos = [
+            ...this.draftState.albumsPhotos, ...photos
+        ]
+    }
+    setAlbumPhotos(photos: Array<any> | null) {
+        this.draftState.albumPhotos = photos
+    }
+    setAllPhotos(photos: Array<any> | null) {
+        this.draftState.allPhotos = photos
+    }
+
+
 }
 
 export default createReducerFunction(User, initialState);

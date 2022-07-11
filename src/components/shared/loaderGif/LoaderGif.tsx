@@ -20,8 +20,8 @@ const LoaderWrapper = styled.div<{isLoading: boolean}>`
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   z-index: 999;
 `;
 export default LoaderGif;

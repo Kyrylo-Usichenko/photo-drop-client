@@ -100,8 +100,11 @@ export const Slider = styled.div`
     display: none;
   }
 
-  margin: 21px auto 0;
+  margin: 21px auto 60px;
   position: relative;
+  @media (min-width: 1440px) {
+    margin: 21px auto 100px;
+  }
 `;
 export const SliderInner = styled.div`
   width: 545px;
