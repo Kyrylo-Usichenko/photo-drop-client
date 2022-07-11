@@ -77,6 +77,7 @@ export const AlbumWrapper = styled.div`
   width: 110px;
   height: 140px;
   margin: 0 5px 0 0;
+  cursor: pointer;
   @media (min-width: 1440px) {
     height: 255px;
     width: 200px;
@@ -116,6 +117,7 @@ export const Photo = styled.img`
   object-fit: cover;
   max-width: 33.33%;
   flex: 0 1 33.33333%;
+  cursor: pointer;
   @media (min-width: 1440px) {
     height: 400px;
   }

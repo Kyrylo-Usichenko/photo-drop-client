@@ -32,6 +32,7 @@ export const Data = styled.div`
 export const Back = styled.img`
   width: 8px;
   height: 16px;
+  cursor: pointer;
   @media (min-width: 1440px) {
     width: 10px;
     height: 20px;
@@ -122,7 +123,7 @@ export const Photo = styled.img`
   object-fit: cover;
   max-width: 33.33%;
   flex: 0 1 33.33333%; /*grow | shrink | basis */
-  
+  cursor: pointer;
 `;
 export const ButtonWrapper = styled.div`
   margin: 40px auto 40px;
