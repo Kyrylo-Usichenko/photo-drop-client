@@ -116,6 +116,9 @@ export const Photo = styled.img`
   object-fit: cover;
   max-width: 33.33%;
   flex: 0 1 33.33333%;
+  @media (min-width: 1440px) {
+    height: 400px;
+  }
 `;
 export const AlbumsWrapper = styled.div`
   padding: 0 15px;
