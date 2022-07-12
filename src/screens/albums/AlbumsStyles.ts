@@ -102,7 +102,7 @@ export const Photos = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   height: 100%;
   @media (min-width: 1440px) {
     max-width: 1200px;

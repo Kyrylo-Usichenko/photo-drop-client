@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Header from "../../components/shared/header/Header";
 import {State} from "../../store";
@@ -14,7 +14,6 @@ import {
     AlbumNameWrapper,
     PhotosHeading,
     Photos,
-    Photo,
     AlbumsWrapper,
     ButtonWrapper
 } from "./AlbumsStyles";
@@ -22,6 +21,8 @@ import {Container} from "../../components/shared/container/Container";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../../components/shared/footer/Footer";
 import Button from "../../components/shared/button/Button";
+import LandscapeImage from "../landscapeImage/LandscapeImage";
+import Photo from '../../components/shared/photo/Photo';
 
 const Albums = () => {
     const selfie = useSelector((state: State) => state.userReducer.selfie)
@@ -41,7 +42,7 @@ const Albums = () => {
         if (!albums) dispatch(getAlbums())
     }, [])
     useEffect(() => {
-        if(!allPhotos) dispatch(getAllPhotos())
+        if (!allPhotos) dispatch(getAllPhotos())
     }, [])
 
 
@@ -52,9 +53,9 @@ const Albums = () => {
                 <AlbumsHeading>Albums</AlbumsHeading>
                 <AlbumsList>
                     {
-                        albums && albums.map((album) =>
+                        albums && albums?.map((album) =>
                             <AlbumWrapper onClick={() => nav(`/album/${album.id}`)} key={album.id}>
-                                <AlbumPhoto src={album.cover_photo.image.sign_url} alt=""/>
+                                <AlbumPhoto src={album.cover_photo.image.thumbnail_image} alt=""/>
                                 <AlbumNameWrapper>
                                     <AlbumName>Brooklyn Bridge</AlbumName>
                                 </AlbumNameWrapper>
@@ -64,7 +65,11 @@ const Albums = () => {
                 <PhotosHeading>All photos</PhotosHeading>
             </AlbumsWrapper>
             <Photos>
-                {allPhotos && allPhotos.map((photo) => <Photo key={photo.id} loading='lazy' src={photo.image.thumbnail_image}/>
+                {allPhotos && allPhotos?.map((photo) => <Photo
+                    key={photo.id}
+                    image={photo.image.thumbnail_image}
+                    fullImage={photo.image.image_with_watermark}
+                    />
                 )}
             </Photos>
             <Container>
