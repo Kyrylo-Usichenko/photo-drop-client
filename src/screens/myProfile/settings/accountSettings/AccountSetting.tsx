@@ -93,7 +93,6 @@ const Data = styled.div`
   margin: 0 0 0 10px;
 `;
 const DataTop = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -111,7 +110,6 @@ const Verified = styled.span`
 `;
 
 const Value = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

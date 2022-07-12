@@ -32,8 +32,8 @@ export const sendPhone =
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
-                dispatch(userActions.setLoading(false))
                 dispatch(userActions.redirectUser('/sms-verification'))
+                dispatch(userActions.setLoading(false))
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))
@@ -90,14 +90,12 @@ export const sendOtp =
         async (dispatch, _, {mainApi}) => {
             try {
                 dispatch(userActions.setLoading(true))
-
                 const response = await mainApi.otpValidate({"phone_number": phone, "otp": otp});
                 const accessToken: string = response.data.access_token;
                 const storage = TokensLocalStorage.getInstance();
                 storage.setAccessToken(accessToken);
                 dispatch(getUser())
                 dispatch(userActions.setAuth(true))
-                dispatch(userActions.setLoading(false))
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))

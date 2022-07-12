@@ -7,14 +7,12 @@ import {
     resendPhone,
     resendUpdatePhone,
     sendOtp,
-    sendUpdateOtp,
-    setResponseCode
+    sendUpdateOtp, setLoading,
 } from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
 import {useNavigate} from 'react-router-dom';
-import Header from "../../components/shared/header/Header";
 
 interface Props {
     update?: boolean
@@ -24,7 +22,6 @@ const MobileSignUpVerification = ({update}: Props) => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate()
     const phone = useSelector((state: State) => state.userReducer.phone)
-    const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
     const user = useSelector((state: State) => state.userReducer.user)
@@ -42,6 +39,7 @@ const MobileSignUpVerification = ({update}: Props) => {
     const onInputChange = () => {
         setOtp([input1.current!.value, input2.current!.value, input3.current!.value, input4.current!.value, input5.current!.value, input6.current!.value])
     }
+    console.log(redirectToUrl)
     const resetInputs = () => {
         input1.current!.value = ''
         input2.current!.value = ''
@@ -63,20 +61,24 @@ const MobileSignUpVerification = ({update}: Props) => {
             setDisabled(true)
         }
     }, [otp])
+
     useEffect(() => {
-        // if (isAuth && !update) {
-        //     nav('/selfie')
-        // }
         if(user && user.has_selfie_photo) {
             nav('/dashboard')
+            dispatch(setLoading(false))
         } else {
             nav('/selfie')
+            dispatch(setLoading(false))
         }
     }, [user])
+
     useEffect(() => {
         dispatch(redirectUser(null))
         if (redirectToUrl) nav(redirectToUrl)
-    }, [redirectToUrl])
+
+    }, [user, redirectToUrl])
+
+
     useEffect(() => {
         if (phone === '' && update) {
             nav('/account-settings')

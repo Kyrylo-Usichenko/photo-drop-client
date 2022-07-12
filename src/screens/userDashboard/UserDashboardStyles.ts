@@ -30,7 +30,6 @@ export const MessageIcon = styled.img`
   }
 `;
 export const TopText = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -47,7 +46,6 @@ export const TopText = styled.div`
   }
 `;
 export const BotText = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -76,7 +74,6 @@ export const Browse = styled.div`
   padding: 0 15px;
   margin: 41px 0 0;
   width: 100%;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 22px;

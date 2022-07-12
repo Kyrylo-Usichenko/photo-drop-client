@@ -78,7 +78,6 @@ export const Logo = styled.img`
 `;
 export const Info = styled.p`
   margin: 23px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -106,7 +105,6 @@ export const Button = styled.button`
   align-items: center;
   background: none;
   color: #fff;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -137,7 +135,6 @@ export const Button = styled.button`
 export const Inc = styled.p`
   display: none;
   @media (min-width: 1440px) {
-    font-family: 'Futura PT';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -149,7 +146,6 @@ export const Inc = styled.p`
 `;
 export const Inc375 = styled.p`
   margin: 30px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -162,7 +158,6 @@ export const Inc375 = styled.p`
 `;
 export const GetTouch = styled.p`
   margin: 60px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -170,7 +165,6 @@ export const GetTouch = styled.p`
   letter-spacing: -0.02em;
   color: #FFFFFF;
   @media (min-width: 1440px) {
-    font-family: 'Futura PT';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -189,7 +183,6 @@ export const ClimateLogo = styled.img`
 
 
 export const Terms = styled.p`
-  font-family: 'Futura PT';
   font-style: normal;
   font-size: 16px;
   line-height: 200%;
@@ -203,7 +196,6 @@ export const Terms = styled.p`
 `;
 export const Privacy = styled.p`
   margin: 20px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

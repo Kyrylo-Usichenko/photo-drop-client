@@ -18,7 +18,6 @@ export const Wrapper = styled.section`
   margin: 0 auto;
 `;
 export const NumberWrapper = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -35,7 +34,6 @@ export const NumberWrapper = styled.div`
 
 `;
 export const Number = styled.span`
-  font-family: 'Futura PT';
   font-style: normal;
   font-size: 16px;
   line-height: 21px;
@@ -64,7 +62,6 @@ export const Field = styled.input`
   text-align: center;
   outline: none;
   -webkit-appearance: none;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -87,7 +84,6 @@ export const Field = styled.input`
 `;
 
 export const Resend = styled.p`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

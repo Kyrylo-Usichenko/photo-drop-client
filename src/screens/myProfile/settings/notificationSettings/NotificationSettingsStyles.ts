@@ -27,7 +27,6 @@ export const Settings = styled.div`
 `
 export const Setting = styled.span`
   margin: 0 0 0 10px;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -46,7 +45,6 @@ export const SettingWrapper = styled.div`
 
 export const BotText = styled.p`
   padding: 0 0 0 30px;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

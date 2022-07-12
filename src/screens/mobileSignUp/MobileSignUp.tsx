@@ -40,9 +40,6 @@ const MobileSignUp = () => {
         src: '/assets/flags/flag-for-united-states_1f1fa-1f1f8.png'
     });
 
-    // useEffect(() => {
-    //     dispatch(getUser())
-    // })
     useEffect(() => {
         if(auth) nav('/dashboard')
     }, [auth])
@@ -61,10 +58,9 @@ const MobileSignUp = () => {
             />
         );
     }
-
     return (
         <div>
-            <Header/>
+            <Header logoToMainPage={false}/>
             <Container>
                 <Wrapper>
                     <GetStarted>Let’s get started</GetStarted>

@@ -17,7 +17,6 @@ export const Heading = styled.div`
   }
 `;
 export const YourSelfie = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -69,14 +68,12 @@ export const Edit = styled.div`
   }
 `;
 export const TabTopText = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   color: #262626;
 `;
 export const TabBotText = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

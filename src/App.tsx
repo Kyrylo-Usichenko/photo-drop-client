@@ -4,8 +4,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./screens/mobileSignUp/MobileSignUp";
 import MobileSignUpVerification from "./screens/mobileSignUpVerification/MobileSignUpVerification";
 import styled from "styled-components";
-import store, {State} from "./store";
-import {Provider, useDispatch, useSelector} from 'react-redux';
+import store from "./store";
+import {Provider} from 'react-redux';
 import AddSelfie from "./screens/addSelfie/AddSelfie";
 import ProtectedRouter from "./components/shared/protectedRouter/ProtectedRouter";
 import UserDashboard from "./screens/userDashboard/UserDashboard";
@@ -16,7 +16,6 @@ import AccountSetting from "./screens/myProfile/settings/accountSettings/Account
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
 import Redirect from "./components/shared/redirect/Redirect";
-import Albums from "./screens/albums/Albums";
 import Album from './screens/album/Album';
 import TermsOfService from "./screens/termsOfService/TermsOfService";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
@@ -35,7 +34,7 @@ function App() {
                         <Route path="/sms-verification"
                                element={
                                    <div>
-                                       <Header backUrl/>
+                                       <Header logoToMainPage={false} backUrl/>
                                        <MobileSignUpVerification/>
                                    </div>}/>
                         <Route path="/selfie" element={

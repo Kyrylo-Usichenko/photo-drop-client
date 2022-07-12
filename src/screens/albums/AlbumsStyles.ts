@@ -3,7 +3,6 @@ import button from "../../components/shared/button/Button";
 
 export const AlbumsHeading = styled.p`
   margin: 15px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -17,7 +16,6 @@ export const AlbumsHeading = styled.p`
 `;
 export const PhotosHeading = styled.p`
   margin: 34px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -57,7 +55,6 @@ export const AlbumPhoto = styled.img`
   }
 `;
 export const AlbumName = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 450;
   font-size: 12px;

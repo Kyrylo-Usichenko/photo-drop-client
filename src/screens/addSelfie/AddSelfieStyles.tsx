@@ -71,7 +71,6 @@ export const Add = styled.div`
   }
 `;
 export const Description = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -162,7 +161,6 @@ export const Retake = styled.button`
   width: 170px;
   height: 50px;
   background: #262626;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -177,7 +175,6 @@ export const Save = styled.button`
   border-radius: 50px;
   width: 170px;
   height: 50px;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -192,7 +189,6 @@ export const Save = styled.button`
 `;
 export const HeaderCrop = styled.div`
   text-align: center;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -203,7 +199,6 @@ export const HeaderCrop = styled.div`
   width: 100%;
 `;
 export const Action = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

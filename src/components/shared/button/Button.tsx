@@ -24,7 +24,6 @@ export const Wrapper = styled.button<ButtonProps>`
   width: 100%;
   max-width: 420px;
   height: 50px;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

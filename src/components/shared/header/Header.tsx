@@ -5,9 +5,10 @@ import {ArrowLeft, ArrowWrapper, Avatar, Inner, Logo, Wrapper} from './HeaderSty
 interface HeaderProps {
     backUrl?: boolean
     imageSrc?: string | null
+    logoToMainPage?: boolean
 }
 
-const Header = ({backUrl, imageSrc}: HeaderProps) => {
+const Header = ({backUrl, imageSrc, logoToMainPage}: HeaderProps) => {
     const nav = useNavigate()
 
     return (
@@ -16,7 +17,7 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
                 {
                     backUrl && (
                         <ArrowWrapper onClick={() => nav(-1)}>
-                            <ArrowLeft />
+                            <ArrowLeft/>
                         </ArrowWrapper>
                     )
                 }
@@ -25,7 +26,13 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
                         <Avatar src={imageSrc} alt=""/>
                     </Link>)
                 }
-                <Logo src="/assets/icons/logo.svg"/>
+                {
+                    logoToMainPage === false ?
+                        <Logo src="/assets/icons/logo.svg"/>
+                        : <Link to='/dashboard'>
+                            <Logo src="/assets/icons/logo.svg"/>
+                        </Link>
+                }
             </Inner>
         </Wrapper>
     );

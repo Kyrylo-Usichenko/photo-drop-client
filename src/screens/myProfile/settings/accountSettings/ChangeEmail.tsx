@@ -80,7 +80,6 @@ const Input = styled.input`
   margin: 19px 0 0;
   outline: none;
   padding: 15px 13px 14px;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
