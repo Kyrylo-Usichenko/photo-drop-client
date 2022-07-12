@@ -58,7 +58,7 @@ const Album = () => {
                 <Photos>
                     {
                         albumPhotos && albumPhotos.map((photo) =>
-                            <Photo key={photo.id} src={photo.image.image_with_watermark} alt=""/>
+                            <Photo loading='lazy' key={photo.id} src={photo.image.thumbnail_image} alt=""/>
                         )
                     }
                 </Photos>

@@ -64,7 +64,7 @@ const Albums = () => {
                 <PhotosHeading>All photos</PhotosHeading>
             </AlbumsWrapper>
             <Photos>
-                {allPhotos && allPhotos.map((photo) => <Photo loading='lazy' src={photo.image.thumbnail_image}/>
+                {allPhotos && allPhotos.map((photo) => <Photo key={photo.id} loading='lazy' src={photo.image.thumbnail_image}/>
                 )}
             </Photos>
             <Container>

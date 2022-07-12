@@ -345,12 +345,12 @@ export const getAllPhotos =
     (): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
-                dispatch(userActions.setLoading(true))
+                // dispatch(userActions.setLoading(true))
                 const response = await mainProtectedApi.getAllPhotos();
                 dispatch(userActions.setAllPhotos(response.data))
-                setTimeout(() => {
-                    dispatch(userActions.setLoading(false))
-                }, 1500)
+                // setTimeout(() => {
+                //     dispatch(userActions.setLoading(false))
+                // }, 1500)
             } catch (e) {
                 console.log(e);
                 dispatch(userActions.setLoading(false))

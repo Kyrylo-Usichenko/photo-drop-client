@@ -46,7 +46,7 @@ export const AlbumsList = styled.div`
 export const AlbumPhoto = styled.img`
   width: 110px;
   height: 140px;
-  background: #000000;
+  background: #D3D3D3;
   object-fit: cover;
   border-radius: 20px;
   @media (min-width: 1440px) {
@@ -115,6 +115,7 @@ export const Photo = styled.img`
   max-width: 33.33%;
   flex: 0 1 33.33333%;
   cursor: pointer;
+  background: #D3D3D3;
   @media (min-width: 1440px) {
     height: 400px;
   }
