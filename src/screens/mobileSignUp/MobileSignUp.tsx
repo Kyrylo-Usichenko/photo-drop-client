@@ -40,11 +40,11 @@ const MobileSignUp = () => {
         src: '/assets/flags/flag-for-united-states_1f1fa-1f1f8.png'
     });
     const onCreateAccountClick = () => {
-        dispatch(sendPhone(`+${selectedCountry.code + phone}`))
+        dispatch(sendPhone(`+${(selectedCountry.code + phone).replace(/\D/g, '')}`))
     }
 
     useEffect(() => {
-        if(auth) nav('/dashboard')
+        if (auth) nav('/dashboard')
     }, [auth])
 
     useEffect(() => {
