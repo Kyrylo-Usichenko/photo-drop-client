@@ -36,6 +36,7 @@ export const Img = styled.img`
     height: 100%;
     max-width: 1243px;
     object-fit: cover;
+    margin: 0 auto;
   }
 `;
 export const Button = styled.button`
