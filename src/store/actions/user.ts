@@ -210,15 +210,15 @@ export const getAlbums =
     (): AsyncAction =>
         async (dispatch, _, {mainProtectedApi}) => {
             try {
-                dispatch(setLoading(true))
+                // dispatch(setLoading(true))
                 const response = await mainProtectedApi.getAlbums();
                 dispatch(userActions.setAlbums(response.data))
-                setTimeout(() => {
-                    dispatch(setLoading(false))
-                }, 1500)
+                // setTimeout(() => {
+                //     dispatch(setLoading(false))
+                // }, 1500)
             } catch (e) {
                 console.log(e);
-                dispatch(setLoading(false))
+                // dispatch(setLoading(false))
             }
         };
 
@@ -267,10 +267,10 @@ export const getUser =
             try {
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
-                dispatch(userActions.setUser(response.data.client_data, response.data.has_selfie_photo))
-                setTimeout(() => {
+                dispatch(userActions.setUser(response.data.client_data, response.data.selfie))
+                // setTimeout(() => {
                     dispatch(setLoading(false))
-                }, 1500)
+                // }, 1000)
                 dispatch(userActions.setAuth(true))
             } catch (e) {
                 console.log(e);

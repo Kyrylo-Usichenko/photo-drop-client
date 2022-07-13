@@ -39,7 +39,6 @@ const MobileSignUpVerification = ({update}: Props) => {
     const onInputChange = () => {
         setOtp([input1.current!.value, input2.current!.value, input3.current!.value, input4.current!.value, input5.current!.value, input6.current!.value])
     }
-    console.log(redirectToUrl)
     const resetInputs = () => {
         input1.current!.value = ''
         input2.current!.value = ''
@@ -53,6 +52,29 @@ const MobileSignUpVerification = ({update}: Props) => {
     const onNextClick = () => {
         dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))
     }
+    const jumpToNext = (e: any) => {
+        if (e) {
+            let max = e.target.getAttribute('maxLength');
+            if (max && e.target.value.length >= max) {
+                do {
+                    e = e.target.nextElementSibling;
+                }
+                while (e && !(/number/.test(e.type)));
+                if (e && /number/.test(e.type)) {
+                    e.focus();
+                }
+            }
+            if (e?.key === 'Backspace' || e?.key === 'Delete') {
+                do {
+                    e = e.target.previousSibling;
+                }
+                while (e && !(/number/.test(e.type)));
+                if (e && /number/.test(e.type)) {
+                    e.focus();
+                }
+            }
+        }
+    }
 
     useEffect(() => {
         if (otp.length === 6 && otp[1] !== '' && otp[2] !== '' && otp[3] !== '' && otp[4] !== '' && otp[5] !== '' && otp[6] !== '') {
@@ -63,7 +85,7 @@ const MobileSignUpVerification = ({update}: Props) => {
     }, [otp])
 
     useEffect(() => {
-        if(user && user.has_selfie_photo) {
+        if(user && user.selfie?.photo_url) {
             nav('/dashboard')
             dispatch(setLoading(false))
         } else {
@@ -88,29 +110,6 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     })
 
-    const jumpToNext = (e: any) => {
-        if (e) {
-            let max = e.target.getAttribute('maxLength');
-            if (max && e.target.value.length >= max) {
-                do {
-                    e = e.target.nextElementSibling;
-                }
-                while (e && !(/number/.test(e.type)));
-                if (e && /number/.test(e.type)) {
-                    e.focus();
-                }
-            }
-            if (e?.key === 'Backspace' || e?.key === 'Delete') {
-                do {
-                    e = e.target.previousSibling;
-                }
-                while (e && !(/number/.test(e.type)));
-                if (e && /number/.test(e.type)) {
-                    e.focus();
-                }
-            }
-        }
-    }
     return (
         <div>
             <Container>
@@ -132,7 +131,6 @@ const MobileSignUpVerification = ({update}: Props) => {
                                maxLength={1}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6}
                                maxLength={1}/>
-
                     </CodeWrapper>
                     <Resend onClick={resetInputs}>Resend code</Resend>
                     <Button

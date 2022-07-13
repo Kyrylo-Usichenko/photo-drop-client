@@ -1,10 +1,9 @@
 import {Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import TokensLocalStorage from "../../../utils/local-storage/TokensLocalStorage";
-import { useEffect } from "react";
+import {useEffect} from "react";
 import {getSelfie, getUser} from "../../../store/actions/user";
 import {AppDispatch} from "../../../App";
-import {State} from "../../../store";
 
 
 const Protected = ({children}: any) => {
@@ -14,7 +13,7 @@ const Protected = ({children}: any) => {
     const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
-        if(!user) dispatch(getUser())
+        if (!user) dispatch(getUser())
     })
 
     if (!isLoggedIn && !TokensLocalStorage.getInstance().getAccessToken()) {

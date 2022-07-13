@@ -53,17 +53,17 @@ const MyProfile = () => {
             dispatch(sendPhoto(photo, setSelfieURL, setCrop, setZoom ))
         }
     }
-    useEffect(() => {
-        if (!selfie && !tempSelfie) {
-            dispatch(getSelfie())
-        }
-    }, [selfie, tempSelfie])
-    useEffect(() => {
-        // @ts-ignore
-        if (!user || !user.phone_number) {
-            dispatch(getUser())
-        }
-    })
+    // useEffect(() => {
+    //     if (!selfie && !tempSelfie) {
+    //         dispatch(getSelfie())
+    //     }
+    // }, [selfie, tempSelfie])
+    // useEffect(() => {
+    //     // @ts-ignore
+    //     if (!user || !user.phone_number) {
+    //         dispatch(getUser())
+    //     }
+    // })
     const onCloseModalClick = () => {
         setSelfieURL(null)
         setCrop({x: 0, y: 0})
@@ -103,7 +103,7 @@ const MyProfile = () => {
                     <AvatarWrapper>
                         <Avatar onClick={() => setSelfieURL(tempSelfie)}
                             // @ts-ignore
-                                src={tempSelfie}
+                                src={user?.selfie?.photo_url ? user.selfie.photo_url : tempSelfie ? tempSelfie : '/assets/images/avatar-icon.png'}
                                 alt=""/>
                         <Edit onClick={onEditClick}/>
                         <input type="file"

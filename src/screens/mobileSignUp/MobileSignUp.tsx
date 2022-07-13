@@ -7,7 +7,7 @@ import {CountryFromList, countryList} from "../../utils/country-list";
 import Header from "../../components/shared/header/Header";
 import {AppDispatch} from "../../App";
 import {useDispatch, useSelector} from "react-redux";
-import {getUser, sendPhone} from "../../store/actions/user";
+import {getUser, sendPhone, setLoading} from "../../store/actions/user";
 import {State} from "../../store";
 import Button from "../../components/shared/button/Button";
 import {
@@ -39,6 +39,9 @@ const MobileSignUp = () => {
         iso: 'US',
         src: '/assets/flags/flag-for-united-states_1f1fa-1f1f8.png'
     });
+    const onCreateAccountClick = () => {
+        dispatch(sendPhone(`+${selectedCountry.code + phone}`))
+    }
 
     useEffect(() => {
         if(auth) nav('/dashboard')
@@ -46,7 +49,7 @@ const MobileSignUp = () => {
 
     useEffect(() => {
         redirectToUrl && nav(redirectToUrl)
-    }, [nav, redirectToUrl])
+    }, [redirectToUrl])
 
     if (isPhoneSearchOpen) {
         return (
@@ -81,7 +84,7 @@ const MobileSignUp = () => {
                     <Button
                         isLoading={isLoading}
                         margin='20px 0 0'
-                        onClick={() => dispatch(sendPhone(`+${selectedCountry.code + phone}`))}
+                        onClick={onCreateAccountClick}
                     >
                         Create account
                     </Button>

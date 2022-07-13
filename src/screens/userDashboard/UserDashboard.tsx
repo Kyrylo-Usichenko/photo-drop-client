@@ -24,61 +24,58 @@ import Albums from "../albums/Albums";
 
 const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
-
-    const selfie = useSelector((state: State) => state.userReducer.selfie)
+    const user = useSelector((state: State) => state.userReducer.user)
     const tempSelfie = useSelector((state: State) => state.userReducer.tempSelfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const albums = useSelector((state: State) => state.userReducer.albums)
     const allPhotos = useSelector((state: State) => state.userReducer.allPhotos)
 
     useEffect(() => {
-        if (!selfie && !tempSelfie) {
-            dispatch(getSelfie())
-        }
-    })
-
-    useEffect(() => {
         if (!albums) dispatch(getAlbums())
-    }, [])
-    useEffect(() => {
         if (!allPhotos) dispatch(getAllPhotos())
     }, [])
 
     return (
         <div>
-            <Header imageSrc={selfie ? selfie : tempSelfie ? tempSelfie : '/assets/images/avatar-icon.png'}/>
+            <Header
+                imageSrc={user?.selfie?.photo_url ? user.selfie.photo_url : tempSelfie ? tempSelfie : '/assets/images/avatar-icon.png'}/>
             {
-                (albums && albums.length > 0) ? (
-                    <Albums/>
-                ) : (
-                    <div>
-                        <Container>
-                            <Inner>
-                                <MessageIcon src="/assets/icons/message.svg" width='82px' height='75px' alt=""/>
-                                <TopText>Your photos will drop soon.</TopText>
-                                <BotText>You will get a text message when they are ready. It can take up to 48
-                                    hours.</BotText>
-                            </Inner>
-                        </Container>
-                        <Line/>
-                        <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-                            <Browse>Browse Art Prints </Browse>
-                            <Slider>
-                                <SliderInner>
-                                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png"
-                                                alt=""/>
-                                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png"
-                                                alt=""/>
-                                    <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide3.png"
-                                                alt=""/>
-                                </SliderInner>
+                (albums) ? (
+                        albums.length === 0 ? (
+                                <div>
+                                    <Container>
+                                        <Inner>
+                                            <MessageIcon src="/assets/icons/message.svg" width='82px' height='75px' alt=""/>
+                                            <TopText>Your photos will drop soon.</TopText>
+                                            <BotText>You will get a text message when they are ready. It can take up to 48
+                                                hours.</BotText>
+                                        </Inner>
+                                    </Container>
+                                    <Line/>
+                                    <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+                                        <Browse>Browse Art Prints </Browse>
+                                        <Slider>
+                                            <SliderInner>
+                                                <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide1.png"
+                                                            alt=""/>
+                                                <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide2.png"
+                                                            alt=""/>
+                                                <SliderItem height={'216px'} width={"168px"} src="/assets/images/slide3.png"
+                                                            alt=""/>
+                                            </SliderInner>
 
-                            </Slider>
-                        </div>
+                                        </Slider>
+                                    </div>
+                                </div>
+                            ) :
+                            <Albums/>
+                    ) :
+                    <div>
+
                         <Footer/>
                         <LoaderGif isLoading={isLoading}/>
                     </div>
-                )
+
             }
         </div>
     );

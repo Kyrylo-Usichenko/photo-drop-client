@@ -10,20 +10,14 @@ const Redirect = () => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate();
     const user = useSelector((state: State) => state.userReducer.user)
-
-
     if (TokensLocalStorage.getInstance().getAccessToken() && !user) {
         dispatch(getUser())
     }
     useEffect(() => {
         user ? nav('/dashboard') : nav('/login')
     }, [user])
-
-
     return (
-        <div>
-        </div>
+        <></>
     );
 };
-
 export default Redirect;

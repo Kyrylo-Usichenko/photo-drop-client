@@ -34,7 +34,7 @@ function App() {
                         <Route path="/sms-verification"
                                element={
                                    <div>
-                                       <Header logoToMainPage={false} backUrl/>
+                                       <Header logoToMainPage={false} backUrl='/login'/>
                                        <MobileSignUpVerification/>
                                    </div>}/>
                         <Route path="/selfie" element={

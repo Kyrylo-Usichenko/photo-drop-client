@@ -25,7 +25,6 @@ import LandscapeImage from "../landscapeImage/LandscapeImage";
 import Photo from '../../components/shared/photo/Photo';
 
 const Albums = () => {
-    const selfie = useSelector((state: State) => state.userReducer.selfie)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const albums = useSelector((state: State) => state.userReducer.albums)
     const albumsPhotos = useSelector((state: State) => state.userReducer.albumsPhotos)
@@ -33,11 +32,7 @@ const Albums = () => {
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
 
-    useEffect(() => {
-        if (!selfie) {
-            dispatch(getSelfie())
-        }
-    })
+
     useEffect(() => {
         if (!albums) dispatch(getAlbums())
     }, [])
@@ -66,9 +61,9 @@ const Albums = () => {
             </AlbumsWrapper>
             <Photos>
                 {allPhotos && allPhotos?.map((photo) => <Photo
-                    key={photo.id}
-                    image={photo.image.thumbnail_image}
-                    fullImage={photo.image.image_with_watermark}
+                        key={photo.id}
+                        image={photo.image.thumbnail_image}
+                        fullImage={photo.image.image_with_watermark}
                     />
                 )}
             </Photos>
