@@ -109,20 +109,14 @@ export const Photos = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
-  overflow-y: scroll;
   height: 100%;
+  overflow: hidden;
   @media (min-width: 1440px) {
     max-width: 1200px;
     margin: 0 auto 100px;
   }
 `;
-export const Photo = styled.img`
-  height: 33.33vw;
-  object-fit: cover;
-  max-width: 33.33%;
-  flex: 0 1 33.33333%; /*grow | shrink | basis */
-  cursor: pointer;
-`;
+
 export const ButtonWrapper = styled.div`
   margin: 40px auto 40px;
   @media (min-width: 1440px) {

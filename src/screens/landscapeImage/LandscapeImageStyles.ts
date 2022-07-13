@@ -12,8 +12,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: auto;
+
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (min-width: 1440px) {
+    background: #000000;
+
   }
 `;
 export const Cross = styled.img`
@@ -22,21 +28,26 @@ export const Cross = styled.img`
   margin: 15px 0 0 7px;
   height: 30px;
   width: 30px;
+  cursor: pointer;
   @media (min-width: 1440px) {
     margin: 30px 0 0 40px;
     position: absolute;
   }
 `;
 export const Img = styled.img`
-  //margin: 0 auto;
-  //text-align: center;
-  //max-height: 390px;
-  //object-fit: contain;
+  object-fit: contain;
+  max-height: 550px;
+
   @media (min-width: 1440px) {
-    height: 100%;
+    max-height: unset;
+    //height: 100%;
     max-width: 1243px;
     object-fit: cover;
     margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 export const Button = styled.button`
@@ -62,3 +73,76 @@ export const Button = styled.button`
     transform: translateX(-50%);
   }
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  margin: 30px 15px 30px;
+`;
+export const LeftWrapper = styled.div`
+  display: flex;
+  width: 119px;
+  justify-content: space-between;
+`;
+
+export const FooterButton = styled.button`
+  height: 50px;
+  width: 196px;
+  border: 1px solid #FFFFFF;
+  border-radius: 50px;
+  outline: none;
+  background: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+  cursor: pointer;
+  @media (min-width: 1440px) {
+    position: fixed;
+    right: 40px;
+    bottom: 30px;
+    width: 200px;
+    height: 50px;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 28px;
+  }
+`;
+
+export const Download = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  //line-height: 18px;
+  color: #FFFFFF;
+  cursor: pointer;
+  @media (min-width: 1440px) {
+    position: fixed;
+    right: 269px;
+    bottom: 36px;
+  }
+`;
+export const Share = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  //line-height: 18px;
+  color: #FFFFFF;
+  cursor: pointer;
+  @media (min-width: 1440px) {
+    display: none;
+  }
+`;
+export const Word = styled.div`
+  margin: 5px 0 0;
+`;
+

@@ -8,7 +8,6 @@ import {
     Header,
     Inner,
     Name,
-    Photo,
     Photos,
     Unlock,
     Wrapper
@@ -22,6 +21,7 @@ import Button from "../../components/shared/button/Button";
 import Footer from '../../components/shared/footer/Footer';
 import {Container} from '../../components/shared/container/Container';
 import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
+import Photo from '../../components/shared/photo/Photo';
 
 const Album = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -58,7 +58,7 @@ const Album = () => {
                 <Photos>
                     {
                         albumPhotos && albumPhotos.map((photo) =>
-                            <Photo loading='lazy' key={photo.id} src={photo.image.thumbnail_image} alt=""/>
+                            <Photo key={photo.id} fullImage={photo.image.image_with_watermark} image={photo.image.thumbnail_image} />
                         )
                     }
                 </Photos>
