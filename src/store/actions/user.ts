@@ -267,7 +267,7 @@ export const getUser =
             try {
                 dispatch(setLoading(true))
                 const response = await mainProtectedApi.getUser();
-                dispatch(userActions.setUser(response.data.client_data, response.data.selfie))
+                dispatch(userActions.setUser(response.data, response.data.selfie))
                 // setTimeout(() => {
                     dispatch(setLoading(false))
                 // }, 1000)

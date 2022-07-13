@@ -34,6 +34,7 @@ import {getCroppedImage} from "../../components/common/cropImage/CropImage";
 import Header from "../../components/shared/header/Header";
 import {Tab} from '../../components/shared/tab/Tab';
 import useOnClickOutside from "../../components/hooks/useOnClickOutside";
+import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
 
 const MyProfile = () => {
     const nav = useNavigate()
@@ -149,6 +150,8 @@ const MyProfile = () => {
                             <img src='/assets/icons/gif-loader.gif'/>
                         </LoaderWrapper> : null
                     }
+                    <LoaderGif isLoading={isLoading}/>
+
                 </Wrapper>
             </Container>
             <DarkWindow isOpen={!!selfieUrl}/>
