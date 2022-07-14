@@ -66,13 +66,15 @@ const UserDashboard = () => {
 
                                         </Slider>
                                     </div>
+                                    <Footer/>
+
                                 </div>
                             ) :
-                            <Albums/>
+                            <div>
+                                <Albums/>
+                            </div>
                     ) :
                     <div>
-
-                        <Footer/>
                         <LoaderGif isLoading={isLoading}/>
                     </div>
 

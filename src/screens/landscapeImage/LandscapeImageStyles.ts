@@ -64,6 +64,7 @@ export const Button = styled.button`
   border: none;
   margin: 30px auto 30px;
   max-width: 345px;
+  cursor: pointer;
   @media (min-width: 1440px) {
     position: fixed;
     height: 50px;
@@ -112,7 +113,7 @@ export const FooterButton = styled.button`
   }
 `;
 
-export const Download = styled.div`
+export const Download = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
