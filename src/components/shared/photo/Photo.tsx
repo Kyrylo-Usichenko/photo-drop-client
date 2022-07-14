@@ -5,16 +5,16 @@ import LandscapeImage from "../../../screens/landscapeImage/LandscapeImage";
 interface Props {
     image?: string,
     fullImage?: string,
+    onClick?: () => void,
 }
 
-const Photo = ({image, fullImage}: Props) => {
-    const [isOpen, setIsOpen] = useState(false)
+const Photo = ({image, onClick}: Props) => {
     return (
         <Wrapper>
-            <Img onClick={() => setIsOpen(true)} src={image} loading='lazy'/>
-            {
-                isOpen ? <LandscapeImage setIsOpen={setIsOpen} image={fullImage}/> : null
-            }
+            <Img onClick={onClick} src={image} loading='lazy'/>
+            {/*{*/}
+            {/*    isOpen ? <LandscapeImage setIsOpen={setIsOpen} image={fullImage}/> : null*/}
+            {/*}*/}
         </Wrapper>
 
     );

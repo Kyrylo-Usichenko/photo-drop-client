@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   background: #262626;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   top: 0;
   left: 0;
   position: fixed;
@@ -17,9 +17,17 @@ export const Wrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
   @media (min-width: 1440px) {
     background: #000000;
 
+  }
+`;
+
+export const CrossWrapper = styled.div`
+  height: 45px;
+  @media (min-width: 1440px) {
+    height: 60px;
   }
 `;
 export const Cross = styled.img`
@@ -36,7 +44,7 @@ export const Cross = styled.img`
 `;
 export const Img = styled.img`
   object-fit: contain;
-  max-height: 550px;
+  max-height: 500px;
 
   @media (min-width: 1440px) {
     max-height: unset;

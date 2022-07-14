@@ -31,6 +31,8 @@ const Albums = () => {
     const allPhotos = useSelector((state: State) => state.userReducer.allPhotos)
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
+    const [isOpen, setIsOpen] = useState(false)
+    const [image, setImage] = useState('')
 
 
     useEffect(() => {
@@ -43,36 +45,46 @@ const Albums = () => {
 
     return (
         <div style={{overflowX: 'scroll'}}>
-            <LoaderGif isLoading={isLoading}/>
-            <AlbumsWrapper>
-                <AlbumsHeading>Albums</AlbumsHeading>
-                <AlbumsList>
-                    {
-                        albums && albums?.map((album) =>
-                            <AlbumWrapper onClick={() => nav(`/album/${album.id}`)} key={album.id}>
-                                <AlbumPhoto src={album.cover_photo.image.thumbnail_image} alt=""/>
-                                <AlbumNameWrapper>
-                                    <AlbumName>Brooklyn Bridge</AlbumName>
-                                </AlbumNameWrapper>
-                            </AlbumWrapper>)
-                    }
-                </AlbumsList>
-                <PhotosHeading>All photos</PhotosHeading>
-            </AlbumsWrapper>
-            <Photos>
-                {allPhotos && allPhotos?.map((photo) => <Photo
-                        key={photo.id}
-                        image={photo.image.thumbnail_image}
-                        fullImage={photo.image.image_with_watermark}
-                    />
-                )}
-            </Photos>
-            <Container>
-                <ButtonWrapper>
-                    <Button>Unlock your photos</Button>
-                </ButtonWrapper>
-            </Container>
-            <Footer/>
+            {
+                isOpen ? <LandscapeImage setIsOpen={setIsOpen} image={image}/> :
+                    <div>
+                        <LoaderGif isLoading={isLoading}/>
+                        <AlbumsWrapper>
+                            <AlbumsHeading>Albums</AlbumsHeading>
+                            <AlbumsList>
+                                {
+                                    albums && albums?.map((album) =>
+                                        <AlbumWrapper onClick={() => nav(`/album/${album.id}`)} key={album.id}>
+                                            <AlbumPhoto src={album.cover_photo.image.thumbnail_image} alt=""/>
+                                            <AlbumNameWrapper>
+                                                <AlbumName>Brooklyn Bridge</AlbumName>
+                                            </AlbumNameWrapper>
+                                        </AlbumWrapper>)
+                                }
+                            </AlbumsList>
+                            <PhotosHeading>All photos</PhotosHeading>
+                        </AlbumsWrapper>
+                        <Photos>
+                            {allPhotos && allPhotos?.map((photo) => <Photo
+                                    onClick={() => {
+                                        setImage(photo.image.image_with_watermark)
+                                        setIsOpen(true)
+                                    }}
+                                    key={photo.id}
+                                    image={photo.image.thumbnail_image}
+                                    fullImage={photo.image.image_with_watermark}
+                                />
+                            )}
+                        </Photos>
+                        <Container>
+                            <ButtonWrapper>
+                                <Button>Unlock your photos</Button>
+                            </ButtonWrapper>
+                        </Container>
+                        <Footer/>
+                    </div>
+            }
+
         </div>
     );
 };
