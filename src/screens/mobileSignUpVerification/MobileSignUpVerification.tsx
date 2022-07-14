@@ -54,8 +54,10 @@ const MobileSignUpVerification = ({update}: Props) => {
     }
     const jumpToNext = (e: any) => {
         if (e) {
-            let max = e.target.getAttribute('maxLength');
-            if (max && e.target.value.length >= max) {
+            if (e.target.value.length > 1) {
+                e.target.value = e.target.value[0]
+            }
+            if (e.target.value.length >= 1) {
                 do {
                     e = e.target.nextElementSibling;
                 }
@@ -84,15 +86,15 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     }, [otp])
 
-    useEffect(() => {
-        if(user && user.selfie?.photo_url) {
-            nav('/dashboard')
-            dispatch(setLoading(false))
-        } else {
-            nav('/selfie')
-            dispatch(setLoading(false))
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if(user && user.selfie?.photo_url) {
+    //         nav('/dashboard')
+    //         dispatch(setLoading(false))
+    //     } else {
+    //         nav('/selfie')
+    //         dispatch(setLoading(false))
+    //     }
+    // }, [user])
 
     useEffect(() => {
         dispatch(redirectUser(null))
@@ -101,14 +103,14 @@ const MobileSignUpVerification = ({update}: Props) => {
     }, [user, redirectToUrl])
 
 
-    useEffect(() => {
-        if (phone === '' && update) {
-            nav('/account-settings')
-        }
-        if (phone === '' && !update) {
-            nav('/login')
-        }
-    })
+    // useEffect(() => {
+    //     if (phone === '' && update) {
+    //         nav('/account-settings')
+    //     }
+    //     if (phone === '' && !update) {
+    //         nav('/login')
+    //     }
+    // })
 
     return (
         <div>
@@ -120,7 +122,7 @@ const MobileSignUpVerification = ({update}: Props) => {
                     </NumberWrapper>
                     <CodeWrapper>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1}
-                               maxLength={1}/>
+                               maxLength={0}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2}
                                maxLength={1}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3}
