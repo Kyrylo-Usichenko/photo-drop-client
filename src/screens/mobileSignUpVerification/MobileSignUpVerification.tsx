@@ -86,15 +86,15 @@ const MobileSignUpVerification = ({update}: Props) => {
         }
     }, [otp])
 
-    // useEffect(() => {
-    //     if(user && user.selfie?.photo_url) {
-    //         nav('/dashboard')
-    //         dispatch(setLoading(false))
-    //     } else {
-    //         nav('/selfie')
-    //         dispatch(setLoading(false))
-    //     }
-    // }, [user])
+    useEffect(() => {
+        if(user && user.selfie?.photo_url) {
+            nav('/dashboard')
+            dispatch(setLoading(false))
+        } else {
+            nav('/selfie')
+            dispatch(setLoading(false))
+        }
+    }, [user])
 
     useEffect(() => {
         dispatch(redirectUser(null))
@@ -103,14 +103,14 @@ const MobileSignUpVerification = ({update}: Props) => {
     }, [user, redirectToUrl])
 
 
-    // useEffect(() => {
-    //     if (phone === '' && update) {
-    //         nav('/account-settings')
-    //     }
-    //     if (phone === '' && !update) {
-    //         nav('/login')
-    //     }
-    // })
+    useEffect(() => {
+        if (phone === '' && update) {
+            nav('/account-settings')
+        }
+        if (phone === '' && !update) {
+            nav('/login')
+        }
+    })
 
     return (
         <div>

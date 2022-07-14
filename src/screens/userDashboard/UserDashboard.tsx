@@ -67,7 +67,6 @@ const UserDashboard = () => {
                                         </Slider>
                                     </div>
                                     <Footer/>
-
                                 </div>
                             ) :
                             <div>
