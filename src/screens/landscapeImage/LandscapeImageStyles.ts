@@ -50,7 +50,7 @@ export const Img = styled.img`
     max-height: unset;
     //height: 100%;
     max-width: 1243px;
-    object-fit: cover;
+    object-fit: contain;
     margin: 0 auto;
     position: fixed;
     left: 50%;

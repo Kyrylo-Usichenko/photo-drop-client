@@ -86,7 +86,7 @@ const LandscapeImage = ({image, setIsOpen}: Props) => {
 
             <Img src={image} alt=""/>
             {
-                false ? <Button>Unlock photo</Button> : (
+                true ? <Button>Unlock photo</Button> : (
                     <Footer>
                         <LeftWrapper>
                             <Download
