@@ -87,6 +87,7 @@ export const Inner = styled.div`
 
 export const Unlock = styled.div`
   display: none;
+  cursor: pointer;
   @media (min-width: 1440px) {
     font-style: normal;
     font-weight: 500;

@@ -145,11 +145,7 @@ const MyProfile = () => {
                         </LeftWrapper>
                         <ArrowRight/>
                     </Tab>
-                    {
-                        isLoading ? <LoaderWrapper>
-                            <img src='/assets/icons/gif-loader.gif'/>
-                        </LoaderWrapper> : null
-                    }
+
                     <LoaderGif isLoading={isLoading}/>
 
                 </Wrapper>

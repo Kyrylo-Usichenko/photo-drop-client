@@ -19,7 +19,7 @@ import Redirect from "./components/shared/redirect/Redirect";
 import Album from './screens/album/Album';
 import TermsOfService from "./screens/termsOfService/TermsOfService";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
-import Name from './screens/secondOnboarding/Name';
+import SecondOnboarding from './screens/secondOnboarding/SecondOnboarding';
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -104,14 +104,9 @@ function App() {
                                 <PrivacyPolicy/>
                             </ProtectedRouter>
                         }/>
-                        <Route path="/onboarding-name" element={
+                        <Route path="/onboarding" element={
                             <ProtectedRouter>
-                                <Name/>
-                            </ProtectedRouter>
-                        }/>
-                        <Route path="/onboarding-email" element={
-                            <ProtectedRouter>
-                                <Name/>
+                                <SecondOnboarding/>
                             </ProtectedRouter>
                         }/>
                     </Routes>
