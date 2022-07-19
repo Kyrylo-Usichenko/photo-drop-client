@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Header from './components/shared/header/Header';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./screens/mobileSignUp/MobileSignUp";
 import MobileSignUpVerification from "./screens/mobileSignUpVerification/MobileSignUpVerification";
 import styled from "styled-components";
@@ -15,7 +15,6 @@ import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings
 import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
-import Redirect from "./components/shared/redirect/Redirect";
 import Album from './screens/album/Album';
 import TermsOfService from "./screens/termsOfService/TermsOfService";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
@@ -30,7 +29,7 @@ function App() {
             <Provider store={store}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<Redirect/>}/>
+                        {/*<Route path="/" element={<Redirect/>}/>*/}
                         <Route path="/login" element={<MobileSignUp/>}/>
                         <Route path="/sms-verification"
                                element={
@@ -109,6 +108,7 @@ function App() {
                                 <SecondOnboarding/>
                             </ProtectedRouter>
                         }/>
+                        <Route path="/" element={<Navigate replace to="/dashboard"/>}/>
                     </Routes>
                 </BrowserRouter>
             </Provider>

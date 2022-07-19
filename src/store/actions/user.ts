@@ -27,16 +27,13 @@ export const sendPhone =
     (phone: string): AsyncAction =>
         async (dispatch, _, {mainApi}) => {
             try {
-                dispatch(userActions.setLoading(true))
                 await mainApi.sendPhone({
                     "phone_number": phone,
                 });
                 dispatch(userActions.setPhone(phone));
                 dispatch(userActions.redirectUser('/sms-verification'))
-                dispatch(userActions.setLoading(false))
             } catch (e) {
                 console.log(e);
-                dispatch(userActions.setLoading(false))
                 alert('Send error')
             }
         };
@@ -269,7 +266,7 @@ export const getUser =
                 const response = await mainProtectedApi.getUser();
                 dispatch(userActions.setUser(response.data, response.data.selfie))
                 // setTimeout(() => {
-                    dispatch(setLoading(false))
+                dispatch(setLoading(false))
                 // }, 1000)
                 dispatch(userActions.setAuth(true))
             } catch (e) {
