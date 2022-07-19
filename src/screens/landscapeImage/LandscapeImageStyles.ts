@@ -121,7 +121,7 @@ export const FooterButton = styled.button`
   }
 `;
 
-export const Download = styled.a`
+export const Download = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

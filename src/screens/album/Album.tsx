@@ -30,8 +30,10 @@ const Album = () => {
     const albumPhotos = useSelector((state: State) => state.userReducer.albumPhotos)
     const nav = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
-    const [image, setImage] = useState('')
-
+    const [image, setImage] = useState({
+        id: '',
+        url: ''
+    })
 
     useEffect(() => {
         dispatch(getAlbumPhotos(albumId as string))
@@ -67,7 +69,10 @@ const Album = () => {
                                             <Photo key={photo.id}
                                                    fullImage={photo.image.image_with_watermark}
                                                    onClick={() => {
-                                                       setImage(photo.image.image_with_watermark)
+                                                       setImage({
+                                                           id: photo.id,
+                                                           url: photo.image.image_with_watermark
+                                                       })
                                                        setIsOpen(true)
                                                    }}
                                                    image={photo.image.thumbnail_image}/>

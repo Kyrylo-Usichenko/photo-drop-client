@@ -12,53 +12,20 @@ import {
     Word,
     Wrapper
 } from './LandscapeImageStyles';
+import FileSaver from "file-saver";
+
 
 interface Props {
-    image?: string,
+    image?: any,
     setIsOpen: (value: boolean) => void
 }
 
 const LandscapeImage = ({image, setIsOpen}: Props) => {
-    const onButtonClick = useCallback(
-        (e: any) => {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
 
-            if (!image?.length) {
-                console.log('Please add an image url');
-                return;
-            }
+    const onButtonClick = () => {
+        FileSaver.saveAs(image.url, image.id);
+    }
 
-            const fetchUrl = `${e.target.href}${
-                true ? `?dummy=${Math.floor(Date.now())}` : ''
-            }`;
-
-            fetch(fetchUrl, {
-                method: 'GET',
-                headers: {}
-            })
-                .then((response) => {
-                    response.arrayBuffer().then(function (buffer) {
-                        const url = window.URL.createObjectURL(new Blob([buffer]));
-                        const link = document.createElement('a');
-
-                        link.href = url;
-                        link.setAttribute(
-                            'download',
-                            image!.substr(image!.lastIndexOf('/') + 1)
-                        );
-                        document.body.appendChild(link);
-                        link.click();
-                    });
-                })
-                .catch((error) => {
-                    console.log(error);
-                    return error;
-                });
-        },
-        [image]
-    );
     const handleShareButton = () => {
         // Check if n isavigator.share supported by the browser
         if (navigator.share) {
@@ -84,17 +51,18 @@ const LandscapeImage = ({image, setIsOpen}: Props) => {
                        alt=""/>
             </CrossWrapper>
 
-            <Img src={image} alt=""/>
+            <Img src={image.url} alt=""/>
             {
-                true ? <Button>Unlock photo</Button> : (
+                false ? <Button>Unlock photo</Button> : (
                     <Footer>
                         <LeftWrapper>
                             <Download
-                                href={image} download onClick={(e) => onButtonClick(e)}
+                                onClick={onButtonClick}
                             >
                                 <img width='24px' height='21px' src="/assets/icons/download.svg" alt=""/>
                                 <Word>Download</Word>
                             </Download>
+
                             <Share
                                 onClick={handleShareButton}
                             >

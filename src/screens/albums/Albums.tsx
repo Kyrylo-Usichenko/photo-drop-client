@@ -32,7 +32,10 @@ const Albums = () => {
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState({
+        id: '',
+        url: ''
+    })
 
 
     useEffect(() => {
@@ -67,7 +70,10 @@ const Albums = () => {
                         <Photos>
                             {allPhotos && allPhotos?.map((photo) => <Photo
                                     onClick={() => {
-                                        setImage(photo.image.image_with_watermark)
+                                        setImage({
+                                            id: photo.id,
+                                            url: photo.image.image_with_watermark
+                                        })
                                         setIsOpen(true)
                                     }}
                                     key={photo.id}
