@@ -29,11 +29,6 @@ const Album = () => {
     const albumId = params.id;
     const albumPhotos = useSelector((state: State) => state.userReducer.albumPhotos)
     const nav = useNavigate()
-    const [isOpen, setIsOpen] = useState(false)
-    const [image, setImage] = useState({
-        id: '',
-        url: ''
-    })
 
     useEffect(() => {
         dispatch(getAlbumPhotos(albumId as string))
@@ -47,47 +42,41 @@ const Album = () => {
         <Wrapper>
             {
                 albumPhotos ?
-                    isOpen ? <LandscapeImage setIsOpen={setIsOpen} image={image}/> : (
+
+                    <div>
                         <div>
-                            <div>
-                                <Header>
-                                    <Back onClick={onBackClick} src="/assets/icons/arrow-back.svg" alt=""/>
-                                    <Inner>
-                                        <Data>
-                                            <Name>Brooklyn Bridge</Name>
-                                            <FooterBot>Jan 10, 2022
-                                                •<Count>{albumPhotos ? albumPhotos.length : 0} photos</Count></FooterBot>
-                                        </Data>
-                                        <Unlock>
-                                            Unlock your photos
-                                        </Unlock>
-                                    </Inner>
-                                </Header>
-                                <Photos>
-                                    {
-                                        albumPhotos && albumPhotos.map((photo) =>
-                                            <Photo key={photo.id}
-                                                   fullImage={photo.image.image_with_watermark}
-                                                   onClick={() => {
-                                                       setImage({
-                                                           id: photo.id,
-                                                           url: photo.image.image_with_watermark
-                                                       })
-                                                       setIsOpen(true)
-                                                   }}
-                                                   image={photo.image.thumbnail_image}/>
-                                        )
-                                    }
-                                </Photos>
-                                <Container>
-                                    <ButtonWrapper>
-                                        <Button>Unlock your photos</Button>
-                                    </ButtonWrapper>
-                                </Container>
-                            </div>
-                            <Footer/>
+                            <Header>
+                                <Back onClick={onBackClick} src="/assets/icons/arrow-back.svg" alt=""/>
+                                <Inner>
+                                    <Data>
+                                        <Name>Brooklyn Bridge</Name>
+                                        <FooterBot>Jan 10, 2022
+                                            •<Count>{albumPhotos ? albumPhotos.length : 0} photos</Count></FooterBot>
+                                    </Data>
+                                    <Unlock>
+                                        Unlock your photos
+                                    </Unlock>
+                                </Inner>
+                            </Header>
+                            <Photos>
+                                {
+                                    albumPhotos && albumPhotos.map((photo) =>
+                                        <Photo key={photo.id}
+                                               imageId={photo.id}
+                                               image={photo.image.image_with_watermark}
+                                               thumbnail={photo.image.thumbnail_image}
+                                        />
+                                    )
+                                }
+                            </Photos>
+                            <Container>
+                                <ButtonWrapper>
+                                    <Button>Unlock your photos</Button>
+                                </ButtonWrapper>
+                            </Container>
                         </div>
-                    )
+                        <Footer/>
+                    </div>
                     :
                     null
             }

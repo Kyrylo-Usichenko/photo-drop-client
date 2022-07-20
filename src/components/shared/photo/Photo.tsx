@@ -1,20 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import LandscapeImage from "../../../screens/landscapeImage/LandscapeImage";
 
 interface Props {
+    thumbnail?: string,
     image?: string,
-    fullImage?: string,
-    onClick?: () => void,
+    imageId: string,
 }
 
-const Photo = ({image, onClick}: Props) => {
+const Photo = ({thumbnail, image, imageId}: Props) => {
+    const [isOpen, setIsOpen] = useState(false)
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'visible'
+        }
+    }, [isOpen])
     return (
         <Wrapper>
-            <Img onClick={onClick} src={image} loading='lazy'/>
-            {/*{*/}
-            {/*    isOpen ? <LandscapeImage setIsOpen={setIsOpen} image={fullImage}/> : null*/}
-            {/*}*/}
+            <Img onClick={() => setIsOpen(true)} src={thumbnail} loading='lazy'/>
+            {
+                isOpen ? <LandscapeImage imageId={imageId} setIsOpen={setIsOpen} image={image}/> : null
+            }
         </Wrapper>
 
     );

@@ -21,6 +21,7 @@ import {Container} from '../../components/shared/container/Container';
 import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
 import Footer from '../../components/shared/footer/Footer';
 import Albums from "../albums/Albums";
+import styled from 'styled-components';
 
 const UserDashboard = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -36,7 +37,7 @@ const UserDashboard = () => {
     }, [])
 
     return (
-        <div>
+        <Sda>
             <Header
                 imageSrc={user?.selfie?.photo_url ? user.selfie.photo_url : tempSelfie ? tempSelfie : '/assets/images/avatar-icon.png'}/>
             {
@@ -78,8 +79,16 @@ const UserDashboard = () => {
                     </div>
 
             }
-        </div>
+        </Sda>
     );
 };
+const Sda = styled.div`
+  height: 100%;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar: none;  /* Firefox */
+`
 export default UserDashboard;

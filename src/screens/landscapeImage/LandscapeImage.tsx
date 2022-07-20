@@ -17,13 +17,14 @@ import FileSaver from "file-saver";
 
 interface Props {
     image?: any,
-    setIsOpen: (value: boolean) => void
+    setIsOpen: (value: boolean) => void,
+    imageId: string
 }
 
-const LandscapeImage = ({image, setIsOpen}: Props) => {
+const LandscapeImage = ({image, setIsOpen, imageId}: Props) => {
 
     const onButtonClick = () => {
-        FileSaver.saveAs(image.url, image.id);
+        FileSaver.saveAs(image, imageId);
     }
 
     const handleShareButton = () => {
@@ -51,7 +52,7 @@ const LandscapeImage = ({image, setIsOpen}: Props) => {
                        alt=""/>
             </CrossWrapper>
 
-            <Img src={image.url} alt=""/>
+            <Img src={image} alt=""/>
             {
                 false ? <Button>Unlock photo</Button> : (
                     <Footer>

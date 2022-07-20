@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   cursor: auto;
-
   &::-webkit-scrollbar {
     display: none;
   }
