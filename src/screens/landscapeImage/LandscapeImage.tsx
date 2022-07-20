@@ -30,20 +30,30 @@ const LandscapeImage = ({image, setIsOpen, imageId}: Props) => {
     const handleShareButton = () => {
         // Check if n isavigator.share supported by the browser
         if (navigator.share) {
-            console.log("Congrats! Your browser supports Web Share API");
             navigator
                 .share({
                     url: `https://share.toogoodtogo.com/store/1006/milestones/meals-saved/`
                 })
-                .then(() => {
-                    console.log("Sharing successfull");
-                })
-                .catch(() => {
-                    console.log("Sharing failed");
-                });
         } else {
-            console.log("Sorry! Your browser does not support Web Share API");
+            copyToClipboard();
+            alert('Photo link was copied to your clipboard')
         }
+    };
+
+    const copyMessage = () => {
+
+        // const itemText = order?.items.reduce(
+        //     (acc, item) => (acc += `${item.count} x ${item.item.unit !== 'Custom' ? item.item.unit : formatStr(item.item.custom_unit_name)} x ${formatStr(item.item.name)} \n`),
+        //     str,
+        // );
+        // const userInfo = `${order?.order.business_name ? `${formatStr(order?.order.business_name)} • ` : ''}${formatStr(order!.order.delivery_address)}, ${formatStr(order!.order.city)} ${order?.order.post_code}\n${dashboard.if_there_are_any_issues.replace("{Seller's Name}", formatStr(order!.seller_full_name)).replace('{+62 88888 88888}', formatPhoneNumberIntl(`+${order?.seller_phone}`))}\n${dashboard.сonfirm_order}: ${window.location.href}`;
+        return encodeURIComponent(image);
+    };
+    const copyToClipboard = () => {
+        if (navigator?.clipboard?.writeText) {
+            navigator.clipboard.writeText(decodeURIComponent(copyMessage()));
+        }
+
     };
     return (
         <Wrapper>
