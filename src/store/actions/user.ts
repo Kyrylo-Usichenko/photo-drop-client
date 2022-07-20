@@ -23,20 +23,21 @@ export type UserActions =
     | ReturnType<typeof userActions.setAlbumPhotos>
     | ReturnType<typeof userActions.setResponseCode>
 
-export const sendPhone =
-    (phone: string): AsyncAction =>
-        async (dispatch, _, {mainApi}) => {
-            try {
-                await mainApi.sendPhone({
-                    "phone_number": phone,
-                });
-                dispatch(userActions.setPhone(phone));
-                dispatch(userActions.redirectUser('/sms-verification'))
-            } catch (e) {
-                console.log(e);
-                alert('Send error')
-            }
-        };
+export const sendPhone = (phone: string): AsyncAction =>
+    async (dispatch, _, {mainApi}) => {
+        try {
+            await mainApi.sendPhone({
+                "phone_number": phone,
+            });
+            dispatch(userActions.setPhone(phone));
+            dispatch(userActions.redirectUser('/sms-verification'))
+        } catch (e) {
+            console.log(e);
+            alert('Send error')
+        }
+    };
+
+
 export const setResponseCode =
     (code: string | null): AsyncAction =>
         async (dispatch) => {

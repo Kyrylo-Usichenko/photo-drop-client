@@ -1,5 +1,4 @@
 import {createReducerFunction, ImmerReducer} from "immer-reducer";
-import album from "../../screens/album/Album";
 
 interface UserState {
     responseCode: string | null,

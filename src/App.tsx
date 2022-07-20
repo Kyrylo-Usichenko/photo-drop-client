@@ -29,7 +29,6 @@ function App() {
             <Provider store={store}>
                 <BrowserRouter>
                     <Routes>
-                        {/*<Route path="/" element={<Redirect/>}/>*/}
                         <Route path="/login" element={<MobileSignUp/>}/>
                         <Route path="/sms-verification"
                                element={
