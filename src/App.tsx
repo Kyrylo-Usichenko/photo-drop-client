@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Header from './components/shared/header/Header';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./screens/mobileSignUp/MobileSignUp";
@@ -19,6 +19,7 @@ import Album from './screens/album/Album';
 import TermsOfService from "./screens/termsOfService/TermsOfService";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
 import SecondOnboarding from './screens/secondOnboarding/SecondOnboarding';
+import ThanksGiving from "./screens/thanksGiving/ThanksGiving";
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -105,6 +106,11 @@ function App() {
                         <Route path="/onboarding" element={
                             <ProtectedRouter>
                                 <SecondOnboarding/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/thank-you" element={
+                            <ProtectedRouter>
+                                <ThanksGiving/>
                             </ProtectedRouter>
                         }/>
                         <Route path="/" element={<Navigate replace to="/dashboard"/>}/>
