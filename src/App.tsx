@@ -94,14 +94,10 @@ function App() {
                             </ProtectedRouter>
                         }/>
                         <Route path="/terms-of-services" element={
-                            <ProtectedRouter>
                                 <TermsOfService/>
-                            </ProtectedRouter>
                         }/>
-                        <Route path="/privacy-policy" element={
-                            <ProtectedRouter>
+                        <Route path="/privacy" element={
                                 <PrivacyPolicy/>
-                            </ProtectedRouter>
                         }/>
                         <Route path="/onboarding" element={
                             <ProtectedRouter>

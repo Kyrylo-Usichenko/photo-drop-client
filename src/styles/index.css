@@ -3,12 +3,14 @@
 @import "./fonts.css";
 
 
-*,* {
+*, * {
   box-sizing: border-box;
 }
-.swiper-slide{
+
+.swiper-slide {
   width: 100px !important;
 }
+
 body {
   margin: 0;
   /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
@@ -22,14 +24,21 @@ body {
   background: #fff;
 
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-a{
+a {
   text-decoration: none;
 }
-#root{
-  height:  100%;
+
+#root {
+  height: 100%;
+}
+
+.photodrop-futura {
+  font-family: 'Futura-PT', serif;
+
 }

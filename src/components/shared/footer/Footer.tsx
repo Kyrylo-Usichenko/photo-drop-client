@@ -24,7 +24,7 @@ const Footer = () => {
                         <ClimateLogo src="/assets/icons/climate-neutral-logo.svg" alt=""/>
                         <Inc375>© 2022 FOM Online Inc</Inc375>
                         <Terms onClick={() => nav('/terms-of-services')}>Terms of services</Terms>
-                        <Privacy onClick={() => nav('/privacy-policy')}>Privacy Party</Privacy>
+                        <Privacy onClick={() => nav('/privacy')}>Privacy Party</Privacy>
                     </div>
                 </FooterInner>
             </FooterWrapper>
@@ -187,7 +187,8 @@ export const Terms = styled.p`
   font-size: 16px;
   line-height: 200%;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  cursor: pointer;
+  color: #ffffff;
   margin: 19px 0 0;
   @media (min-width: 1440px) {
     margin: 30px 0 0;
@@ -199,6 +200,7 @@ export const Privacy = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
+  cursor: pointer;
   line-height: 200%;
   letter-spacing: -0.02em;
   color: #FFFFFF;
