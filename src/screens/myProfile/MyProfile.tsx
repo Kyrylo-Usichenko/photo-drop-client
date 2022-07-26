@@ -67,7 +67,7 @@ const MyProfile = () => {
   };
   const onEditClick = () => {
     console.log("clicked");
-    selfieInput.current!.value! = ''
+    selfieInput.current!.value! = "";
 
     selfieInput.current!.click();
   };
@@ -76,7 +76,7 @@ const MyProfile = () => {
     console.log("clicked2");
     const file = e.target.files[0];
     console.log(e.target.files);
-    
+
     const fileUrl = URL.createObjectURL(file);
     setSelfieURL(fileUrl);
     setIsOpen(true);
@@ -177,35 +177,11 @@ const MyProfile = () => {
               image={selfieUrl ? selfieUrl : undefined}
               crop={crop}
               zoom={zoom}
-              aspect={1}
+              cropShape="round"
+              showGrid={false}
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
-              cropShape="round"
-              showGrid={false}
-              cropSize={{ width: 285, height: 285 }}
-              objectFit="auto-cover"
-              style={{
-                containerStyle: {
-                  margin: "0 auto",
-                  borderRadius: "50%",
-                  width: 285,
-                  height: 285,
-                  border: "none",
-                  borderCollapse: "separate",
-                  WebkitBorderRadius: "50%",
-                  MozBorderRadius: "50%",
-                  transform: "translateZ(0)",
-                },
-                mediaStyle: {
-                  overflow: "hidden",
-                },
-                cropAreaStyle: {
-                  borderRadius: "50%",
-
-                  border: "1px solid #CECCB5",
-                },
-              }}
             />
           </CropInner>
           <Buttons>
