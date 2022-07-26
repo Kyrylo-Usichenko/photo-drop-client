@@ -34,6 +34,7 @@ export const AlbumsList = styled.div`
   padding: 0 0 6px 0;
   overflow-x: scroll;
   padding: 0 10px 0 0;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     display: none;

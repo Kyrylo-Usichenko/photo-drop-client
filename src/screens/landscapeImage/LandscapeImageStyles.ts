@@ -1,5 +1,17 @@
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
+const breatheAnimation = keyframes`
+ 0% {  opacity: 0;  }
+ 10% { opacity: 0.1;}
+ 20% {opacity: 0.2; }
+  30% { opacity: 0.3;}
+  40% {opacity: 0.4; }
+  50% {opacity: 0.5; }
+  60% {opacity: 0.6; }
+  70% { opacity: 0.7;}
+  80% {opacity: 0.8; }
+  90% { opacity: 0.9;}
+ 100% { opacity: 1  }
+`;
 export const Wrapper = styled.div`
   background: #262626;
   width: 100%;
@@ -13,13 +25,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   cursor: auto;
+  animation-name: ${breatheAnimation};
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
   &::-webkit-scrollbar {
     display: none;
   }
 
   @media (min-width: 1440px) {
     background: #000000;
-
   }
 `;
 
@@ -64,7 +78,7 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 23px;
   color: #262626;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 50px;
   height: 50px;
   outline: none;
@@ -98,7 +112,7 @@ export const LeftWrapper = styled.div`
 export const FooterButton = styled.button`
   height: 50px;
   width: 196px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 50px;
   outline: none;
   background: none;
@@ -106,7 +120,7 @@ export const FooterButton = styled.button`
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   @media (min-width: 1440px) {
     position: fixed;
@@ -128,7 +142,7 @@ export const Download = styled.div`
   font-weight: 400;
   font-size: 14px;
   //line-height: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   @media (min-width: 1440px) {
     position: fixed;
@@ -144,7 +158,7 @@ export const Share = styled.div`
   font-weight: 400;
   font-size: 14px;
   //line-height: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   @media (min-width: 1440px) {
     display: none;
@@ -153,4 +167,3 @@ export const Share = styled.div`
 export const Word = styled.div`
   margin: 5px 0 0;
 `;
-
