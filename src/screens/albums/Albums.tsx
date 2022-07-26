@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Header from "../../components/shared/header/Header";
 import {State} from "../../store";
-import {getAlbums, getAllPhotos, getPhotos, getSelfie} from "../../store/actions/user";
+import {getAlbums, getAllPhotos} from "../../store/actions/user";
 import {AppDispatch} from "../../App";
 import LoaderGif from '../../components/shared/loaderGif/LoaderGif';
 import {
@@ -41,7 +40,6 @@ const Albums = () => {
 
     return (
         <div style={{overflowX: 'scroll'}}>
-            {/*{isOpen === true && <LandscapeImage setIsOpen={setIsOpen} image={image}/>}*/}
             <div>
                 <LoaderGif isLoading={isLoading}/>
                 <AlbumsWrapper>

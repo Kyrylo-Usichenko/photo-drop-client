@@ -33,6 +33,7 @@ export const AlbumsList = styled.div`
   display: flex;
   padding: 0 0 6px 0;
   overflow-x: scroll;
+  padding: 0 10px 0 0;
 
   &::-webkit-scrollbar {
     display: none;
@@ -121,7 +122,7 @@ export const Photo = styled.img`
   }
 `;
 export const AlbumsWrapper = styled.div`
-  padding: 0 15px;
+  padding: 0 0 0 15px;
   width: 100%;
   margin: 0 auto;
   //max-width: 450px;
