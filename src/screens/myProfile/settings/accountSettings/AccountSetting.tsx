@@ -8,17 +8,20 @@ import {AppDispatch} from "../../../../App";
 import {getUser} from "../../../../store/actions/user";
 import {LoaderWrapper} from "../../../userDashboard/UserDashboardStyles";
 import { useNavigate } from 'react-router-dom';
+import LoaderGif from "../../../../components/shared/loaderGif/LoaderGif";
 
 const AccountSetting = () => {
     const user = useSelector((state: State) => state.userReducer.user)
+    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const dispatch = useDispatch<AppDispatch>()
     const nav = useNavigate();
 
-    useEffect(()=>{
-        if (!user){
-            dispatch(getUser())
-        }
-    })
+    // useEffect(()=>{
+    //     if (!user){
+    //         dispatch(getUser())
+    //     }
+    // })
+    console.log(user)
     return (
         <Container>
             <Wrapper>
@@ -58,11 +61,7 @@ const AccountSetting = () => {
                     <Arrow src="/assets/icons/arrow-right.svg" alt=""/>
                 </Tab>
             </Wrapper>
-            {
-                !user ? <LoaderWrapper>
-                    <img src='/assets/icons/gif-loader.gif'/>
-                </LoaderWrapper> : null
-            }
+            <LoaderGif isLoading={isLoading}/>
         </Container>
     );
 };
@@ -93,7 +92,6 @@ const Data = styled.div`
   margin: 0 0 0 10px;
 `;
 const DataTop = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -111,7 +109,6 @@ const Verified = styled.span`
 `;
 
 const Value = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

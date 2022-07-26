@@ -6,7 +6,7 @@ interface Props {
 const LoaderGif = ({isLoading}: Props ) => {
     return (
         <LoaderWrapper isLoading={isLoading}>
-            <img src='/assets/icons/gif-loader.gif'/>
+            <img src='/assets/icons/gif-loader.gif' width='75px' height='75px'/>
         </LoaderWrapper>
     );
 };

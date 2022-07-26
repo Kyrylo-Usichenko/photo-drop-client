@@ -116,6 +116,7 @@ const Item: React.FC<ItemProps> = ({
 const Main = styled.div`
   height: 100vh;
   margin: 0 auto;
+  max-width: 500px;
   //box-shadow:0 1px 4px 0 rgb(0 0 0 / 17%)
 `;
 const Inner = styled.div`
@@ -146,6 +147,9 @@ const TextCountry = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  @media (min-width: 1440px) {
+    font-size: 22px;
+  } 
 `;
 
 const Input = styled.input`
@@ -157,7 +161,9 @@ const Input = styled.input`
   font-weight: bold;
   line-height: 1.5;
   font-size: 16px;
-
+  @media (min-width: 1440px) {
+    font-size: 22px;
+  }
   :focus {
     outline: none;
   }
@@ -233,6 +239,9 @@ const CountryWrap = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.36;
+  @media (min-width: 1440px) {
+    font-size: 18px;
+  }
 `;
 
 const Code = styled.p`
@@ -240,6 +249,9 @@ const Code = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.36;
+  @media (min-width: 1440px) {
+    font-size: 18px;
+  }
 `;
 
 export default PhoneSearch;

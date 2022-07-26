@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import button from "../../components/shared/button/Button";
 
 export const AlbumsHeading = styled.p`
   margin: 15px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  padding: 0 0 0 15px;
   @media (min-width: 1440px) {
     font-size: 16px;
     line-height: 21px;
@@ -17,12 +16,12 @@ export const AlbumsHeading = styled.p`
 `;
 export const PhotosHeading = styled.p`
   margin: 34px 0 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  padding: 0 0 0 15px;
   @media (min-width: 1440px) {
     margin: 100px 0 0;
     font-size: 16px;
@@ -35,6 +34,8 @@ export const AlbumsList = styled.div`
   display: flex;
   padding: 0 0 6px 0;
   overflow-x: scroll;
+  padding: 0 10px 0 15px;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -48,7 +49,7 @@ export const AlbumsList = styled.div`
 export const AlbumPhoto = styled.img`
   width: 110px;
   height: 140px;
-  background: #000000;
+  background: #D3D3D3;
   object-fit: cover;
   border-radius: 20px;
   @media (min-width: 1440px) {
@@ -57,7 +58,6 @@ export const AlbumPhoto = styled.img`
   }
 `;
 export const AlbumName = styled.div`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 450;
   font-size: 12px;
@@ -105,7 +105,7 @@ export const Photos = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   height: 100%;
   @media (min-width: 1440px) {
     max-width: 1200px;
@@ -118,12 +118,13 @@ export const Photo = styled.img`
   max-width: 33.33%;
   flex: 0 1 33.33333%;
   cursor: pointer;
+  background: #D3D3D3;
   @media (min-width: 1440px) {
     height: 400px;
   }
 `;
 export const AlbumsWrapper = styled.div`
-  padding: 0 15px;
+  padding: 0;
   width: 100%;
   margin: 0 auto;
   //max-width: 450px;

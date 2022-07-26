@@ -1,18 +1,22 @@
 @import "./normalize.css";
 @import "./reset.css";
+@import "./fonts.css";
 
 
-*,* {
+*, * {
   box-sizing: border-box;
 }
-.swiper-slide{
+
+.swiper-slide {
   width: 100px !important;
 }
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
+  /*  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
+  /*  sans-serif;*/
+  font-family: 'Futura-PT', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*background-color: rgb(240, 241, 242);*/
@@ -20,14 +24,83 @@ body {
   background: #fff;
 
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-a{
+a {
   text-decoration: none;
 }
-#root{
-  height:  100%;
+
+#root {
+  height: 100%;
 }
+
+.photodrop-futura {
+  font-family: 'Futura-PT', serif;
+
+}
+
+/* .reactEasyCrop_Cover_Horizontal {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  bottom: -67px !important;
+  object-fit: cover !important;
+} */
+
+.crop-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 80px !important;
+}
+
+.reactEasyCrop_CropAreaRound {
+  border-radius: 50% !important;
+  width: 285px !important;
+  height: 285px !important;
+  overflow: hidden !important;
+  border: none !important;
+
+}
+
+.reactEasyCrop_CropArea {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 0 0 9999em;
+  color: #262626 !important;
+  overflow: hidden;
+}
+
+.reactEasyCrop_Contain {
+  max-width: 100%;
+  /* max-height: 100%; */
+  height: 100%;
+  /* width: 100%; */
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* .reactEasyCrop_Contain {
+  max-width: 100%;
+  height: 100% !important;
+  min-height: unset !important;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */

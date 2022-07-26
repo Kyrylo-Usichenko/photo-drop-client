@@ -10,7 +10,6 @@ export const Filling = styled.div`
 `;
 
 export const Agreement = styled.p`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -23,7 +22,6 @@ export const Agreement = styled.p`
   }
 `;
 export const EnterPhone = styled.p`
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -88,7 +86,6 @@ export const PhoneWrapper = styled.input`
   padding: 15px 13px 14px;
   outline: none;
   margin: 0;
-  font-family: 'Futura PT';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -96,7 +93,6 @@ export const PhoneWrapper = styled.input`
   color: #262626;
 
   &::placeholder {
-    font-family: 'Futura PT';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

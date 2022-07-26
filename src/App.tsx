@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Header from './components/shared/header/Header';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import MobileSignUp from "./screens/mobileSignUp/MobileSignUp";
 import MobileSignUpVerification from "./screens/mobileSignUpVerification/MobileSignUpVerification";
 import styled from "styled-components";
-import store, {State} from "./store";
-import {Provider, useDispatch, useSelector} from 'react-redux';
+import store from "./store";
+import {Provider} from 'react-redux';
 import AddSelfie from "./screens/addSelfie/AddSelfie";
 import ProtectedRouter from "./components/shared/protectedRouter/ProtectedRouter";
 import UserDashboard from "./screens/userDashboard/UserDashboard";
@@ -15,11 +15,11 @@ import NameSettings from "./screens/myProfile/settings/nameSettings/NameSettings
 import AccountSetting from "./screens/myProfile/settings/accountSettings/AccountSetting";
 import ChangeNumber from "./screens/myProfile/settings/accountSettings/ChangeNumber";
 import ChangeEmail from "./screens/myProfile/settings/accountSettings/ChangeEmail";
-import Redirect from "./components/shared/redirect/Redirect";
-import Albums from "./screens/albums/Albums";
 import Album from './screens/album/Album';
 import TermsOfService from "./screens/termsOfService/TermsOfService";
 import PrivacyPolicy from "./screens/privacyPolicy/PrivacyPolicy";
+import SecondOnboarding from './screens/secondOnboarding/SecondOnboarding';
+import ThanksGiving from "./screens/thanksGiving/ThanksGiving";
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -30,12 +30,11 @@ function App() {
             <Provider store={store}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<Redirect/>}/>
                         <Route path="/login" element={<MobileSignUp/>}/>
                         <Route path="/sms-verification"
                                element={
                                    <div>
-                                       <Header backUrl/>
+                                       <Header logoToMainPage={false} backUrl='/login'/>
                                        <MobileSignUpVerification/>
                                    </div>}/>
                         <Route path="/selfie" element={
@@ -95,15 +94,22 @@ function App() {
                             </ProtectedRouter>
                         }/>
                         <Route path="/terms-of-services" element={
-                            <ProtectedRouter>
                                 <TermsOfService/>
-                            </ProtectedRouter>
                         }/>
-                        <Route path="/privacy-policy" element={
-                            <ProtectedRouter>
+                        <Route path="/privacy" element={
                                 <PrivacyPolicy/>
+                        }/>
+                        <Route path="/onboarding" element={
+                            <ProtectedRouter>
+                                <SecondOnboarding/>
                             </ProtectedRouter>
                         }/>
+                        <Route path="/thank-you" element={
+                            <ProtectedRouter>
+                                <ThanksGiving/>
+                            </ProtectedRouter>
+                        }/>
+                        <Route path="/" element={<Navigate replace to="/dashboard"/>}/>
                     </Routes>
                 </BrowserRouter>
             </Provider>

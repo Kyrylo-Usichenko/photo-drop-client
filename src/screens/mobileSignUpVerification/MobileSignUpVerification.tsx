@@ -7,14 +7,12 @@ import {
     resendPhone,
     resendUpdatePhone,
     sendOtp,
-    sendUpdateOtp,
-    setResponseCode
+    sendUpdateOtp, setLoading,
 } from "../../store/actions/user";
 import {State} from "../../store";
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from "../../App";
 import {useNavigate} from 'react-router-dom';
-import Header from "../../components/shared/header/Header";
 
 interface Props {
     update?: boolean
@@ -24,7 +22,6 @@ const MobileSignUpVerification = ({update}: Props) => {
     const dispatch = useDispatch<AppDispatch>();
     const nav = useNavigate()
     const phone = useSelector((state: State) => state.userReducer.phone)
-    const isAuth = useSelector((state: State) => state.userReducer.isAuth)
     const isLoading = useSelector((state: State) => state.userReducer.isLoading)
     const redirectToUrl = useSelector((state: State) => state.userReducer.redirectToUrl)
     const user = useSelector((state: State) => state.userReducer.user)
@@ -55,41 +52,12 @@ const MobileSignUpVerification = ({update}: Props) => {
     const onNextClick = () => {
         dispatch(update ? sendUpdateOtp(phone, otp.join('')) : sendOtp(phone, otp.join('')))
     }
-
-    useEffect(() => {
-        if (otp.length === 6 && otp[1] !== '' && otp[2] !== '' && otp[3] !== '' && otp[4] !== '' && otp[5] !== '' && otp[6] !== '') {
-            setDisabled(false)
-        } else {
-            setDisabled(true)
-        }
-    }, [otp])
-    useEffect(() => {
-        // if (isAuth && !update) {
-        //     nav('/selfie')
-        // }
-        if(user && user.has_selfie_photo) {
-            nav('/dashboard')
-        } else {
-            nav('/selfie')
-        }
-    }, [user])
-    useEffect(() => {
-        dispatch(redirectUser(null))
-        if (redirectToUrl) nav(redirectToUrl)
-    }, [redirectToUrl])
-    useEffect(() => {
-        if (phone === '' && update) {
-            nav('/account-settings')
-        }
-        if (phone === '' && !update) {
-            nav('/login')
-        }
-    })
-
     const jumpToNext = (e: any) => {
         if (e) {
-            let max = e.target.getAttribute('maxLength');
-            if (max && e.target.value.length >= max) {
+            if (e.target.value.length > 1) {
+                e.target.value = e.target.value[0]
+            }
+            if (e.target.value.length >= 1) {
                 do {
                     e = e.target.nextElementSibling;
                 }
@@ -109,6 +77,41 @@ const MobileSignUpVerification = ({update}: Props) => {
             }
         }
     }
+
+    useEffect(() => {
+        if (otp.length === 6 && otp[1] !== '' && otp[2] !== '' && otp[3] !== '' && otp[4] !== '' && otp[5] !== '' && otp[6] !== '') {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }, [otp])
+
+    useEffect(() => {
+        if(user && user.selfie?.photo_url) {
+            nav('/dashboard')
+            dispatch(setLoading(false))
+        } else {
+            nav('/selfie')
+            dispatch(setLoading(false))
+        }
+    }, [user])
+
+    useEffect(() => {
+        dispatch(redirectUser(null))
+        if (redirectToUrl) nav(redirectToUrl)
+
+    }, [user, redirectToUrl])
+
+
+    useEffect(() => {
+        if (phone === '' && update) {
+            nav('/account-settings')
+        }
+        if (phone === '' && !update) {
+            nav('/login')
+        }
+    })
+
     return (
         <div>
             <Container>
@@ -119,7 +122,7 @@ const MobileSignUpVerification = ({update}: Props) => {
                     </NumberWrapper>
                     <CodeWrapper>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input1}
-                               maxLength={1}/>
+                               maxLength={0}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input2}
                                maxLength={1}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input3}
@@ -130,7 +133,6 @@ const MobileSignUpVerification = ({update}: Props) => {
                                maxLength={1}/>
                         <Field type='number' onChange={onInputChange} onKeyUp={jumpToNext} size={1} ref={input6}
                                maxLength={1}/>
-
                     </CodeWrapper>
                     <Resend onClick={resetInputs}>Resend code</Resend>
                     <Button

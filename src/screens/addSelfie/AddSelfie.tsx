@@ -77,7 +77,7 @@ const AddSelfie = () => {
 
     return (
         <div>
-            <Header backUrl/>
+            <Header logoToMainPage={false} backUrl/>
             <Container>
                 <Wrapper>
                     <Add>Add a selfie</Add>

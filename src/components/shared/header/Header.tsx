@@ -2,12 +2,13 @@ import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {ArrowLeft, ArrowWrapper, Avatar, Inner, Logo, Wrapper} from './HeaderStyles';
 
-interface HeaderProps {
-    backUrl?: boolean
+interface Props {
+    backUrl?: boolean | string
     imageSrc?: string | null
+    logoToMainPage?: boolean
 }
 
-const Header = ({backUrl, imageSrc}: HeaderProps) => {
+const Header = ({backUrl, imageSrc, logoToMainPage}: Props) => {
     const nav = useNavigate()
 
     return (
@@ -15,8 +16,8 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
             <Inner>
                 {
                     backUrl && (
-                        <ArrowWrapper onClick={() => nav(-1)}>
-                            <ArrowLeft />
+                        <ArrowWrapper onClick={() => backUrl === true ? nav(-1) : nav(backUrl.toString())}>
+                            <ArrowLeft/>
                         </ArrowWrapper>
                     )
                 }
@@ -25,7 +26,13 @@ const Header = ({backUrl, imageSrc}: HeaderProps) => {
                         <Avatar src={imageSrc} alt=""/>
                     </Link>)
                 }
-                <Logo src="/assets/icons/logo.svg"/>
+                {
+                    logoToMainPage === false ?
+                        <Logo src="/assets/icons/logo.svg"/>
+                        : <Link to='/dashboard'>
+                            <Logo src="/assets/icons/logo.svg"/>
+                        </Link>
+                }
             </Inner>
         </Wrapper>
     );
