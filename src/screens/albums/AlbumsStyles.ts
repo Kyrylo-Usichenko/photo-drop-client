@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import button from "../../components/shared/button/Button";
 
 export const AlbumsHeading = styled.p`
   margin: 15px 0 0;
