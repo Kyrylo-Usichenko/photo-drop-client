@@ -7,6 +7,7 @@ export const AlbumsHeading = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  padding: 0 0 0 15px;
   @media (min-width: 1440px) {
     font-size: 16px;
     line-height: 21px;
@@ -20,6 +21,7 @@ export const PhotosHeading = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: #262626;
+  padding: 0 0 0 15px;
   @media (min-width: 1440px) {
     margin: 100px 0 0;
     font-size: 16px;
@@ -32,7 +34,7 @@ export const AlbumsList = styled.div`
   display: flex;
   padding: 0 0 6px 0;
   overflow-x: scroll;
-  padding: 0 10px 0 0;
+  padding: 0 10px 0 15px;
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
@@ -122,7 +124,7 @@ export const Photo = styled.img`
   }
 `;
 export const AlbumsWrapper = styled.div`
-  padding: 0 0 0 15px;
+  padding: 0;
   width: 100%;
   margin: 0 auto;
   //max-width: 450px;
