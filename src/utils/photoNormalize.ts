@@ -1,3 +1,4 @@
+// @ts-ignore
 import Compressor from "compressorjs";
 
  const normalizeFunc = (file: File) => {
@@ -5,10 +6,10 @@ import Compressor from "compressorjs";
     new Compressor(file, {
       maxWidth: 1000,
       maxHeight: 1000,
-      success(normalizedFile) {
+      success(normalizedFile: any) {
         resolve(normalizedFile as File);
       },
-      error(error) {
+      error(error: any) {
         reject(error);
       },
     });
