@@ -57,10 +57,10 @@ export const Cross = styled.img`
 `;
 export const Img = styled.img`
   object-fit: contain;
-  /* max-height: 100vh;
-  height: 100%; */
+  max-height: 500px;
+
   @media (min-width: 1440px) {
-    /* max-height: 100vh; */
+    max-height: unset;
     //height: 100%;
     max-width: 1243px;
     object-fit: contain;
