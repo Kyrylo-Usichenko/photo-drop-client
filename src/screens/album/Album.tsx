@@ -37,7 +37,7 @@ const Album = () => {
 
   const onBackClick = () => {
     dispatch(setAlbumPhotos(null));
-    nav(-1);
+    nav('/dashboard');
   };
   return (
     <Wrapper>
