@@ -14,10 +14,16 @@ const Photo = ({ thumbnail, image, imageId }: Props) => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.touchAction = "none";
+      window.addEventListener("scroll", (e) => {
+        e.preventDefault();
+      });
     } else {
+      window.removeEventListener("scroll", (e) => {
+      });
       document.body.style.overflow = "visible";
       document.body.style.touchAction = "auto";
     }
+    return window.removeEventListener("scroll", (e) => {});
   }, [isOpen]);
   return (
     <Wrapper>
