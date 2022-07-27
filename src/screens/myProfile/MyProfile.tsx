@@ -1,22 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import Cropper from "react-easy-crop";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { AppDispatch } from "../../App";
+import { getCroppedImage } from "../../components/common/cropImage/CropImage";
+import useOnClickOutside from "../../components/hooks/useOnClickOutside";
 import { Container } from "../../components/shared/container/Container";
-import {
-  Avatar,
-  AvatarWrapper,
-  Edit,
-  Heading,
-  TabTopText,
-  YourSelfie,
-  TabBotText,
-  LeftWrapper,
-  Wrapper,
-  ArrowRight,
-} from "./MyProfileStyles";
+import Header from "../../components/shared/header/Header";
+import Loader from "../../components/shared/loader/Loader";
+import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
+import { Tab } from "../../components/shared/tab/Tab";
 import { State } from "../../store";
 import { sendPhoto } from "../../store/actions/user";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../App";
-import { useNavigate } from "react-router-dom";
+import photoNormalize from "../../utils/photoNormalize";
 import {
   Action,
   BottomWrapper,
@@ -29,13 +25,18 @@ import {
   Retake,
   Save,
 } from "../addSelfie/AddSelfieStyles";
-import Loader from "../../components/shared/loader/Loader";
-import Cropper from "react-easy-crop";
-import { getCroppedImage } from "../../components/common/cropImage/CropImage";
-import Header from "../../components/shared/header/Header";
-import { Tab } from "../../components/shared/tab/Tab";
-import useOnClickOutside from "../../components/hooks/useOnClickOutside";
-import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
+import {
+  ArrowRight,
+  Avatar,
+  AvatarWrapper,
+  Edit,
+  Heading,
+  LeftWrapper,
+  TabBotText,
+  TabTopText,
+  Wrapper,
+  YourSelfie,
+} from "./MyProfileStyles";
 
 const MyProfile = () => {
   const nav = useNavigate();
@@ -66,18 +67,14 @@ const MyProfile = () => {
     setZoom(1);
   };
   const onEditClick = () => {
-    console.log("clicked");
     selfieInput.current!.value! = "";
-
     selfieInput.current!.click();
   };
 
-  const onSelfieSelect = (e: any) => {
-    console.log("clicked2");
+  const onSelfieSelect = async (e: any) => {
     const file = e.target.files[0];
-    console.log(e.target.files);
-
-    const fileUrl = URL.createObjectURL(file);
+    const newFile = await photoNormalize(file);
+    const fileUrl = URL.createObjectURL(newFile);
     setSelfieURL(fileUrl);
     setIsOpen(true);
   };
