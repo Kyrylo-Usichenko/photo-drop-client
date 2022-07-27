@@ -99,7 +99,7 @@ const MyProfile = () => {
 
   return (
     <div>
-      <Header backUrl />
+      <Header backUrl='/dashboard' />
       <Container>
         <Wrapper>
           <Heading>
