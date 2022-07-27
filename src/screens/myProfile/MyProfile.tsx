@@ -99,7 +99,7 @@ const MyProfile = () => {
 
   return (
     <div>
-      <Header backUrl='/dashboard' />
+      <Header backUrl="/dashboard" />
       <Container>
         <Wrapper>
           <Heading>
@@ -179,6 +179,8 @@ const MyProfile = () => {
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
+              aspect={1}
+              // cropSize={{ width: 285, height: 285 }}
             />
           </CropInner>
           <Buttons>
