@@ -1,31 +1,32 @@
-import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 import LandscapeImage from "../../../screens/landscapeImage/LandscapeImage";
 
 interface Props {
-    thumbnail?: string,
-    image?: string,
-    imageId: string,
+  thumbnail?: string;
+  image?: string;
+  imageId: string;
 }
 
-const Photo = ({thumbnail, image, imageId}: Props) => {
-    const [isOpen, setIsOpen] = useState(false)
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = 'visible'
-        }
-    }, [isOpen])
-    return (
-        <Wrapper>
-            <Img onClick={() => setIsOpen(true)} src={thumbnail} loading='lazy'/>
-            {
-                isOpen ? <LandscapeImage imageId={imageId} setIsOpen={setIsOpen} image={image}/> : null
-            }
-        </Wrapper>
-
-    );
+const Photo = ({ thumbnail, image, imageId }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "visible";
+      document.body.style.touchAction = "auto";
+    }
+  }, [isOpen]);
+  return (
+    <Wrapper>
+      <Img onClick={() => setIsOpen(true)} src={thumbnail} loading="lazy" />
+      {isOpen ? (
+        <LandscapeImage imageId={imageId} setIsOpen={setIsOpen} image={image} />
+      ) : null}
+    </Wrapper>
+  );
 };
 
 export const Img = styled.img`
@@ -34,7 +35,7 @@ export const Img = styled.img`
   width: 100%;
   flex: 0 1 33.33333%;
   cursor: pointer;
-  background: #D3D3D3;
+  background: #d3d3d3;
   @media (min-width: 1440px) {
     height: 400px;
   }
@@ -45,7 +46,7 @@ export const Wrapper = styled.div`
   max-width: 33.33%;
   flex: 0 1 33.33333%;
   cursor: pointer;
-  background: #D3D3D3;
+  background: #d3d3d3;
   width: 100%;
   @media (min-width: 1440px) {
     height: 400px;
