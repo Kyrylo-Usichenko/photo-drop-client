@@ -44,6 +44,7 @@ export const Avatar = styled.img`
   right: 15px;
   top: 10px;
   cursor: pointer;
+  object-fit: cover;
   @media (min-width: 1440px) {
     top: 50%;
     right: 40px;

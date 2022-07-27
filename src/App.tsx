@@ -85,7 +85,7 @@ function App() {
               path="/account-settings"
               element={
                 <ProtectedRouter>
-                  <Header backUrl />
+                  <Header backUrl='/dashboard' />
                   <AccountSetting />
                 </ProtectedRouter>
               }

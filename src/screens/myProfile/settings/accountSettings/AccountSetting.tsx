@@ -1,69 +1,75 @@
-import React, { useEffect } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import {Container} from '../../../../components/shared/container/Container';
-import {Tab} from '../../../../components/shared/tab/Tab';
-import {State} from "../../../../store";
-import {AppDispatch} from "../../../../App";
-import {getUser} from "../../../../store/actions/user";
-import {LoaderWrapper} from "../../../userDashboard/UserDashboardStyles";
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { AppDispatch } from "../../../../App";
+import { Container } from "../../../../components/shared/container/Container";
 import LoaderGif from "../../../../components/shared/loaderGif/LoaderGif";
+import { Tab } from "../../../../components/shared/tab/Tab";
+import { State } from "../../../../store";
 
 const AccountSetting = () => {
-    const user = useSelector((state: State) => state.userReducer.user)
-    const isLoading = useSelector((state: State) => state.userReducer.isLoading)
-    const dispatch = useDispatch<AppDispatch>()
-    const nav = useNavigate();
+  const user = useSelector((state: State) => state.userReducer.user);
+  const isLoading = useSelector((state: State) => state.userReducer.isLoading);
+  const dispatch = useDispatch<AppDispatch>();
+  const nav = useNavigate();
 
-    // useEffect(()=>{
-    //     if (!user){
-    //         dispatch(getUser())
-    //     }
-    // })
-    console.log(user)
-    return (
-        <Container>
-            <Wrapper>
-                <Heading>
-                    Account settings
-                </Heading>
-                <Tab onClick={() => nav('/change-number')}>
-                    <TabLeft>
-                        <div>
-                            <img width='25px' height='30px' src="/assets/icons/phone.svg" alt=""/>
-                        </div>
-                        <Data>
-                            <DataTop>
-                                <Text>Phone •</Text><Verified> Verified</Verified>
-                            </DataTop>
-                            <Value>
-                                {user ? user.phone_number : 'no phone number in use'}
-                            </Value>
-                        </Data>
-                    </TabLeft>
-                    <Arrow src="/assets/icons/arrow-right.svg" alt=""/>
-                </Tab >
-                <Tab onClick={() => nav('/change-email')}>
-                    <TabLeft>
-                        <div>
-                            <img width='25px' height='20px' src="/assets/icons/letter.svg" alt=""/>
-                        </div>
-                        <Data>
-                            <DataTop>
-                                <Text>Email</Text>
-                            </DataTop>
-                            <Value>
-                                {user && user.email ? user.email : 'no email in use'}
-                            </Value>
-                        </Data>
-                    </TabLeft>
-                    <Arrow src="/assets/icons/arrow-right.svg" alt=""/>
-                </Tab>
-            </Wrapper>
-            <LoaderGif isLoading={isLoading}/>
-        </Container>
-    );
+  // useEffect(()=>{
+  //     if (!user){
+  //         dispatch(getUser())
+  //     }
+  // })
+  console.log(user);
+  return (
+    <Container>
+      <Wrapper>
+        <Heading>Account settings</Heading>
+        <Tab onClick={() => nav("/change-number")}>
+          <TabLeft>
+            <div>
+              <img
+                width="25px"
+                height="30px"
+                src="/assets/icons/phone.svg"
+                alt=""
+              />
+            </div>
+            <Data>
+              <DataTop>
+                <Text>Phone •</Text>
+                <Verified> Verified</Verified>
+              </DataTop>
+              <Value>
+                {user ? user.phone_number : "no phone number in use"}
+              </Value>
+            </Data>
+          </TabLeft>
+          <Arrow src="/assets/icons/arrow-right.svg" alt="" />
+        </Tab>
+        <Tab onClick={() => nav("/change-email")}>
+          <TabLeft>
+            <div>
+              <img
+                width="25px"
+                height="20px"
+                src="/assets/icons/letter.svg"
+                alt=""
+              />
+            </div>
+            <Data>
+              <DataTop>
+                <Text>Email</Text>
+              </DataTop>
+              <Value>
+                {user && user.email ? user.email : "no email in use"}
+              </Value>
+            </Data>
+          </TabLeft>
+          <Arrow src="/assets/icons/arrow-right.svg" alt="" />
+        </Tab>
+      </Wrapper>
+      <LoaderGif isLoading={isLoading} />
+    </Container>
+  );
 };
 const Wrapper = styled.div`
   max-width: 375px;
@@ -71,7 +77,7 @@ const Wrapper = styled.div`
 `;
 const Heading = styled.div`
   text-align: center;
-  font-family: 'Termina';
+  font-family: "Termina";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -105,7 +111,7 @@ const Text = styled.span`
   color: #262626;
 `;
 const Verified = styled.span`
-  color: #015B08;
+  color: #015b08;
 `;
 
 const Value = styled.div`
