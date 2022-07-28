@@ -91,12 +91,12 @@ export const AlbumNameWrapper = styled.div`
   left: 0;
   background: linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.7) 44.34%,
+    rgba(0, 0, 0, 0.5) 44.34%,
     rgba(0, 0, 0, 0) 100%
   );
   background: -webkit-linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.7) 44.34%,
+    rgba(0, 0, 0, 0.5) 44.34%,
     rgba(0, 0, 0, 0) 100%
   );
   border-radius: 0 0px 20px 20px;
