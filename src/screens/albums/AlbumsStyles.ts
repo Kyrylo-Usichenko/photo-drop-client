@@ -49,7 +49,7 @@ export const AlbumsList = styled.div`
 export const AlbumPhoto = styled.img`
   width: 110px;
   height: 140px;
-  background: #D3D3D3;
+  background: #d3d3d3;
   object-fit: cover;
   border-radius: 20px;
   @media (min-width: 1440px) {
@@ -63,7 +63,7 @@ export const AlbumName = styled.div`
   font-size: 12px;
   line-height: 15px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 44px auto 0;
   @media (min-width: 1440px) {
     margin: 104px auto 0;
@@ -89,8 +89,17 @@ export const AlbumNameWrapper = styled.div`
   height: 73px;
   bottom: 0;
   left: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 44.34%, rgba(0, 0, 0, 0) 100%);
-  border-radius: 20px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7) 44.34%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.7) 44.34%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border-radius: 0 0px 20px 20px;
   @media (min-width: 1440px) {
     height: 133px;
     width: 200px;
@@ -118,7 +127,7 @@ export const Photo = styled.img`
   max-width: 33.33%;
   flex: 0 1 33.33333%;
   cursor: pointer;
-  background: #D3D3D3;
+  background: #d3d3d3;
   @media (min-width: 1440px) {
     height: 400px;
   }
@@ -142,7 +151,3 @@ export const ButtonWrapper = styled.div`
     margin: 100px auto 100px;
   }
 `;
-
-
-
-
