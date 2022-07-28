@@ -1,7 +1,7 @@
-import { User } from "../reducers/user";
 import { createActionCreators } from "immer-reducer";
-import { AsyncAction } from "./common";
 import TokensLocalStorage from "../../utils/local-storage/TokensLocalStorage";
+import { User } from "../reducers/user";
+import { AsyncAction } from "./common";
 
 export const userActions = createActionCreators(User);
 
@@ -281,7 +281,6 @@ export const getUser =
       // }, 1000)
       dispatch(userActions.setAuth(true));
     } catch (e) {
-      console.log(e);
       dispatch(setLoading(false));
       dispatch(userActions.setAuth(false));
       localStorage.clear();
