@@ -102,6 +102,7 @@ const MobileSignUpVerification = ({ update }: Props) => {
           </NumberWrapper>
 
           <
+            
             // @ts-ignore
             ReactCodeInput
             name="resetPassword"
