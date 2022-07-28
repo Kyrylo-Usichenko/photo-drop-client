@@ -8,19 +8,19 @@ import Button from "../../components/shared/button/Button";
 import { Container } from "../../components/shared/container/Container";
 import { State } from "../../store";
 import {
-  redirectUser,
-  resendPhone,
-  resendUpdatePhone,
-  sendOtp,
-  sendUpdateOtp,
-  setLoading,
+    redirectUser,
+    resendPhone,
+    resendUpdatePhone,
+    sendOtp,
+    sendUpdateOtp,
+    setLoading
 } from "../../store/actions/user";
 import {
-  Heading,
-  Number,
-  NumberWrapper,
-  Resend,
-  Wrapper,
+    Heading,
+    Number,
+    NumberWrapper,
+    Resend,
+    Wrapper
 } from "./MobileSignUpVerificationStyles";
 
 interface Props {
@@ -100,7 +100,10 @@ const MobileSignUpVerification = ({ update }: Props) => {
             Enter the code sent to
             <Number> {phone}</Number>
           </NumberWrapper>
-          <ReactCodeInput
+
+          <
+            // @ts-ignore
+            ReactCodeInput
             name="resetPassword"
             inputMode="numeric"
             fields={6}
