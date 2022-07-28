@@ -20,7 +20,6 @@ export const Avatar = styled.div`
   margin: 30px 0 0;
   @media (min-width: 1440px) {
     margin: 28px 0 0;
-
   }
 `;
 export const Circle = styled.div`
@@ -29,8 +28,8 @@ export const Circle = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  background: #3300CC;
-  border: 1px solid #3300CC;
+  background: #3300cc;
+  border: 1px solid #3300cc;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -57,7 +56,7 @@ export const HorizontalLine = styled.div`
   transform: translate(-50%, -50%);
 `;
 export const Add = styled.div`
-  font-family: 'Termina';
+  font-family: "Termina";
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -91,7 +90,7 @@ export const Item = styled.li`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 0.5px solid #AEAEAE;
+  border-bottom: 0.5px solid #aeaeae;
   height: 40px;
   padding: 10px 9px 10px 14px;
   align-items: center;
@@ -101,7 +100,7 @@ export const Item = styled.li`
   }
 `;
 
-export const DarkWindow = styled.div<{isOpen: boolean}>`
+export const DarkWindow = styled.div<{ isOpen: boolean }>`
   display: none;
   @media (min-width: 1440px) {
     width: 100%;
@@ -109,13 +108,13 @@ export const DarkWindow = styled.div<{isOpen: boolean}>`
     top: 0;
     left: 0;
     position: fixed;
-    display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     z-index: 998;
     background: #000000;
     opacity: 0.5;
   }
 `;
-export const CropWrapper = styled.div<{isOpen: boolean}>`
+export const CropWrapper = styled.div<{ isOpen: boolean }>`
   background: #262626;
   width: 100%;
   height: 100%;
@@ -124,7 +123,7 @@ export const CropWrapper = styled.div<{isOpen: boolean}>`
   left: 0;
   position: fixed;
   overflow: hidden;
-  display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
+  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   z-index: 999;
@@ -135,7 +134,6 @@ export const CropWrapper = styled.div<{isOpen: boolean}>`
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 20px;
-
   }
 `;
 export const CropInner = styled.div`
@@ -156,7 +154,7 @@ export const Buttons = styled.div`
   max-width: 375px;
 `;
 export const Retake = styled.button`
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 50px;
   width: 170px;
   height: 50px;
@@ -165,13 +163,13 @@ export const Retake = styled.button`
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   outline: none;
-
+  cursor: pointer;
 `;
 export const Save = styled.button`
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 50px;
   width: 170px;
   height: 50px;
@@ -186,6 +184,7 @@ export const Save = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 export const HeaderCrop = styled.div`
   text-align: center;
@@ -193,7 +192,7 @@ export const HeaderCrop = styled.div`
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;
-  color: #FFFFFF;
+  color: #ffffff;
   position: relative;
   margin: 23px 0 94px;
   width: 100%;
@@ -207,7 +206,7 @@ export const Action = styled.div`
   align-items: center;
   text-align: center;
   margin: 0 0 42px;
-  color: #FFFFFF;
+  color: #ffffff;
 `;
 
 export const Cross = styled.img`
@@ -224,6 +223,3 @@ export const BottomWrapper = styled.div`
   height: 100%;
   width: 100%;
 `;
-
-
-

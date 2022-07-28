@@ -35,7 +35,7 @@ const Albums = () => {
   useEffect(() => {
     if (!allPhotos) dispatch(getAllPhotos());
   }, []);
-  console.log(albums);
+
 
   return (
     <div style={{ overflowX: "scroll" }}>

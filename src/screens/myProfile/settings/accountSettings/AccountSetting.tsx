@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { AppDispatch } from "../../../../App";
 import { Container } from "../../../../components/shared/container/Container";
 import LoaderGif from "../../../../components/shared/loaderGif/LoaderGif";
 import { Tab } from "../../../../components/shared/tab/Tab";
@@ -10,15 +9,9 @@ import { State } from "../../../../store";
 const AccountSetting = () => {
   const user = useSelector((state: State) => state.userReducer.user);
   const isLoading = useSelector((state: State) => state.userReducer.isLoading);
-  const dispatch = useDispatch<AppDispatch>();
+
   const nav = useNavigate();
 
-  // useEffect(()=>{
-  //     if (!user){
-  //         dispatch(getUser())
-  //     }
-  // })
-  console.log(user);
   return (
     <Container>
       <Wrapper>

@@ -49,6 +49,8 @@ const MyProfile = () => {
   const [selfieUrl, setSelfieURL] = useState<string | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const [minZoom, setMinZoom] = useState(1);
+
   const [isOpen, setIsOpen] = useState(false);
   const [photo, setPhoto] = useState<null | Blob>(null);
   const selfieInput = useRef<HTMLInputElement>(null);
@@ -83,6 +85,7 @@ const MyProfile = () => {
     onCloseModalClick();
   });
 
+
   const onCropComplete = useCallback(
     async (croppedArea: any, croppedAreaPixels: any) => {
       if (selfieUrl) {
@@ -91,7 +94,6 @@ const MyProfile = () => {
           croppedAreaPixels
         );
         setPhoto(croppedImage);
-        console.log(photo);
       }
     },
     [crop, zoom, photo, selfieUrl]
@@ -179,8 +181,14 @@ const MyProfile = () => {
               onCropChange={setCrop}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
+              minZoom={minZoom}
+              onMediaLoaded={({ height, width }) => {
+                const smallerSide = height >= width ? width : height;
+                setMinZoom(285 / smallerSide);
+                setZoom(285 / smallerSide);
+              }}
               aspect={1}
-              // cropSize={{ width: 285, height: 285 }}
+              cropSize={{ width: 285, height: 285 }}
             />
           </CropInner>
           <Buttons>
