@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import Header from "../../components/shared/header/Header";
-import { getSelfie } from "../../store/actions/user";
-import { State } from "../../store";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../App";
+import Header from "../../components/shared/header/Header";
+import { State } from "../../store";
+import { getSelfie } from "../../store/actions/user";
 import { Heading, Inner, Wrapper } from "./PrivacyPolicyStyles";
 
 const PrivacyPolicy = () => {
@@ -14,6 +14,9 @@ const PrivacyPolicy = () => {
       dispatch(getSelfie());
     }
   });
+useEffect(() => {
+  window.scrollTo(0, 0);
+});
   return (
     <Wrapper>
       <Header imageSrc={selfie} />
@@ -558,6 +561,5 @@ const PrivacyPolicy = () => {
     </Wrapper>
   );
 };
-
 
 export default PrivacyPolicy;

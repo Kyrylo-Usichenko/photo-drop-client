@@ -24,6 +24,7 @@ const PhoneSearch: React.FC<Props> = ({ handlerCloseSearch, setCountry, countryL
         if (listWrapper.current !== null) {
             listWrapper.current!.addEventListener('scroll', hideKeyboardOnScroll, false);
             window.addEventListener('scroll', hideKeyboardOnScroll, false);
+            
         }
 
         return () => {

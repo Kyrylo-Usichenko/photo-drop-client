@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Header from "../../components/shared/header/Header";
-import { getSelfie } from "../../store/actions/user";
-import { State } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../App";
-import { Heading, Inner, Wrapper } from "./TermsOfUseStyles";
 import { Link } from "react-router-dom";
+import { AppDispatch } from "../../App";
+import Header from "../../components/shared/header/Header";
+import { State } from "../../store";
+import { getSelfie } from "../../store/actions/user";
+import { Heading, Inner, Wrapper } from "./TermsOfUseStyles";
 
 const TermsOfService = () => {
   const selfie = useSelector((state: State) => state.userReducer.selfie);
@@ -15,7 +15,9 @@ const TermsOfService = () => {
       dispatch(getSelfie());
     }
   });
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <Wrapper>
       <Header imageSrc={selfie} />

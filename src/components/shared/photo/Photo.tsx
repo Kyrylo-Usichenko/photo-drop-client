@@ -16,6 +16,7 @@ const Photo = ({ thumbnail, image, imageId }: Props) => {
       document.body.style.touchAction = "none";
       window.addEventListener("scroll", (e) => {
         e.preventDefault();
+
       });
     } else {
       window.removeEventListener("scroll", (e) => {

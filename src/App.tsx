@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
@@ -24,6 +25,9 @@ import store from "./store";
 export type AppDispatch = typeof store.dispatch;
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <Wrapper>
       <Provider store={store}>
@@ -85,7 +89,7 @@ function App() {
               path="/account-settings"
               element={
                 <ProtectedRouter>
-                  <Header backUrl='/dashboard' />
+                  <Header backUrl="/dashboard" />
                   <AccountSetting />
                 </ProtectedRouter>
               }
