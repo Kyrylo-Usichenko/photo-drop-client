@@ -10,6 +10,7 @@ import Header from "../../components/shared/header/Header";
 import Loader from "../../components/shared/loader/Loader";
 import { State } from "../../store";
 import { redirectUser, setUserSelfie } from "../../store/actions/user";
+import photoNormalize from "../../utils/photoNormalize";
 import {
   Action,
   Add,
@@ -54,7 +55,8 @@ const AddSelfie = () => {
 
   const onUploadChange = async (e: any) => {
     const file = e.target.files[0];
-    const fileUrl = URL.createObjectURL(file);
+    const newFile = await photoNormalize(file);
+    const fileUrl = URL.createObjectURL(newFile);
     setPhotoURL(fileUrl as any);
   };
   const onAddClick = () => {
