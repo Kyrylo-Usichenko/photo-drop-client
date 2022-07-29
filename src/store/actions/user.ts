@@ -32,7 +32,7 @@ export const sendPhone =
         phone_number: phone,
       });
       dispatch(userActions.setPhone(phone));
-      dispatch(userActions.redirectUser("/sms-verification"));
+      // dispatch(userActions.redirectUser("/sms-verification"));
     } catch (e) {
       console.log(e);
       alert("Send error");

@@ -35,11 +35,25 @@ function App() {
           <Routes>
             <Route path="/login" element={<MobileSignUp />} />
             <Route
+              path="/login-onboarding"
+              element={<MobileSignUp secondOnboarding />}
+            />
+
+            <Route
               path="/sms-verification"
               element={
                 <div>
                   <Header logoToMainPage={false} backUrl="/login" />
                   <MobileSignUpVerification />
+                </div>
+              }
+            />
+            <Route
+              path="/sms-verification-onboarding"
+              element={
+                <div>
+                  <Header logoToMainPage={false} backUrl="/login-onboarding" />
+                  <MobileSignUpVerification secondOnboarding />
                 </div>
               }
             />

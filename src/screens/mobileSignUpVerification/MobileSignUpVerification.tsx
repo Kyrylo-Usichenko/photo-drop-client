@@ -8,26 +8,30 @@ import Button from "../../components/shared/button/Button";
 import { Container } from "../../components/shared/container/Container";
 import { State } from "../../store";
 import {
-    redirectUser,
-    resendPhone,
-    resendUpdatePhone,
-    sendOtp,
-    sendUpdateOtp,
-    setLoading
+  redirectUser,
+  resendPhone,
+  resendUpdatePhone,
+  sendOtp,
+  sendUpdateOtp,
+  setLoading
 } from "../../store/actions/user";
 import {
-    Heading,
-    Number,
-    NumberWrapper,
-    Resend,
-    Wrapper
+  Heading,
+  Number,
+  NumberWrapper,
+  Resend,
+  Wrapper
 } from "./MobileSignUpVerificationStyles";
 
 interface Props {
   update?: boolean;
+  secondOnboarding?: boolean;
 }
 
-const MobileSignUpVerification = ({ update }: Props) => {
+const MobileSignUpVerification = ({
+  update,
+  secondOnboarding,
+}: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   const phone = useSelector((state: State) => state.userReducer.phone);
@@ -45,20 +49,24 @@ const MobileSignUpVerification = ({ update }: Props) => {
   const onNextClick = () => {
     dispatch(update ? sendUpdateOtp(phone, otp) : sendOtp(phone, otp));
   };
+    useEffect(() => {
+      if(user){
+ if (user && user.selfie?.photo_url) {
+   secondOnboarding ? nav("/onboarding") : nav("/dashboard");
+   dispatch(setLoading(false));
+ } else {
+   secondOnboarding ? nav("/onboarding") : nav("/dashboard");
+   dispatch(setLoading(false));
+ }
+      }
+    }, [user]);
 
-  useEffect(() => {
-    if (user && user.selfie?.photo_url) {
-      nav("/dashboard");
-      dispatch(setLoading(false));
-    } else {
-      nav("/selfie");
-      dispatch(setLoading(false));
-    }
-  }, [user]);
 
   useEffect(() => {
     dispatch(redirectUser(null));
-    if (redirectToUrl) nav(redirectToUrl);
+    if (redirectToUrl) {
+      secondOnboarding ? nav("/onboarding") : nav(redirectToUrl);
+    }
   }, [user, redirectToUrl]);
 
   useEffect(() => {
@@ -66,7 +74,8 @@ const MobileSignUpVerification = ({ update }: Props) => {
       nav("/account-settings");
     }
     if (phone === "" && !update) {
-      nav("/login");
+      
+      secondOnboarding ? nav("/login-onboarding") : nav("/login");
     }
   });
   const props = {
@@ -102,7 +111,6 @@ const MobileSignUpVerification = ({ update }: Props) => {
           </NumberWrapper>
 
           <
-            
             // @ts-ignore
             ReactCodeInput
             name="resetPassword"

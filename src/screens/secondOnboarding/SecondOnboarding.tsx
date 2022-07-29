@@ -24,6 +24,8 @@ const SecondOnboarding = () => {
         if (email) nav('/dashboard')
 
     }
+    console.log('onboarding');
+    
     const onSeeClick = async () => {
         setLoading(true)
         await dispatch(updateEmail(email))
@@ -41,7 +43,7 @@ const SecondOnboarding = () => {
                                     <Header/>
                                     <Container>
                                         <HeadingEmail>
-                                            Hey there, Jane Smith! 👋
+                                            Hey there, {user.full_name}! 👋
                                         </HeadingEmail>
                                         <Input type="email"
                                                placeholder='the.real.jane.smith@gmail.com'
