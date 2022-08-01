@@ -1,5 +1,7 @@
+/* eslint-disable no-restricted-globals */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -29,9 +31,17 @@ const UserDashboard = () => {
   const tempSelfie = useSelector(
     (state: State) => state.userReducer.tempSelfie
   );
+  const nav = useNavigate();
   const isLoading = useSelector((state: State) => state.userReducer.isLoading);
   const albums = useSelector((state: State) => state.userReducer.albums);
   const allPhotos = useSelector((state: State) => state.userReducer.allPhotos);
+  useEffect(() => {
+    //@ts-ignore
+    history.pushState(null, null, location.href);
+    window.onpopstate = function (event) {
+      history.go(1);
+    };
+  });
 
   useEffect(() => {
     if (!albums) dispatch(getAlbums());
@@ -104,6 +114,7 @@ const UserDashboard = () => {
           <LoaderGif isLoading={isLoading} />
         </div>
       )}
+      {/* <DisableBackButton /> */}
     </Sda>
   );
 };
