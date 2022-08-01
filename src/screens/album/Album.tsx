@@ -29,6 +29,20 @@ const Album = () => {
   const albumPhotos = useSelector(
     (state: State) => state.userReducer.albumPhotos
   );
+  const albumLocation = useSelector(
+    (state: State) => state.userReducer.albumLocation
+  );
+  let date = useSelector((state: State) => {
+    const timeStamp = state.userReducer.albumDate;
+    const date1 = new Date(timeStamp as number);
+    const date = {
+      month: date1.toLocaleString("default", { month: "short" }),
+      day: date1.getDate(),
+      year: date1.getFullYear(),
+    };
+    return date;
+  });
+
   const nav = useNavigate();
 
   useEffect(() => {
@@ -37,7 +51,7 @@ const Album = () => {
 
   const onBackClick = () => {
     dispatch(setAlbumPhotos(null));
-    nav('/dashboard');
+    nav("/dashboard");
   };
   return (
     <Wrapper>
@@ -52,9 +66,9 @@ const Album = () => {
               />
               <Inner>
                 <Data>
-                  <Name>Brooklyn Bridge</Name>
+                  <Name>{albumLocation}</Name>
                   <FooterBot>
-                    Jan 10, 2022 •
+                    {`${date.month} ${date.day}, ${date.year} •`}
                     <Count>{albumPhotos ? albumPhotos.length : 0} photos</Count>
                   </FooterBot>
                 </Data>

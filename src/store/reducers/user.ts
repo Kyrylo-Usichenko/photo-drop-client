@@ -131,10 +131,10 @@ export class User extends ImmerReducer<UserState> {
   setAlbumsPhotos(photos: Array<any>) {
     this.draftState.albumsPhotos = [...this.draftState.albumsPhotos, ...photos];
   }
-  setAlbumPhotos(data: { photos: any; date: number; locations: string }) {
+  setAlbumPhotos(data: { photos: any; date: number; location: string }) {
     this.draftState.albumPhotos = data.photos;
     this.draftState.albumDate = data.date;
-    this.draftState.albumLocation = data.locations;
+    this.draftState.albumLocation = data.location;
   }
   setAllPhotos(photos: Array<any> | null) {
     this.draftState.allPhotos = photos;

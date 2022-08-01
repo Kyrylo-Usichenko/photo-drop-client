@@ -106,6 +106,7 @@ const MobileSignUp = ({ secondOnboarding}: Props) => {
                 placeholder="+1 (555) 555-5555"
                 pattern="\+[0-9]{1,4}\s{1}[0-9]*"
                 type="tel"
+                autoComplete="on"
               />
             </Filling>
             <Button
