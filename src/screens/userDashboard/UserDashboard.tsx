@@ -114,7 +114,6 @@ const UserDashboard = () => {
           <LoaderGif isLoading={isLoading} />
         </div>
       )}
-      {/* <DisableBackButton /> */}
     </Sda>
   );
 };
