@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import FileSaver from "file-saver";
 import {
   Button,
   Cross,
@@ -12,7 +12,6 @@ import {
   Word,
   Wrapper,
 } from "./LandscapeImageStyles";
-import FileSaver from "file-saver";
 
 interface Props {
   image?: any;
@@ -29,7 +28,7 @@ const LandscapeImage = ({ image, setIsOpen, imageId }: Props) => {
     // Check if n isavigator.share supported by the browser
     if (navigator.share) {
       navigator.share({
-        url: `https://share.toogoodtogo.com/store/1006/milestones/meals-saved/`,
+        url: image,
       });
     } else {
       copyToClipboard();
