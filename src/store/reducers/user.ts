@@ -22,11 +22,13 @@ interface UserState {
       photo_url: string;
     };
   } | null;
+  album: {
+    photos: Array<any> | null;
+    date: number | null;
+    location: string | null;
+  } | null;
   albums: Array<any> | null;
   albumsPhotos: Array<any>;
-  albumPhotos: Array<any> | null;
-  albumDate: number | null;
-  albumLocation: string | null;
   allPhotos: Array<any> | null;
 }
 
@@ -41,9 +43,7 @@ const initialState: UserState = {
   user: null,
   albums: null,
   albumsPhotos: [],
-  albumPhotos: null,
-  albumDate: null,
-  albumLocation: null,
+  album: null,
   allPhotos: null,
 };
 
@@ -131,10 +131,8 @@ export class User extends ImmerReducer<UserState> {
   setAlbumsPhotos(photos: Array<any>) {
     this.draftState.albumsPhotos = [...this.draftState.albumsPhotos, ...photos];
   }
-  setAlbumPhotos(data: { photos: any; date: number; location: string }) {
-    this.draftState.albumPhotos = data.photos;
-    this.draftState.albumDate = data.date;
-    this.draftState.albumLocation = data.location;
+  setAlbum(data: { photos: any; date: number; location: string } | null) {
+    this.draftState.album = data;
   }
   setAllPhotos(photos: Array<any> | null) {
     this.draftState.allPhotos = photos;

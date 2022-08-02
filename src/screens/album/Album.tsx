@@ -7,7 +7,7 @@ import { Container } from "../../components/shared/container/Container";
 import Footer from "../../components/shared/footer/Footer";
 import Photo from "../../components/shared/photo/Photo";
 import { State } from "../../store";
-import { getAlbumPhotos, setAlbumPhotos } from "../../store/actions/user";
+import { getAlbum, setAlbum } from "../../store/actions/user";
 import {
   Back,
   ButtonWrapper,
@@ -26,36 +26,26 @@ const Album = () => {
   const dispatch = useDispatch<AppDispatch>();
   const params = useParams();
   const albumId = params.id;
-  const albumPhotos = useSelector(
-    (state: State) => state.userReducer.albumPhotos
-  );
-  const albumLocation = useSelector(
-    (state: State) => state.userReducer.albumLocation
-  );
-  let date = useSelector((state: State) => {
-    const timeStamp = state.userReducer.albumDate;
-    const date1 = new Date(timeStamp as number);
-    const date = {
-      month: date1.toLocaleString("default", { month: "short" }),
-      day: date1.getDate(),
-      year: date1.getFullYear(),
-    };
-    return date;
-  });
-
   const nav = useNavigate();
+  const album = useSelector((state: State) => state.userReducer.album);
+  const timestamp = new Date(album?.date as number);
+  const date = {
+    month: timestamp.toLocaleString("default", { month: "short" }),
+    day: timestamp.getDate(),
+    year: timestamp.getFullYear(),
+  };
 
   useEffect(() => {
-    dispatch(getAlbumPhotos(albumId as string));
+    dispatch(getAlbum(albumId as string));
   }, []);
 
   const onBackClick = () => {
-    dispatch(setAlbumPhotos(null));
+    dispatch(setAlbum(null));
     nav("/dashboard");
   };
   return (
     <Wrapper>
-      {albumPhotos ? (
+      {album?.photos ? (
         <div>
           <div>
             <Header>
@@ -66,18 +56,20 @@ const Album = () => {
               />
               <Inner>
                 <Data>
-                  <Name>{albumLocation}</Name>
+                  <Name>{album.location}</Name>
                   <FooterBot>
                     {`${date.month} ${date.day}, ${date.year} •`}
-                    <Count>{albumPhotos ? albumPhotos.length : 0} photos</Count>
+                    <Count>
+                      {album.photos ? album.photos.length : 0} photos
+                    </Count>
                   </FooterBot>
                 </Data>
                 <Unlock>Unlock your photos</Unlock>
               </Inner>
             </Header>
             <Photos>
-              {albumPhotos &&
-                albumPhotos.map((photo) => (
+              {album.photos &&
+                album.photos.map((photo) => (
                   <Photo
                     key={photo.id}
                     imageId={photo.id}

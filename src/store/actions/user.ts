@@ -21,7 +21,7 @@ export type UserActions =
   | ReturnType<typeof userActions.setAllPhotos>
   | ReturnType<typeof userActions.setAlbumsPhotos>
   | ReturnType<typeof userActions.setUserSelfie1>
-  | ReturnType<typeof userActions.setAlbumPhotos>
+  | ReturnType<typeof userActions.setAlbum>
   | ReturnType<typeof userActions.setResponseCode>;
 
 export const sendPhone =
@@ -244,13 +244,13 @@ export const getPhotos =
     }
   };
 
-export const getAlbumPhotos =
+export const getAlbum =
   (id: string): AsyncAction =>
   async (dispatch, _, { mainProtectedApi }) => {
     try {
       dispatch(setLoading(true));
       const response = await mainProtectedApi.getPhotos(id);
-      dispatch(userActions.setAlbumPhotos(response.data));
+      dispatch(userActions.setAlbum(response.data));
       setTimeout(() => {
         dispatch(setLoading(false));
       }, 1500);
@@ -259,11 +259,11 @@ export const getAlbumPhotos =
       dispatch(setLoading(false));
     }
   };
-export const setAlbumPhotos =
+export const setAlbum =
   (array: any): AsyncAction =>
   (dispatch) => {
     try {
-      dispatch(userActions.setAlbumPhotos(array));
+      dispatch(userActions.setAlbum(array));
     } catch (e) {
       console.log(e);
     }
