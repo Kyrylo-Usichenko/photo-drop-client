@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 export const Filling = styled.div`
   display: flex;
   margin: 19px 0 0;
-  flex-direction: column;
+  /* flex-direction: column; */
 `;
 
 export const Agreement = styled.p`
