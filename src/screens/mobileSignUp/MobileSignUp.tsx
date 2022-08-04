@@ -112,7 +112,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 type="tel"
                 autoComplete="on"
               />
-              <PhoneInput
+              {/* <PhoneInput
                 international
                 countryCallingCodeEditable
                 mask="(+1) 999 999 9999"
@@ -128,7 +128,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 pattern="[+]{1}[0-9]{11,14}"
                 type="tel"
                 autoComplete="tel"
-              />
+              /> */}
             </Filling>
 
             <Button
