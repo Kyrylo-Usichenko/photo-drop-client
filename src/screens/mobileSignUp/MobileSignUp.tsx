@@ -118,6 +118,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 // country='RU'
                 type="tel"
                 autoComplete="tel"
+                pattern="[+]{1}[0-9]{11,14}"
                 onChange={setPhone}
               />
               <input
