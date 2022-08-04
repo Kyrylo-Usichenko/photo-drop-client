@@ -117,9 +117,10 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 // defaultCountry="US"
                 // country='RU'
                 // type="tel"
-                // autoComplete="tel"
+                autoComplete="on"
                 onChange={setPhone}
               />
+              <input type="tel" />
             </Filling>
 
             <Button
