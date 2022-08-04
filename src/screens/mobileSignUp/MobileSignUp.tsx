@@ -120,7 +120,11 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 autoComplete="tel"
                 onChange={setPhone}
               />
-              <input type="tel" autoComplete="tel" />
+              <input
+                pattern="[+]{1}[0-9]{11,14}"
+                type="tel"
+                autoComplete="tel"
+              />
             </Filling>
 
             <Button
