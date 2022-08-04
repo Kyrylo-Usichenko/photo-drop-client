@@ -1,0 +1,60 @@
+.PhoneInputInput {
+	width: 100%;
+	height: 40px;
+	background: #F4F4F4;
+	border: 1px solid #EEEEEE;
+	border-radius: 10px;
+	padding: 15px 13px 14px;
+	outline: none;
+	margin: 0 0 0 10px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 21px;
+	color: #262626;
+}
+
+.PhoneInputCountry {
+	min-width: 70px;
+	height: 40px;
+	background: #F4F4F4;
+	border: 1px solid #EEEEEE;
+	border-radius: 10px;
+	margin: 0 !important;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 0 10px 0 8px;
+	cursor: pointer;
+}
+
+.PhoneInputCountryIcon--border {
+	box-shadow: none !important;
+	background: none !important;
+}
+
+.PhoneInputCountryIcon {
+	width: 24px !important;
+	height: 24px !important;
+}
+
+.PhoneInputCountrySelectArrow {
+	/* background: url('/assets/icons/arrow-down.svg') !important; */
+
+	background: url('./../../../public/assets/icons/arrow-down.svg') !important;
+	width: 14px !important;
+	height: 7px !important;
+	margin-left: 8px !important;
+	border: none !important;
+	transform: none !important;
+	opacity: 1 !important;
+}
+
+.PhoneInput {
+	width: 100%;
+}

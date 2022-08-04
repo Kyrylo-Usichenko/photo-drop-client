@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import "./mobileSignUpStyles.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../App";
@@ -10,22 +14,20 @@ import Header from "../../components/shared/header/Header";
 import { State } from "../../store";
 import { sendPhone } from "../../store/actions/user";
 import { CountryFromList, countryList } from "../../utils/country-list";
+
 import {
   Agreement,
   EnterPhone,
   Filling,
-  Flag,
-  FlagWrapper,
   GetStarted,
   Links,
-  PhoneWrapper,
   Terms,
   Wrapper,
 } from "./MobileSignUpStyles";
 type Props = {
   secondOnboarding?: boolean;
 };
-const MobileSignUp = ({ secondOnboarding}: Props) => {
+const MobileSignUp = ({ secondOnboarding }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   const [isPhoneSearchOpen, setIsPhoneSearchOpen] = useToggle();
@@ -35,7 +37,8 @@ const MobileSignUp = ({ secondOnboarding}: Props) => {
     (state: State) => state.userReducer.redirectToUrl
   );
   const auth = useSelector((state: State) => state.userReducer.isAuth);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState<any>("");
+
   const [loading, setLoading] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<CountryFromList>({
     country: "United States",
@@ -47,9 +50,7 @@ const MobileSignUp = ({ secondOnboarding}: Props) => {
     try {
       setLoading(true);
 
-      await dispatch(
-        sendPhone(`+${(selectedCountry.code + phone).replace(/\D/g, "")}`)
-      );
+      await dispatch(sendPhone(`+${phone.replace(/\D/g, "")}`));
       secondOnboarding
         ? nav("/sms-verification-onboarding")
         : nav("/sms-verification");
@@ -92,7 +93,7 @@ const MobileSignUp = ({ secondOnboarding}: Props) => {
             <GetStarted>Let’s get started</GetStarted>
             <EnterPhone>Enter your phone number</EnterPhone>
             <Filling>
-              <FlagWrapper onClick={handlerOpenSearch}>
+              {/* <FlagWrapper onClick={handlerOpenSearch}>
                 <Flag src={selectedCountry.src} alt="" />
                 <img src={"/assets/icons/arrow-down.svg"} alt="" />
               </FlagWrapper>
@@ -107,8 +108,20 @@ const MobileSignUp = ({ secondOnboarding}: Props) => {
                 pattern="\+[0-9]{1,4}\s{1}[0-9]*"
                 type="tel"
                 autoComplete="on"
+              /> */}
+              <PhoneInput
+                international
+                countryCallingCodeEditable
+                mask="(+1) 999 999 9999"
+                value={phone}
+                defaultCountry="US"
+                country='RU'
+                type="tel"
+                autoComplete="tel"
+                onChange={setPhone}
               />
             </Filling>
+
             <Button
               isLoading={loading}
               margin="20px 0 0"

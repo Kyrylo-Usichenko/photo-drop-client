@@ -85,7 +85,6 @@ const MyProfile = () => {
     onCloseModalClick();
   });
 
-
   const onCropComplete = useCallback(
     async (croppedArea: any, croppedAreaPixels: any) => {
       if (selfieUrl) {

@@ -25,7 +25,7 @@ const LandscapeImage = ({ image, setIsOpen, imageId }: Props) => {
   };
 
   const handleShareButton = () => {
-    // Check if n isavigator.share supported by the browser
+    // Check if n isavigator.share suƒƒpported by the browser
     if (navigator.share) {
       navigator.share({
         url: image,
