@@ -53,7 +53,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
     try {
       setLoading(true);
 
-      await dispatch(sendPhone(`+${phone.replace(/\D/g, "")}`));
+      await dispatch(sendPhone(`+${(selectedCountry.code + phone).replace(/\D/g, "")}`));
       secondOnboarding
         ? nav("/sms-verification-onboarding")
         : nav("/sms-verification");

@@ -21,7 +21,13 @@ interface Props {
 
 const LandscapeImage = ({ image, setIsOpen, imageId }: Props) => {
   const onButtonClick = () => {
-    FileSaver.saveAs(image, imageId);
+    if (navigator.share) {
+      navigator.share({
+        url: image,
+      });
+    } else {
+      FileSaver.saveAs(image, imageId);
+    }
   };
 
   const handleShareButton = () => {
