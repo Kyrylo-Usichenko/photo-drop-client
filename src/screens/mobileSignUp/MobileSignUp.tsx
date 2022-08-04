@@ -19,8 +19,11 @@ import {
   Agreement,
   EnterPhone,
   Filling,
+  Flag,
+  FlagWrapper,
   GetStarted,
   Links,
+  PhoneWrapper,
   Terms,
   Wrapper,
 } from "./MobileSignUpStyles";
@@ -93,7 +96,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
             <GetStarted>Let’s get started</GetStarted>
             <EnterPhone>Enter your phone number</EnterPhone>
             <Filling>
-              {/* <FlagWrapper onClick={handlerOpenSearch}>
+              <FlagWrapper onClick={handlerOpenSearch}>
                 <Flag src={selectedCountry.src} alt="" />
                 <img src={"/assets/icons/arrow-down.svg"} alt="" />
               </FlagWrapper>
@@ -108,7 +111,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 pattern="\+[0-9]{1,4}\s{1}[0-9]*"
                 type="tel"
                 autoComplete="on"
-              /> */}
+              />
               <PhoneInput
                 international
                 countryCallingCodeEditable
