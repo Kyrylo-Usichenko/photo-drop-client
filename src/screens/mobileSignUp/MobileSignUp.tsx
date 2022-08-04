@@ -110,11 +110,11 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 autoComplete="on"
               /> */}
               <PhoneInput
-                // international
-                // countryCallingCodeEditable
-                // mask="(+1) 999 999 9999"
+                international
+                countryCallingCodeEditable
+                mask="(+1) 999 999 9999"
                 value={phone}
-                // defaultCountry="US"
+                defaultCountry="US"
                 // country='RU'
                 type="tel"
                 autoComplete="on"
