@@ -120,7 +120,7 @@ const MobileSignUp = ({ secondOnboarding }: Props) => {
                 autoComplete="on"
                 onChange={setPhone}
               />
-              <input type="tel" />
+              <input type="tel" autoComplete="on" />
             </Filling>
 
             <Button
