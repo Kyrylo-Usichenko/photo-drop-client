@@ -73,8 +73,8 @@ const Album = () => {
                   <Photo
                     key={photo.id}
                     imageId={photo.id}
-                    image={photo.image.image_with_watermark}
-                    thumbnail={photo.image.thumbnail_image}
+                    image={photo.image.full}
+                    thumbnail={photo.image.thumbnail}
                   />
                 ))}
             </Photos>
