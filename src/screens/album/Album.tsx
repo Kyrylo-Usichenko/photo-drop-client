@@ -43,6 +43,7 @@ const Album = () => {
     dispatch(setAlbum(null));
     nav("/dashboard");
   };
+
   return (
     <Wrapper>
       {album?.photos ? (
@@ -64,7 +65,7 @@ const Album = () => {
                     </Count>
                   </FooterBot>
                 </Data>
-                <Unlock>Unlock your photos</Unlock>
+                {album.is_unlocked ? null : <Unlock>Unlock your photos</Unlock>}
               </Inner>
             </Header>
             <Photos>
@@ -75,14 +76,17 @@ const Album = () => {
                     imageId={photo.id}
                     image={photo.image.full}
                     thumbnail={photo.image.thumbnail}
+                    isUnlocked={photo.isUnlocked}
                   />
                 ))}
             </Photos>
-            <Container>
-              <ButtonWrapper>
-                <Button>Unlock your photos</Button>
-              </ButtonWrapper>
-            </Container>
+            {album.is_unlocked ? null : (
+              <Container>
+                <ButtonWrapper>
+                  <Button>Unlock your photos</Button>
+                </ButtonWrapper>
+              </Container>
+            )}
           </div>
           <Footer />
         </div>

@@ -67,6 +67,7 @@ const Albums = () => {
                 imageId={photo.id}
                 thumbnail={photo.image.thumbnail}
                 image={photo.image.full}
+                isUnlocked={photo.is_unlocked}
               />
             ))}
         </Photos>

@@ -26,6 +26,7 @@ interface UserState {
     photos: Array<any> | null;
     date: number | null;
     location: string | null;
+    is_unlocked: boolean;
   } | null;
   albums: Array<any> | null;
   albumsPhotos: Array<any>;
@@ -131,7 +132,7 @@ export class User extends ImmerReducer<UserState> {
   setAlbumsPhotos(photos: Array<any>) {
     this.draftState.albumsPhotos = [...this.draftState.albumsPhotos, ...photos];
   }
-  setAlbum(data: { photos: any; date: number; location: string } | null) {
+  setAlbum(data: { photos: any; date: number; location: string, is_unlocked: boolean } | null) {
     this.draftState.album = data;
   }
   setAllPhotos(photos: Array<any> | null) {

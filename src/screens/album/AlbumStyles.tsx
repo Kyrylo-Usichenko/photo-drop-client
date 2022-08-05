@@ -114,7 +114,7 @@ export const Photos = styled.div`
   overflow: hidden;
   @media (min-width: 1440px) {
     max-width: 1200px;
-    margin: 0 auto 100px;
+    margin: 0 auto 0;
   }
 `;
 

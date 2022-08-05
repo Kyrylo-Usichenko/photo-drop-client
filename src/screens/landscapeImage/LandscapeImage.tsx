@@ -17,9 +17,10 @@ interface Props {
   image?: any;
   setIsOpen: (value: boolean) => void;
   imageId: string;
+  isUnlocked?: boolean;
 }
 
-const LandscapeImage = ({ image, setIsOpen, imageId }: Props) => {
+const LandscapeImage = ({ image, setIsOpen, imageId, isUnlocked }: Props) => {
   const onButtonClick = () => {
     if (navigator.share) {
       navigator.share({
@@ -66,7 +67,7 @@ const LandscapeImage = ({ image, setIsOpen, imageId }: Props) => {
       </CrossWrapper>
 
       <Img src={image} alt="" />
-      {false ? (
+      {!isUnlocked ? (
         <Button>Unlock photo</Button>
       ) : (
         <Footer>

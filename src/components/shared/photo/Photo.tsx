@@ -6,9 +6,10 @@ interface Props {
   thumbnail?: string;
   image?: string;
   imageId: string;
+  isUnlocked?: boolean;
 }
 
-const Photo = ({ thumbnail, image, imageId }: Props) => {
+const Photo = ({ thumbnail, image, imageId, isUnlocked }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     if (isOpen) {
@@ -30,7 +31,12 @@ const Photo = ({ thumbnail, image, imageId }: Props) => {
     <Wrapper>
       <Img onClick={() => setIsOpen(true)} src={thumbnail} loading="lazy" />
       {isOpen ? (
-        <LandscapeImage imageId={imageId} setIsOpen={setIsOpen} image={image} />
+        <LandscapeImage
+          isUnlocked={isUnlocked}
+          imageId={imageId}
+          setIsOpen={setIsOpen}
+          image={image}
+        />
       ) : null}
     </Wrapper>
   );
