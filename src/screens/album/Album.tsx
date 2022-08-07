@@ -7,7 +7,7 @@ import { Container } from "../../components/shared/container/Container";
 import Footer from "../../components/shared/footer/Footer";
 import Photo from "../../components/shared/photo/Photo";
 import { State } from "../../store";
-import { getAlbum, setAlbum } from "../../store/actions/user";
+import { getAlbum, setAlbum, unlockAlbum } from "../../store/actions/user";
 import {
   Back,
   ButtonWrapper,
@@ -44,6 +44,10 @@ const Album = () => {
     nav("/dashboard");
   };
 
+  const onUnlockClick = () => {
+    dispatch(unlockAlbum(albumId as string));
+  };
+
   return (
     <Wrapper>
       {album?.photos ? (
@@ -65,7 +69,9 @@ const Album = () => {
                     </Count>
                   </FooterBot>
                 </Data>
-                {album.is_unlocked ? null : <Unlock>Unlock your photos</Unlock>}
+                {album.is_unlocked ? null : (
+                  <Unlock onClick={onUnlockClick}>Unlock your photos</Unlock>
+                )}
               </Inner>
             </Header>
             <Photos>
@@ -83,7 +89,7 @@ const Album = () => {
             {album.is_unlocked ? null : (
               <Container>
                 <ButtonWrapper>
-                  <Button>Unlock your photos</Button>
+                  <Button onClick={onUnlockClick}>Unlock your photos</Button>
                 </ButtonWrapper>
               </Container>
             )}

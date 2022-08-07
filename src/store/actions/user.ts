@@ -365,3 +365,15 @@ export const getAllPhotos =
       dispatch(userActions.setLoading(false));
     }
   };
+
+export const unlockAlbum =
+  (albumId: string): AsyncAction =>
+  async (dispatch, _, { mainProtectedApi }) => {
+    try {
+      const response = await mainProtectedApi.payment({ album_id: albumId });
+      window.open(response.data.payment_url);
+    } catch (e) {
+      console.log(e);
+      dispatch(userActions.setLoading(false));
+    }
+  };
