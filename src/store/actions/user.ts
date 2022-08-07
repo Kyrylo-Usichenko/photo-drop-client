@@ -371,7 +371,7 @@ export const unlockAlbum =
   async (dispatch, _, { mainProtectedApi }) => {
     try {
       const response = await mainProtectedApi.payment({ album_id: albumId });
-      window.open(response.data.payment_url);
+      window.location.replace(response.data.payment_url);
     } catch (e) {
       console.log(e);
       dispatch(userActions.setLoading(false));
