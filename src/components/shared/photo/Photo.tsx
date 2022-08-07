@@ -7,9 +7,10 @@ interface Props {
   image?: string;
   imageId: string;
   isUnlocked?: boolean;
+  albumId: string;
 }
 
-const Photo = ({ thumbnail, image, imageId, isUnlocked }: Props) => {
+const Photo = ({ thumbnail, image, imageId, isUnlocked, albumId }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     if (isOpen) {
@@ -17,11 +18,9 @@ const Photo = ({ thumbnail, image, imageId, isUnlocked }: Props) => {
       document.body.style.touchAction = "none";
       window.addEventListener("scroll", (e) => {
         e.preventDefault();
-
       });
     } else {
-      window.removeEventListener("scroll", (e) => {
-      });
+      window.removeEventListener("scroll", (e) => {});
       document.body.style.overflow = "visible";
       document.body.style.touchAction = "auto";
     }
@@ -32,6 +31,7 @@ const Photo = ({ thumbnail, image, imageId, isUnlocked }: Props) => {
       <Img onClick={() => setIsOpen(true)} src={thumbnail} loading="lazy" />
       {isOpen ? (
         <LandscapeImage
+          albumId={albumId}
           isUnlocked={isUnlocked}
           imageId={imageId}
           setIsOpen={setIsOpen}

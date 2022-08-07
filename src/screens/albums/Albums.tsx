@@ -36,7 +36,6 @@ const Albums = () => {
     if (!allPhotos) dispatch(getAllPhotos());
   }, []);
 
-
   return (
     <div style={{ overflowX: "scroll" }}>
       <div>
@@ -63,6 +62,7 @@ const Albums = () => {
           {allPhotos &&
             allPhotos?.map((photo) => (
               <Photo
+                albumId={photo.album_id}
                 key={photo.id}
                 imageId={photo.id}
                 thumbnail={photo.image.thumbnail}

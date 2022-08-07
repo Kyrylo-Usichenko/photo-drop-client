@@ -47,6 +47,7 @@ const Album = () => {
   const onUnlockClick = () => {
     dispatch(unlockAlbum(albumId as string));
   };
+  console.log(album);
 
   return (
     <Wrapper>
@@ -78,11 +79,12 @@ const Album = () => {
               {album.photos &&
                 album.photos.map((photo) => (
                   <Photo
+                    albumId={albumId as string}
                     key={photo.id}
                     imageId={photo.id}
                     image={photo.image.full}
                     thumbnail={photo.image.thumbnail}
-                    isUnlocked={photo.isUnlocked}
+                    isUnlocked={photo.is_unlocked}
                   />
                 ))}
             </Photos>

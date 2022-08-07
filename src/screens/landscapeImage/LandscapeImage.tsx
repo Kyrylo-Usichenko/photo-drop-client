@@ -1,4 +1,7 @@
 import FileSaver from "file-saver";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../App";
+import { unlockAlbum } from "../../store/actions/user";
 import {
   Button,
   Cross,
@@ -18,9 +21,18 @@ interface Props {
   setIsOpen: (value: boolean) => void;
   imageId: string;
   isUnlocked?: boolean;
+  albumId: string;
 }
 
-const LandscapeImage = ({ image, setIsOpen, imageId, isUnlocked }: Props) => {
+const LandscapeImage = ({
+  image,
+  setIsOpen,
+  imageId,
+  isUnlocked,
+  albumId,
+}: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const onButtonClick = () => {
     if (navigator.share) {
       navigator.share({
@@ -56,6 +68,12 @@ const LandscapeImage = ({ image, setIsOpen, imageId, isUnlocked }: Props) => {
       navigator.clipboard.writeText(decodeURIComponent(copyMessage()));
     }
   };
+
+  const onUnlockClick = () => {
+    dispatch(unlockAlbum(albumId as string));
+  };
+  console.log(isUnlocked);
+
   return (
     <Wrapper>
       <CrossWrapper>
@@ -68,7 +86,7 @@ const LandscapeImage = ({ image, setIsOpen, imageId, isUnlocked }: Props) => {
 
       <Img src={image} alt="" />
       {!isUnlocked ? (
-        <Button>Unlock photo</Button>
+        <Button onClick={onUnlockClick}>Unlock photo</Button>
       ) : (
         <Footer>
           <LeftWrapper>
