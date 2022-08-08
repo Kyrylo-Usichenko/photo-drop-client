@@ -71,11 +71,11 @@ const Albums = () => {
               />
             ))}
         </Photos>
-        <Container>
+        {/* <Container>
           <ButtonWrapper>
             <Button>Unlock your photos</Button>
           </ButtonWrapper>
-        </Container>
+        </Container> */}
         <Footer />
       </div>
     </div>
