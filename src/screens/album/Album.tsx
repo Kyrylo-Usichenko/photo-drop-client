@@ -5,6 +5,8 @@ import { AppDispatch } from "../../App";
 import Button from "../../components/shared/button/Button";
 import { Container } from "../../components/shared/container/Container";
 import Footer from "../../components/shared/footer/Footer";
+import Loader from "../../components/shared/loader/Loader";
+import LoaderGif from "../../components/shared/loaderGif/LoaderGif";
 import Photo from "../../components/shared/photo/Photo";
 import { State } from "../../store";
 import { getAlbum, setAlbum, unlockAlbum } from "../../store/actions/user";
@@ -30,6 +32,8 @@ const Album = () => {
   const album = useSelector((state: State) => state.userReducer.album);
   const timestamp = new Date(album?.date as number);
   const [isLoading, setLoading] = useState(false);
+  const [isLoadingTop, setLoadingTop] = useState(false);
+
   const date = {
     month: timestamp.toLocaleString("default", { month: "short" }),
     day: timestamp.getDate(),
@@ -45,8 +49,9 @@ const Album = () => {
     nav("/dashboard");
   };
 
-  const onUnlockClick = async () => {
-    setLoading(true);
+  const onUnlockClick = async (top: boolean) => {
+    top ? setLoadingTop(true) : setLoading(true);
+
     await dispatch(unlockAlbum(albumId as string));
   };
 
@@ -72,8 +77,11 @@ const Album = () => {
                   </FooterBot>
                 </Data>
                 {album.is_unlocked ? null : (
-                  <Unlock onClick={onUnlockClick}>Unlock your photos</Unlock>
+                  <Unlock onClick={() => onUnlockClick(true)}>
+                    Unlock your photos
+                  </Unlock>
                 )}
+                <LoaderGif isLoading={isLoadingTop} />
               </Inner>
             </Header>
             <Photos>
@@ -92,7 +100,10 @@ const Album = () => {
             {album.is_unlocked ? null : (
               <Container>
                 <ButtonWrapper>
-                  <Button isLoading={isLoading} onClick={onUnlockClick}>
+                  <Button
+                    isLoading={isLoading}
+                    onClick={() => onUnlockClick(false)}
+                  >
                     Unlock your photos
                   </Button>
                 </ButtonWrapper>

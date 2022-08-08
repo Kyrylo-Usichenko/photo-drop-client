@@ -1,40 +1,44 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Footer = () => {
-    const nav = useNavigate()
+  const nav = useNavigate();
 
-    return (
-        <div>
-            <FooterWrapper>
-                <FooterInner>
-                    <div>
-                        <Author>PhotoDrop is brought to you by</Author>
-                        <Logo src="/assets/icons/frameology-logo.svg" alt=""/>
-                        <Info>Our mission is to help people connect with their memories. If you framing some of the photos from
-                            your experience, please consider using Frameology. It supports the photographers and makes
-                            PhotoDrop possible.</Info>
-                        <Button>Order photos</Button>
-                        <Inc>© 2022 FOM Online Inc</Inc>
-                    </div>
-                    <div>
-                        <GetTouch>Questions? Get in touch - hello@photodrop.me</GetTouch>
-                        <ClimateLogo src="/assets/icons/climate-neutral-logo.svg" alt=""/>
-                        <Inc375>© 2022 FOM Online Inc</Inc375>
-                        <Terms onClick={() => nav('/terms-of-services')}>Terms of services</Terms>
-                        <Privacy onClick={() => nav('/privacy')}>Privacy Party</Privacy>
-                    </div>
-                </FooterInner>
-            </FooterWrapper>
-        </div>
-    );
+  return (
+    <div>
+      <FooterWrapper>
+        <FooterInner>
+          <div>
+            <Author>PhotoDrop is brought to you by</Author>
+            <Logo src="/assets/icons/frameology-logo.svg" alt="" />
+            <Info>
+              Our mission is to help people connect with their memories. If you
+              framing some of the photos from your experience, please consider
+              using Frameology. It supports the photographers and makes
+              PhotoDrop possible.
+            </Info>
+            <Button>Order photos</Button>
+            <Inc>© 2022 FOM Online Inc</Inc>
+          </div>
+          <div>
+            <GetTouch>Questions? Get in touch - hello@photodrop.me</GetTouch>
+            <ClimateLogo src="/assets/icons/climate-neutral-logo.svg" alt="" />
+            <Inc375>© 2022 FOM Online Inc</Inc375>
+            <Terms onClick={() => nav("/terms-of-services")}>
+              Terms of services
+            </Terms>
+            <Privacy onClick={() => nav("/privacy")}>Privacy Party</Privacy>
+          </div>
+        </FooterInner>
+      </FooterWrapper>
+    </div>
+  );
 };
 export const FooterWrapper = styled.div`
   background: #262626;
   width: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   //margin: 60px 0 0;
   padding: 60px 15px 134px;
   @media (min-width: 1440px) {
@@ -52,18 +56,17 @@ export const FooterInner = styled.div`
   }
 `;
 export const Author = styled.div`
-  font-family: 'Termina';
+  font-family: "Termina";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1440px) {
     font-size: 22px;
     line-height: 26px;
     letter-spacing: -0.02em;
-
   }
 `;
 export const Logo = styled.img`
@@ -83,7 +86,7 @@ export const Info = styled.p`
   font-size: 16px;
   line-height: 21px;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 100%;
   max-width: 500px;
   @media (min-width: 1440px) {
@@ -96,7 +99,7 @@ export const Info = styled.p`
 `;
 
 export const Button = styled.button`
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 50px;
   outline: none;
   margin: 39px 0 0;
@@ -113,8 +116,9 @@ export const Button = styled.button`
   padding: 17px 0 18px;
   width: 100%;
   max-width: 500px;
+  cursor: pointer;
   @media (min-width: 1440px) {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     border-radius: 50px;
     outline: none;
     margin: 29px 0 0;
@@ -140,7 +144,7 @@ export const Inc = styled.p`
     font-size: 18px;
     line-height: 200%;
     letter-spacing: -0.02em;
-    color: #FFFFFF;
+    color: #ffffff;
     margin: 60px 0 0;
   }
 `;
@@ -151,7 +155,7 @@ export const Inc375 = styled.p`
   font-size: 16px;
   line-height: 200%;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1440px) {
     display: none;
   }
@@ -163,7 +167,7 @@ export const GetTouch = styled.p`
   font-size: 16px;
   line-height: 200%;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1440px) {
     font-style: normal;
     font-weight: 400;
@@ -180,7 +184,6 @@ export const ClimateLogo = styled.img`
     margin: 20px 0 0;
   }
 `;
-
 
 export const Terms = styled.p`
   font-style: normal;
@@ -203,7 +206,7 @@ export const Privacy = styled.p`
   cursor: pointer;
   line-height: 200%;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   @media (min-width: 1440px) {
     margin: 19px 0 0;
     font-size: 18px;

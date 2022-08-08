@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Header = styled.div`
   height: 55px;
-  border-bottom: 1px solid #F1F0EC;
+  border-bottom: 1px solid #f1f0ec;
   display: flex;
   align-items: center;
   padding: 0 15px;
@@ -42,7 +42,7 @@ export const Back = styled.img`
 `;
 
 export const Name = styled.div`
-  font-family: 'Termina';
+  font-family: "Termina";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -70,7 +70,6 @@ export const FooterBot = styled.div`
     font-size: 16px;
     line-height: 21px;
   }
-
 `;
 export const Inner = styled.div`
   height: 100%;
@@ -82,24 +81,28 @@ export const Inner = styled.div`
     margin: 0 auto;
     justify-content: space-between;
   }
-
 `;
 
 export const Unlock = styled.div`
   display: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media (min-width: 1440px) {
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
     line-height: 28px;
-    color: #3300CC;
+    color: #3300cc;
     display: block;
+    width: 100%;
+    max-width: 173px;
   }
 `;
 
 export const Count = styled.span`
-  color: #3300CC;
+  color: #3300cc;
   margin: 0 0 0 5px;
 `;
 export const Photos = styled.div`
