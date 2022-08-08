@@ -91,7 +91,7 @@ const Img = styled.img`
   margin: 30px 0 30px;
   border-radius: 20px;
   object-fit: cover;
-
+  width: 100%;
   @media (min-width: 1440px) {
     margin: 39px 0 40px;
     height: 250px;
