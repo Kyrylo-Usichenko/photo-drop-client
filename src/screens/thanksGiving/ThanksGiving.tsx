@@ -1,30 +1,50 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { AppDispatch } from "../../App";
 import Button from "../../components/shared/button/Button";
 import { Container } from "../../components/shared/container/Container";
 import Header from "../../components/shared/header/Header";
+import { State } from "../../store";
+import { getAlbum } from "../../store/actions/user";
 
 const ThanksGiving = () => {
   const params = useParams();
-  console.log(params);
+  const dispatch = useDispatch<AppDispatch>();
+  const nav = useNavigate();
+  useEffect(() => {
+    dispatch(getAlbum(params.id as string));
+  }, []);
+
+  const album = useSelector((state: State) => state.userReducer.album);
+  console.log(album);
 
   return (
     <div>
-      <Header />
-      <Container>
-        <Heading>Thank you</Heading>
-        <Album>The album Brooklyn Bridge is now unlocked.</Album>
-        <Text>
-          You can now download, share, post, and print your hi-res,
-          watermark-free, glorious memories.
-        </Text>
-        <Img src="" alt="asd" />
-        <Button>See photos</Button>
-        <BottomText>
-          You will receive an email with your order details.
-        </BottomText>
-      </Container>
+      {album ? (
+        <div>
+          <Header />
+          <Container>
+            <Heading>Thank you</Heading>
+            <Album>The album {album?.location} is now unlocked.</Album>
+            <Text>
+              You can now download, share, post, and print your hi-res,
+              watermark-free, glorious memories.
+            </Text>
+            {/*@ts-ignore */}
+            <Img src={album && album?.photos[0].image.full} alt="asd" />
+            <Button onClick={() => nav(`/album/${params.id}`)}>
+              See photos
+            </Button>
+            <BottomText>
+              You will receive an email with your order details.
+            </BottomText>
+          </Container>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
@@ -61,6 +81,7 @@ const Text = styled.div`
   font-size: 18px;
   line-height: 23px;
   color: #262626;
+
   @media (min-width: 1440px) {
     font-size: 22px;
     line-height: 28px;
@@ -68,6 +89,9 @@ const Text = styled.div`
 `;
 const Img = styled.img`
   margin: 30px 0 30px;
+  border-radius: 20px;
+  object-fit: cover;
+
   @media (min-width: 1440px) {
     margin: 39px 0 40px;
     height: 250px;
