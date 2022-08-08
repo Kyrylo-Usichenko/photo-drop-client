@@ -85,6 +85,9 @@ export const Button = styled.button`
   border: none;
   margin: 30px auto 30px;
   max-width: 345px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   @media (min-width: 1440px) {
     position: fixed;

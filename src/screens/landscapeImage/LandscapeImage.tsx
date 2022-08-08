@@ -1,6 +1,8 @@
 import FileSaver from "file-saver";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../App";
+import Loader from "../../components/shared/loader/Loader";
 import { unlockAlbum } from "../../store/actions/user";
 import {
   Button,
@@ -32,6 +34,7 @@ const LandscapeImage = ({
   albumId,
 }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isLoading, setLoading] = useState(false);
 
   const onButtonClick = () => {
     if (navigator.share) {
@@ -69,10 +72,10 @@ const LandscapeImage = ({
     }
   };
 
-  const onUnlockClick = () => {
-    dispatch(unlockAlbum(albumId as string));
+  const onUnlockClick = async () => {
+    setLoading(true);
+    await dispatch(unlockAlbum(albumId as string));
   };
-  console.log(isUnlocked);
 
   return (
     <Wrapper>
@@ -86,7 +89,9 @@ const LandscapeImage = ({
 
       <Img src={image} alt="" />
       {!isUnlocked ? (
-        <Button onClick={onUnlockClick}>Unlock photo</Button>
+        <Button onClick={onUnlockClick}>
+          {isLoading ? <Loader /> : "Unlock photo"}
+        </Button>
       ) : (
         <Footer>
           <LeftWrapper>

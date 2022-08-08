@@ -154,7 +154,7 @@ function App() {
               }
             />
             <Route
-              path="/thank-you"
+              path="/thank-you/:id"
               element={
                 <ProtectedRouter>
                   <ThanksGiving />

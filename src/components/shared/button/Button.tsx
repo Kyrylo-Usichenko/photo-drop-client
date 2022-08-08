@@ -1,23 +1,27 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Loader from "../loader/Loader";
 
 type Props = {
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
-    children?: React.ReactNode; // make the component able to receive children elements
-    disabled?: boolean; // make the button disabled or not
-    margin?: string,
-    isLoading?: boolean,
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; // to handle onClick functions
+  children?: React.ReactNode; // make the component able to receive children elements
+  disabled?: boolean; // make the button disabled or not
+  margin?: string;
+  isLoading?: boolean;
 };
 
-const Button = ({onClick, children, disabled, margin, isLoading = false}: Props) => {
-    return (
-        <Wrapper margin={margin} onClick={onClick} disabled={disabled}>
-            {
-                isLoading ? <Loader/> : children
-            }
-        </Wrapper>
-    );
+const Button = ({
+  onClick,
+  children,
+  disabled,
+  margin,
+  isLoading = false,
+}: Props) => {
+  return (
+    <Wrapper margin={margin} onClick={onClick} disabled={disabled}>
+      {isLoading ? <Loader /> : children}
+    </Wrapper>
+  );
 };
 export const Wrapper = styled.button<Props>`
   width: 100%;
@@ -28,8 +32,8 @@ export const Wrapper = styled.button<Props>`
   font-size: 18px;
   line-height: 23px;
   text-align: center;
-  color: #FFFFFF;
-  background: #3300CC;
+  color: #ffffff;
+  background: #3300cc;
   border-radius: 50px;
   outline: none;
   border: none;

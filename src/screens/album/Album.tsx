@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppDispatch } from "../../App";
@@ -29,6 +29,7 @@ const Album = () => {
   const nav = useNavigate();
   const album = useSelector((state: State) => state.userReducer.album);
   const timestamp = new Date(album?.date as number);
+  const [isLoading, setLoading] = useState(false);
   const date = {
     month: timestamp.toLocaleString("default", { month: "short" }),
     day: timestamp.getDate(),
@@ -44,10 +45,10 @@ const Album = () => {
     nav("/dashboard");
   };
 
-  const onUnlockClick = () => {
-    dispatch(unlockAlbum(albumId as string));
+  const onUnlockClick = async () => {
+    setLoading(true);
+    await dispatch(unlockAlbum(albumId as string));
   };
-  console.log(album);
 
   return (
     <Wrapper>
@@ -91,7 +92,9 @@ const Album = () => {
             {album.is_unlocked ? null : (
               <Container>
                 <ButtonWrapper>
-                  <Button onClick={onUnlockClick}>Unlock your photos</Button>
+                  <Button isLoading={isLoading} onClick={onUnlockClick}>
+                    Unlock your photos
+                  </Button>
                 </ButtonWrapper>
               </Container>
             )}
