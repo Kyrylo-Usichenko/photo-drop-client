@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -33,7 +33,7 @@ const ThanksGiving = () => {
               watermark-free, glorious memories.
             </Text>
             {/*@ts-ignore */}
-            <Img src={album && album?.photos[0].image.full} alt="asd" />
+            <Img src={album && album.photos[0].image.full} />
             <Button onClick={() => nav(`/album/${params.id}`)}>
               See photos
             </Button>
