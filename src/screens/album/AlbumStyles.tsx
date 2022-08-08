@@ -86,9 +86,6 @@ export const Inner = styled.div`
 export const Unlock = styled.div`
   display: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   @media (min-width: 1440px) {
     font-style: normal;
     font-weight: 500;
@@ -96,8 +93,6 @@ export const Unlock = styled.div`
     line-height: 28px;
     color: #3300cc;
     display: block;
-    width: 100%;
-    max-width: 173px;
   }
 `;
 
