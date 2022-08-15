@@ -40,6 +40,9 @@ const SecondOnboarding = () => {
           ) : (
             <Wrapper>
               <div>
+                
+              </div>
+              <div>
                 <Header />
                 <Container>
                   <HeadingEmail>Hey there, {user.full_name}! 👋</HeadingEmail>

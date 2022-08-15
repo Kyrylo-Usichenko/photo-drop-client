@@ -13,14 +13,14 @@ import {
   resendUpdatePhone,
   sendOtp,
   sendUpdateOtp,
-  setLoading
+  setLoading,
 } from "../../store/actions/user";
 import {
   Heading,
   Number,
   NumberWrapper,
   Resend,
-  Wrapper
+  Wrapper,
 } from "./MobileSignUpVerificationStyles";
 
 interface Props {
@@ -28,10 +28,7 @@ interface Props {
   secondOnboarding?: boolean;
 }
 
-const MobileSignUpVerification = ({
-  update,
-  secondOnboarding,
-}: Props) => {
+const MobileSignUpVerification = ({ update, secondOnboarding }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   const phone = useSelector((state: State) => state.userReducer.phone);
@@ -49,18 +46,17 @@ const MobileSignUpVerification = ({
   const onNextClick = () => {
     dispatch(update ? sendUpdateOtp(phone, otp) : sendOtp(phone, otp));
   };
-    useEffect(() => {
-      if(user){
- if (user && user.selfie?.photo_url) {
-   secondOnboarding ? nav("/onboarding") : nav("/dashboard");
-   dispatch(setLoading(false));
- } else {
-   secondOnboarding ? nav("/onboarding") : nav("/dashboard");
-   dispatch(setLoading(false));
- }
+  useEffect(() => {
+    if (user) {
+      if (user && user.selfie?.photo_url) {
+        secondOnboarding ? nav("/onboarding") : nav("/dashboard");
+        dispatch(setLoading(false));
+      } else {
+        secondOnboarding ? nav("/onboarding") : nav("/selfie");
+        dispatch(setLoading(false));
       }
-    }, [user]);
-
+    }
+  }, [user]);
 
   useEffect(() => {
     dispatch(redirectUser(null));
@@ -74,7 +70,6 @@ const MobileSignUpVerification = ({
       nav("/account-settings");
     }
     if (phone === "" && !update) {
-      
       secondOnboarding ? nav("/login-onboarding") : nav("/login");
     }
   });
@@ -111,8 +106,8 @@ const MobileSignUpVerification = ({
           </NumberWrapper>
 
           <
-            // @ts-ignore
-            ReactCodeInput
+          // @ts-ignore
+          ReactCodeInput
             name="resetPassword"
             inputMode="numeric"
             fields={6}
