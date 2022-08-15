@@ -32,7 +32,7 @@ abstract class HttpClient {
         const currentAccessToken = tokens.getAccessToken();
         if (status === 403 && currentAccessToken) {
             tokens.clear()
-            window.location.replace('/login')
+            window.location.replace('/signup')
 
         }
         return Promise.reject(e);

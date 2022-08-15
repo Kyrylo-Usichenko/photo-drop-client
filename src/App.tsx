@@ -33,7 +33,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<MobileSignUp />} />
+            <Route path="/signup" element={<MobileSignUp />} />
             <Route
               path="/login-onboarding"
               element={<MobileSignUp secondOnboarding />}
@@ -43,7 +43,7 @@ function App() {
               path="/sms-verification"
               element={
                 <div>
-                  <Header logoToMainPage={false} backUrl="/login" />
+                  <Header logoToMainPage={false} backUrl="/signup" />
                   <MobileSignUpVerification />
                 </div>
               }

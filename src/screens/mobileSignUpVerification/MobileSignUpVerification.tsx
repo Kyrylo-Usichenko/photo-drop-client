@@ -13,14 +13,14 @@ import {
   resendUpdatePhone,
   sendOtp,
   sendUpdateOtp,
-  setLoading,
+  setLoading
 } from "../../store/actions/user";
 import {
   Heading,
   Number,
   NumberWrapper,
   Resend,
-  Wrapper,
+  Wrapper
 } from "./MobileSignUpVerificationStyles";
 
 interface Props {
@@ -70,7 +70,7 @@ const MobileSignUpVerification = ({ update, secondOnboarding }: Props) => {
       nav("/account-settings");
     }
     if (phone === "" && !update) {
-      secondOnboarding ? nav("/login-onboarding") : nav("/login");
+      secondOnboarding ? nav("/login-onboarding") : nav("/signup");
     }
   });
   const props = {
