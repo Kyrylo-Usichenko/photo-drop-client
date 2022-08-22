@@ -377,3 +377,19 @@ export const unlockAlbum =
       dispatch(userActions.setLoading(false));
     }
   };
+
+export const getIdToRedirect =
+  (imageId: string): AsyncAction =>
+  async (dispatch, _, { mainProtectedApi }) => {
+    try {
+      const response = await mainProtectedApi.createFramePhoto({
+        id: imageId,
+      });
+      console.log(response);
+      window.open(
+        `https://frameology.com/products/henry-black-picture-frame?tmp_id=${response.data.temp_id}`
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };

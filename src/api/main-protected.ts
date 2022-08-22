@@ -53,4 +53,7 @@ export default class MainProtected extends HttpClientProtected {
 
   public payment = (body: { album_id: string }) =>
     this.instance.post(`/payment`, body);
+
+  public createFramePhoto = (body: { id: string }) =>
+    this.instance.post(`/frame-photo`, body);
 }
