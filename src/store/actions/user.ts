@@ -385,7 +385,6 @@ export const getIdToRedirect =
       const response = await mainProtectedApi.createFramePhoto({
         id: imageId,
       });
-      console.log(response);
       window.open(
         `https://frameology.com/products/henry-black-picture-frame?tmp_id=${response.data.temp_id}`
       );
