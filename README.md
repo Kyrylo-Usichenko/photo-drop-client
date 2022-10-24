@@ -11,3 +11,4 @@ After modules installed, Type next command to run project
 After this, project opens at http://localhost:3000
 If not, just open a new tab in your browser and paste there 
 ### `http://localhost:3000`
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Kyrylo-Usichenko&theme=radical)
